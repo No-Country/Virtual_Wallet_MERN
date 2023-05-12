@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/No-Country/Virtual_Wallet.git"
+    "url": "git+https://github.com/No-Country/Virtual_Wallet_MERN.git"
   },
   "author": "MERN Stack Team No Country.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/No-Country/Virtual-Wallet/issues"
+    "url": "https://github.com/No-Country/Virtual_Wallet_MERN/issues"
   },
-  "homepage": "https://github.com/No-Country/Virtual_Wallet#readme",
+  "homepage": "https://github.com/No-Country/Virtual_Wallet_MERN#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
