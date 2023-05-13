@@ -1,2 +1,7 @@
 node_modules
+api.rest
 .env
+*.yml
+*.test
+Dockerfile
+docker-compose.yml
