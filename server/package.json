@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/No-Country/Virtual_Wallet_MERN#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
