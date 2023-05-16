@@ -6,6 +6,8 @@ const database = require("../src/database/database");
 const cors = require("cors");
 require("dotenv").config();
 const auth_routes = require("./routes/auth");
+const user_routes = require("./routes/user");
+const card_routes = require("./routes/card");
 
 const cors_options = {
   origin: "*",
@@ -19,6 +21,8 @@ app.use(cors(cors_options));
 app.use(morgan("dev"));
 
 app.use("/api/", auth_routes);
+app.use("/api/user", user_routes);
+app.use("/api/card", card_routes);
 
 const PORT = process.env.PORT || 5000;
 
