@@ -42,12 +42,14 @@ exports.delete_one_transaction = async (req, res) => {
   try {
     const { id } = req.params;
     const deleted_transaction = await delete_transaction({ _id: id });
-    if (!delete_transaction) return res.sendStatus(400);
+    if(!deleted_transaction) return res.status(404).json({ message: "TRANSACCION NO ENCONTRADA"})
+   
 
     return res
       .status(200)
       .json({ message: `TRANSACCION ${deleted_transaction._id} ELIMINADA` });
   } catch (err) {
+    console.log(err.message)
     return res.sendStatus(500);
   }
 };
