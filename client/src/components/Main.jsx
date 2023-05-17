@@ -1,7 +1,7 @@
 
 export const Main = ({children}) => {
   return (
-    <main className= "bg-c-fondo bg w-full min-h-[600px] h-auto flex justify-start items-center align-middle px-24 font-parrafo" >
+    <main className= "my-2 bg-c-fondo w-full  h-auto flex justify-start items-center align-middle font-parrafo" >
       {children}
     </main>
   )
