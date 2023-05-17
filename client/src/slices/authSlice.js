@@ -26,11 +26,23 @@ export const login = createAsyncThunk("auth/login", async (credentials) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: {
+    isAuthenticated: localStorage.getItem("token") ? true : false,
     user: null,
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    loginSuccess: (state, action) => {
+      localStorage.setItem("token", action.payload.token);
+      state.isAuthenticated = true;
+      console.log(action.payload.token);
+    },
+    logout: (state) => {
+      localStorage.removeItem("token");
+      state.isAuthenticated = false;
+      // Resto de la lógica
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -47,5 +59,6 @@ const authSlice = createSlice({
       });
   },
 });
+export const { loginSuccess, logout } = authSlice.actions;
 
 export default authSlice.reducer;
