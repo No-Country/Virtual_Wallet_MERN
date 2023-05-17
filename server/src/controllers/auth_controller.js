@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 exports.register = async (req, res) => {
   try {
     const { name, surname, username, email } = req.body;
-    if ((!name, !surname, !username, !email)) return res.send(400);
+    if ((!name, !surname, !username, !email)) return res.sendStatus(400);
 
     const registered_user = await get_user_by_email(email);
     if (registered_user) return res.status(400).json({ message: "EMAIL YA REGISTRADO"});

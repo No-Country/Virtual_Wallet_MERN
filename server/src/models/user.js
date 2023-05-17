@@ -17,12 +17,6 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
     },
-    card_ID: {
-      type: String,
-    },
-    transaction_ID: {
-      type: String,
-    },
   },
   {
     timestamp: true,
