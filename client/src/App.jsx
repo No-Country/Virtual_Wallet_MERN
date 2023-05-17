@@ -1,11 +1,19 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Counter } from "./components/Counter";
+import Layout from "./components/Layout";
+import Register from "./pages/Register";
 import { Login } from "./components/Login";
+import { Counter } from "./components/Counter";
+
 function App() {
   return (
-    <>
-      <Counter />
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Counter />} />
+      </Routes>
+    </Layout>
   );
 }
 

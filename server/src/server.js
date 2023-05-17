@@ -8,6 +8,8 @@ require("dotenv").config();
 const auth_routes = require("./routes/auth");
 const user_routes = require("./routes/user");
 const card_routes = require("./routes/card");
+const contact_routers = require("./routes/contact");
+const transaction_routes = require("./routes/transaction");
 
 const cors_options = {
   origin: "*",
@@ -20,9 +22,18 @@ app.use(body_parser.json());
 app.use(cors(cors_options));
 app.use(morgan("dev"));
 
+app.get("/", (req, res) => {
+  try {
+    res.send("PENGUIN-WALLET SERVER RUNNING.");
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+});
 app.use("/api/", auth_routes);
 app.use("/api/user", user_routes);
 app.use("/api/card", card_routes);
+app.use("/api/transaction", transaction_routes);
+app.use("/api/contact", contact_routers);
 
 const PORT = process.env.PORT || 5000;
 
