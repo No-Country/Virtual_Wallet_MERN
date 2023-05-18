@@ -4,7 +4,7 @@ import './App.css'
 import Layout from './components/Layout'
 import Register from './pages/Register'
 import { BillPayment } from './components/BillPayment'
-import { Main } from './components/Main'
+import { Main } from './pages/Main'
 
 function App() {
   return (
