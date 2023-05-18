@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to="#" className="liNavBar">
           Ayuda
         </Link>
-        <Link to="#" className="liNavBar">
+        <Link to="/login" className="liNavBar">
           Iniciar Sesión
         </Link>
         <Link
