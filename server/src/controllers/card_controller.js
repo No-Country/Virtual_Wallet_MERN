@@ -6,12 +6,12 @@ exports.get_user_cards = async (req, res) => {
 };
 
 exports.post_user_card = async (req, res) => {
-  const { name, description, type, number, expiration_date, cvv } = req.body;
+  const { name, description, type, number, expiration_date, cvv, balance } = req.body;
 
   if (!name || !description || !type || !number || !expiration_date || !cvv)
     return res.status(400).json({ message: "Missing fields" });
 
-  const card = await create_card(name, description, type, number, expiration_date, cvv, req.user);
+  const card = await create_card(name, description, type, number, expiration_date, cvv, req.user, balance);
 
   if (!card) return res.status(400).json({ message: "Error creating card" });
   res.status(200).json(card);
