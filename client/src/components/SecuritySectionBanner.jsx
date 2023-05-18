@@ -11,11 +11,11 @@ export const SecuritySectionBanner = () => {
             <h1 className="text-4xl font-bold text-c-contenedor font-titulo" >PinguiWallet</h1>
           </div>
           <div className="flex flex-wrap justify-center gap-4 w-2/3">
-            <div className="bg-blue-500 bg-opacity-70 p-4 rounded-md">
+            <div className="bg-c-cart-opaca bg-opacity-80 p-4 rounded-md w-[240px]">
               <p className="text-c-fondo font-semibold">Somos una Wallet segura</p>
               <p className="text-c-fuente">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-            <div className="bg-blue-800 bg-opacity-50 p-4 rounded-md">
+            <div className="bg-c-cart-opaca bg-opacity-80 p-4 rounded-md w-[240px]">
               <p className="text-c-fondo font-semibold">Otra nota sobre seguridad</p>
               <p className="text-c-fuente">Praesent feugiat malesuada tristique.</p>
             </div>

@@ -26,7 +26,13 @@ export default {
         'c-boton-accion': 'rgb(var(--color-boton-accion))',
         'c-seccion-historial': 'rgb(var(--color-seccion-historial))',
         'c-fondo-carrito': 'rgb(var(--color-fondo-carrito))',
-        'c-icono-carrito': 'rgb(var(--color-icono-carrito))'
+        'c-icono-carrito': 'rgb(var(--color-icono-carrito))',
+        'c-cart-opaca': {
+          DEFAULT: '#33cc99', // Color  --color-boton-accion
+          '50': '#EAF2FD', // Opacidad 50%
+          '100': '#C5D8FA', // Opacidad 100%
+          // Puedes agregar más niveles de opacidad si lo deseas
+        },
       }
     }
   },

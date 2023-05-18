@@ -13,6 +13,10 @@
   --color-seccion-historial: 242, 242, 242;
   --color-fondo-carrito: 242, 242, 242;
   --color-icono-carrito: 91, 165, 231;
+
+  --prueba1: #3077E9;
+  --60: #EAF2FD;
+  --100: #C5D8FA;
 }
 
 .dark-mode {
