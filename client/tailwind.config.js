@@ -13,8 +13,10 @@ export default {
         twitter: '#00acee',
         shadow: '#ccc',
         demo: '#eddede',
-        'c-fondo':'rgb(var(--color-fondo))',
-        'c-contenedor':'rgb(var(--color-contenedor))',
+        successfully: 'green',
+        error: 'red',
+        'c-fondo': 'rgb(var(--color-fondo))',
+        'c-contenedor': 'rgb(var(--color-contenedor))',
         'c-botones': 'rgb(var(--color-botones))',
         'c-sombra': 'rgb(var(--color-sombra))',
         'c-titulo': 'rgb(var(--color-titulo))',
@@ -24,26 +26,26 @@ export default {
         'c-boton-accion': 'rgb(var(--color-boton-accion))',
         'c-seccion-historial': 'rgb(var(--color-seccion-historial))',
         'c-fondo-carrito': 'rgb(var(--color-fondo-carrito))',
-        'c-icono-carrito': 'rgb(var(--color-icono-carrito))',
+        'c-icono-carrito': 'rgb(var(--color-icono-carrito))'
       }
     }
   },
   plugins: [
-    function ({ addUtilities  }) {
+    function ({ addUtilities }) {
       const customUtilities = {
-        'liNavBar': {
+        liNavBar: {
           //propiedad css que queremos que aplique , para no repetir tanta cadena de codigo
-          color:'rgb(var(--color-titulo))',
-          fontFamily:'Heebo, sans-serif',
-          fontWeight:'medium',
-        },
+          color: 'rgb(var(--color-titulo))',
+          fontFamily: 'Heebo, sans-serif',
+          fontWeight: 'medium'
+        }
         //otras clases
       }
       addUtilities(customUtilities, {
         respectPrefix: false,
         respectImportant: false,
-        //definimos el mombre de lacapa personalizada  
-        layer: 'custom',
+        //definimos el mombre de lacapa personalizada
+        layer: 'custom'
       })
     }
   ]

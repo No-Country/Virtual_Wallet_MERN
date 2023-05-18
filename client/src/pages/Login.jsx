@@ -34,7 +34,7 @@ export const Login = () => {
   }
 
   return (
-    <div className="w-full h-screen flex flex-col justify-start items-center gap-15 mt-36">
+    <div className="w-full h-full mb-36 flex flex-col justify-start items-center gap-15 mt-36">
       <img
         className="rounded-[50%] object-cover w-[95px] h-[90px]"
         src={logo}
