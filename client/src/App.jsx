@@ -4,6 +4,8 @@ import Layout from './components/Layout'
 import Register from './pages/Register'
 import { Main } from './components/Main'
 import { Banner } from './components/Banner'
+import { SeparatorLogo } from './components/SeparatorLogo'
+import { GenericTitle } from './components/GenericTitle'
 
 function App() {
   return (
@@ -13,8 +15,9 @@ function App() {
       </Routes>
       <Main>
         <Banner></Banner>
+        <SeparatorLogo></SeparatorLogo>
+        <GenericTitle title="Te simplificamos el trabajo!!!"></GenericTitle>
       </Main>
-        
     </Layout>
   )
 }
