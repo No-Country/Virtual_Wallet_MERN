@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Register from "./pages/Register";
 import { BillPayment } from "./components/BillPayment";
 import { Main } from "./pages/Main";
+import { Home } from "./pages/Home";
 
 function App() {
   return (
