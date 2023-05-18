@@ -1,8 +1,9 @@
-import { Banner } from './Banner'
-import { SeparatorLogo } from './SeparatorLogo'
-import { GenericTitle } from './GenericTitle'
-import { ItemCardList } from './ItemCardList.jsx'
-import { Faqs } from './Faqs'
+import { Banner } from "./Banner"
+import { SeparatorLogo } from "./SeparatorLogo"
+import { GenericTitle } from "./GenericTitle"
+import { ItemCardList } from "./ItemCardList.jsx"
+import { Faqs } from "./Faqs"
+import { SecuritySectionBanner } from "./SecuritySectionBanner"
 
 export const Main = ({ children }) => {
   return (
@@ -12,7 +13,8 @@ export const Main = ({ children }) => {
         <SeparatorLogo />
         <GenericTitle title="Te simplificamos el trabajo!" />
         <ItemCardList />
-        <GenericTitle title="¿Qué más debo saber?" />
+        <SecuritySectionBanner />
+        <GenericTitle title="¿Que mas debo saber?"/>
         <Faqs />
         {children}
       </main>
