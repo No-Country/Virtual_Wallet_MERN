@@ -26,6 +26,10 @@ const cardSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
+    balance: {
+      type: Number,
+      default: 100000,
+    },
   },
   {
     timestamp: true,
