@@ -3,6 +3,7 @@ import { SeparatorLogo } from '../components/SeparatorLogo'
 import { GenericTitle } from '../components/GenericTitle'
 import { ItemCardList } from '../components/ItemCardList.jsx'
 import { Faqs } from '../components/Faqs'
+import { SecuritySectionBanner } from '../components/SecuritySectionBanner'
 
 export const Main = ({ children }) => {
   return (
@@ -12,6 +13,7 @@ export const Main = ({ children }) => {
         <SeparatorLogo />
         <GenericTitle title="Te simplificamos el trabajo!" />
         <ItemCardList />
+        <SecuritySectionBanner />
         <GenericTitle title="¿Qué más debo saber?" />
         <Faqs />
         {children}
