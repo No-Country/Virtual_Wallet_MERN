@@ -13,8 +13,8 @@ export const Main = ({ children }) => {
         <SeparatorLogo />
         <GenericTitle title="Te simplificamos el trabajo!!!"/>
         <ItemCardList />
-        <GenericTitle title="¿Que mas debo saber?"/>
         <SecuritySectionBanner />
+        <GenericTitle title="¿Que mas debo saber?"/>
         <Faqs />
         {children}
       </main>
