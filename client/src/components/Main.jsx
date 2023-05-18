@@ -8,10 +8,10 @@ import { SecuritySectionBanner } from "./SecuritySectionBanner"
 export const Main = ({ children }) => {
   return (
     <>
-      <main className= "my-2 bg-c-fondo w-full h-auto flex flex-col gap-10" >
+      <main className="my-2 bg-c-fondo w-full h-auto flex flex-col gap-10">
         <Banner />
         <SeparatorLogo />
-        <GenericTitle title="Te simplificamos el trabajo!!!"/>
+        <GenericTitle title="Te simplificamos el trabajo!" />
         <ItemCardList />
         <SecuritySectionBanner />
         <GenericTitle title="¿Que mas debo saber?"/>
@@ -21,4 +21,3 @@ export const Main = ({ children }) => {
     </>
   )
 }
-
