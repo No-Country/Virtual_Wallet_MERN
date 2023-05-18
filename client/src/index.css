@@ -1,3 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+
+:root {
+  --color-fondo: 248, 248, 248;
+  --color-contenedor: 255, 255, 255;
+  --color-botones: 92, 167, 232;
+  --color-sombra: 204, 204, 204;
+  --color-titulo: 15, 76, 129;
+  --color-subtitulo: 97, 97, 97;
+  --color-fuente: 0, 0, 0;
+  --color-fuente-secundario: 79, 79, 79;
+  --color-boton-accion: 51, 204, 153;
+  --color-seccion-historial: 242, 242, 242;
+  --color-fondo-carrito: 242, 242, 242;
+  --color-icono-carrito: 91, 165, 231;
+}
+
+.dark-mode {
+  --color-fondo: 46, 46, 46;
+  --color-contenedor: 63, 63, 63;
+  --color-botones: 92, 167, 232;
+  --color-sombra: 79, 79, 79;
+  --color-titulo: 248, 248, 248;
+  --color-subtitulo: 204, 204, 204;
+  --color-fuente: 255, 255, 255;
+  --color-fuente-secundario: 178, 178, 178;
+  --color-boton-accion: 51, 204, 153;
+  --color-seccion-historial: 63, 63, 63;
+  --color-fondo-carrito: 63, 63, 63;
+  --color-icono-carrito: 91, 165, 231;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
+
+import { Login } from "./components/Login";
+import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Register from "./pages/Register";
-import { Login } from "./components/Login";
-import { Counter } from "./components/Counter";
+import { Main } from "./components/Main";
+import { Banner } from "./components/Banner";
 
 function App() {
   return (
@@ -12,6 +14,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Main>
+        <Banner></Banner>
+      </Main>
     </Layout>
   );
 }

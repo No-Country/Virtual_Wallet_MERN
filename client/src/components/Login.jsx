@@ -10,6 +10,7 @@ export const Login = () => {
   const { loading, error } = useSelector((state) => state?.auth);
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
+  console.log(isAuthenticated);
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/home");
