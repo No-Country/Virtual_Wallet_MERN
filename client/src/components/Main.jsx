@@ -3,6 +3,7 @@ import { SeparatorLogo } from "./SeparatorLogo"
 import { GenericTitle } from "./GenericTitle"
 import { ItemCardList } from "./ItemCardList.jsx"
 import { Faqs } from "./Faqs"
+import { SecuritySectionBanner } from "./SecuritySectionBanner"
 
 export const Main = ({ children }) => {
   return (
@@ -13,6 +14,7 @@ export const Main = ({ children }) => {
         <GenericTitle title="Te simplificamos el trabajo!!!"/>
         <ItemCardList />
         <GenericTitle title="¿Que mas debo saber?"/>
+        <SecuritySectionBanner />
         <Faqs />
         {children}
       </main>

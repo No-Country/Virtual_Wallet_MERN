@@ -16,7 +16,7 @@ const listServices = [
 
 export const ItemCardList = () => {
   return (
-    <section className="w-full h-auto flex justify-center p-7 sm:gap-14 gap-10 flex-wrap border-2" >
+    <section className="w-full h-auto flex justify-center p-7 sm:gap-14 gap-10 flex-wrap" >
       {
         listServices.map((element) => {
           return (<article key={element.id}>
