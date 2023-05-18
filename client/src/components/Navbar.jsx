@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import LogoutButton from "./LogoutButton";
+import LogoutButton from './LogoutButton'
 
 const Navbar = () => {
-  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated)
 
   return (
     <nav className="w-full h-24 flex justify-between items-center px-24">
       <div>
         <Link
-          to={"/"}
+          to={'/'}
           className="font-titulo font-bold text-1xl text-c-icono-carrito"
         >
           PinguiWallet
@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to="#" className="liNavBar">
           Ayuda
         </Link>
-        <Link to="#" className="liNavBar">
+        <Link to="/login" className="liNavBar">
           Iniciar Sesión
         </Link>
         <Link
@@ -32,10 +32,10 @@ const Navbar = () => {
         >
           Registrarse
         </Link>
-        {isAuthenticated ? <LogoutButton></LogoutButton> : <></>}
+        {isAuthenticated && <LogoutButton />}
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
