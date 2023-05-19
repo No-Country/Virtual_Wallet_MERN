@@ -34,20 +34,20 @@ export const Login = () => {
   }
 
   return (
-    <div className="w-full h-full mb-36 flex flex-col justify-start items-center gap-15 mt-36">
+    <div className="w-full h-full mb-36 flex flex-col justify-start items-center gap-15 mt-24">
       <img
         className="rounded-[50%] object-cover w-[95px] h-[90px]"
         src={logo}
         alt="Logo PinguiWallet"
       />
-      <h2 className="w-100 text-center text-[#FC7E09] text-2xl mb-6 font-bold">
-        Bienvenid@ de nuevo
+      <h2 className="w-100 text-center text-[#FC7E09] text-2xl my-8 font-bold">
+        ¡Bienvenid@ de nuevo!
       </h2>
       <h3 className="text-center text-[#A0A0A0] text-lg mb-8">
         Inicia sesíon para continuar
       </h3>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form className="flex flex-col gap-12" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-16" onSubmit={handleSubmit}>
         <div className="w-80 h-10 border-b border-shadow">
           <input
             placeholder="Ingrese su correo"
