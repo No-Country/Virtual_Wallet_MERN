@@ -50,9 +50,10 @@ const Register = () => {
         src={logo}
         alt="Logo PinguiWallet"
       />
-      <h2 className="text-[#FC7E09] text-2xl font-bold">
-        Registrarse en <span>PinguiWallet</span>
+      <h2 className="text-[#FC7E09] text-2xl font-bold my-4">
+        ¡Registrarse en <span>PinguiWallet</span>!
       </h2>
+      <h3 className="text-center text-[#A0A0A0] text-lg">Create un cuenta</h3>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-8 py-14 px-20">
         {user && (
