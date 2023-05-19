@@ -1,37 +1,39 @@
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { login, loginSuccess } from '../slices/authSlice'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, loginSuccess } from "../slices/authSlice";
+import { Link, useNavigate } from "react-router-dom";
 const logo =
-  'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg'
+  "https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg";
 
 export const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
-  const { loading, error } = useSelector((state) => state?.auth)
-  const navigate = useNavigate()
-  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated)
-  console.log(isAuthenticated)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state?.auth);
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
+  console.log(isAuthenticated);
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/home')
+      navigate("/home");
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     dispatch(login({ email, password }))
       .then((response) => {
-        const { token, user } = response.payload
-        dispatch(loginSuccess({ token, user }))
-        navigate('/home')
+        const { token, user } = response.payload;
+        dispatch(loginSuccess({ token, user }));
+        if (isAuthenticated) {
+          return navigate("/home");
+        }
       })
       .catch((error) => {
-        console.log('Error al iniciar sesión:', error)
-      })
-  }
+        console.log("Error al iniciar sesión:", error);
+      });
+  };
 
   return (
     <div className="w-full h-full mb-36 flex flex-col justify-start items-center gap-15 mt-24">
@@ -72,7 +74,7 @@ export const Login = () => {
           disabled={loading}
           className="cursor-pointer bg-demo text-center px-2 py-1 rounded"
         >
-          {loading ? 'Loading...' : 'Iniciar Sesión'}
+          {loading ? "Loading..." : "Iniciar Sesión"}
         </button>
       </form>
 
@@ -83,5 +85,5 @@ export const Login = () => {
         ¿Aún no tienes una cuenta? Registrate
       </Link>
     </div>
-  )
-}
+  );
+};
