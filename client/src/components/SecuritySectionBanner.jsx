@@ -11,7 +11,7 @@ export const SecuritySectionBanner = () => {
             <h1 className="text-4xl font-bold text-c-contenedor font-titulo" >PinguiWallet</h1>
           </div>
           <div className="flex flex-wrap justify-center gap-4 w-2/3">
-            <div className="bg-c-cart-opaca bg-opacity-80 p-4 rounded-md w-[240px]">
+            <div className="bg-c-cart-opaca bg-opacity-80 p-4 rounded-md w-[240px]" style={{ boxShadow: '2px 2px 5px #b1b1b1,0px 0px 0px #ffffff' }}>
               <p className="text-c-fondo font-semibold">Somos una Wallet segura</p>
               <p className="text-c-fuente">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
