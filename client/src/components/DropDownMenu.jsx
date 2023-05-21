@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const DropDownMenu = () => {
   const [abierto, setAbierto] = useState(false);

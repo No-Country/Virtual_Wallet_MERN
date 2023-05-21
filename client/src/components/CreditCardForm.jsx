@@ -8,6 +8,13 @@ const CreditCardForm = () => {
   const [ccv, setCcv] = useState("");
   const [errors, setErrors] = useState({});
 
+  //estado para rotar card
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const flipCard = () => {
+    setIsFlipped(!isFlipped);
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -90,6 +97,14 @@ const CreditCardForm = () => {
     if (Object.keys(validationErrors).length === 0) {
       // Procesar el pago
       console.log("¡cdatos validos para cargarlos a la db!");
+      const formData = {
+        cardNumber,
+        cardHolder,
+        expirationMonth,
+        expirationYear,
+        ccv,
+      };
+      console.log(formData);
       // ...
     }
 
@@ -97,64 +112,66 @@ const CreditCardForm = () => {
 
   return (
     <section className="w-ful min-h-[80vh] flex justify-start items-start gap-3">
-    <div className="checkout bg-blue-400 w-[300px] h-[200px] p-6 rounded-lg">
-      <div className="credit-card-box">
-        <div className="flip">
-          <div className="front">
-            <div className="chip"></div>
-            <div className="logo">
-              <svg
-                version="1.1"
-                id="visa"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="47.834px"
-                height="47.834px"
-                viewBox="0 0 47.834 47.834"
-              >
-                {/* SVG path para el logotipo de Visa */}
-              </svg>
-            </div>
-            <div className="number text-white">{cardNumber}</div>
-            <div className="card-holder">
-              <label className="text-white">Titular de la tarjeta</label>
-              <div className="text-white">{cardHolder}</div>
-            </div>
-            <div className="card-expiration-date">
-              <label className="text-white">Vence</label>
-              <div className="text-white">
-                {expirationMonth}/{expirationYear}
+    <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center  gap-6">
+      <div className={`credit-card-box checkout bg-blue-400 w-[350px] h-[200px] rounded-lg  relative ${isFlipped ? "flipped" : ""}`} onClick={flipCard}>
+        <div className="cardFather w-[100%] h-[100%] p-4" style={{ transform: isFlipped ? 'rotateY(180deg)' : 'none' }}>
+          <section className="cardChildren w-[100%] h-[100%] relative">
+            <section className="credit-card-front bg-purple-500 w-[100%] h-[100%] absolute top-0 left-0 transform-style-preserve-3d" style={{}}>
+              <div className="chip"></div>
+              <div className="logo">
+                <svg
+                  version="1.1"
+                  id="visa"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  width="47.834px"
+                  height="47.834px"
+                  viewBox="0 0 47.834 47.834"
+                >
+                  {/* SVG path para el logotipo de Visa */}
+                </svg>
               </div>
-            </div>
-          </div>
-          <div className="back">
-            <div className="strip"></div>
-            <div className="logo">
-              <svg
-                version="1.1"
-                id="visa"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                width="47.834px"
-                height="47.834px"
-                viewBox="0 0 47.834 47.834"
-              >
-                {/* SVG path para el logotipo de Visa */}
-              </svg>
-            </div>
-            <div className="ccv">
-              <label className="text-white">CCV</label>
-              <div className="text-white">{ccv}</div>
-            </div>
-          </div>
+              <div className="number text-white">{cardNumber}</div>
+              <div className="card-holder">
+                <label className="text-white">Titular de la tarjeta</label>
+                <div className="text-white">{cardHolder}</div>
+              </div>
+              <div className="card-expiration-date">
+                <label className="text-white">Vence</label>
+                <div className="text-white">
+                  {expirationMonth}/{expirationYear}
+                </div>
+              </div>
+            </section>
+            <section className="credit-card-back bg-slate-500 w-[100%] h-[100%] absolute top-0 left-0 backface-visibility-hidden transform-style-preserve-3d" style={{ transform: 'rotateY(180deg)'}}>
+              <div className="strip"></div>
+              <div className="logo">
+                <svg
+                  version="1.1"
+                  id="visa"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  width="47.834px"
+                  height="47.834px"
+                  viewBox="0 0 47.834 47.834"
+                >
+                  {/* SVG path para el logotipo de Visa */}
+                </svg>
+              </div>
+              <div className="ccv">
+                <label className="text-white">CCV</label>
+                <div className="text-white">{ccv}</div>
+              </div>
+            </section>
+          </section>
         </div>
       </div>
 
-      <form className="credit-card-form" onSubmit={handleSubmit}>
+      <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
         <fieldset>
           <input
             type="text"
@@ -163,11 +180,11 @@ const CreditCardForm = () => {
             value={cardNumber}
             onChange={handleInputChange}
             placeholder="Número de tarjeta"
-            className={`w-full bg-blue-100 p-2 rounded-lg mb-2 ${
-              errors.cardNumber ? "border-red-500" : ""
+            className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+              errors.cardNumber ? "border-red-600 " : ""
             }`}
           />
-          {errors.cardNumber && <p className="text-red-500 text-xs">{errors.cardNumber}</p>}
+          {errors.cardNumber && <p className="text-red-400 text-xs font-parrafo pb-2">{errors.cardNumber}</p>}
           <input
             type="text"
             id="card-holder"
@@ -175,40 +192,44 @@ const CreditCardForm = () => {
             value={cardHolder}
             onChange={handleInputChange}
             placeholder="Titular de la tarjeta"
-            className={`w-full bg-blue-100 p-2 rounded-lg mb-2 ${
-              errors.cardHolder ? "border-red-500" : ""
+            className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+              errors.cardHolder ? "border-red-600" : ""
             }`}
           />
-          {errors.cardHolder && <p className="text-red-500 text-xs">{errors.cardHolder}</p>}
-          <div className="expiry-date-group">
-            <input
-              type="text"
-              id="expiration-month"
-              name="expirationMonth"
-              value={expirationMonth}
-              onChange={handleInputChange}
-              placeholder="Mes de vencimiento"
-              className={`w-2/5 bg-blue-100 p-2 rounded-lg mb-2 ${
-                errors.expirationMonth ? "border-red-500" : ""
-              }`}
-            />
-            {errors.expirationMonth && (
-              <p className="text-red-500 text-xs">{errors.expirationMonth}</p>
-            )}
-            <input
-              type="text"
-              id="expiration-year"
-              name="expirationYear"
-              value={expirationYear}
-              onChange={handleInputChange}
-              placeholder="Año de vencimiento"
-              className={`w-3/5 bg-blue-100 p-2 rounded-lg mb-2 ${
-                errors.expirationYear ? "border-red-500" : ""
-              }`}
-            />
-            {errors.expirationYear && (
-              <p className="text-red-500 text-xs">{errors.expirationYear}</p>
-            )}
+          {errors.cardHolder && <p className="text-red-400 text-xs">{errors.cardHolder}</p>}
+          <div className="expiry-date-group flex gap-2">
+            <div className="flex-col w-2/5">
+              <input
+                type="text"
+                id="expiration-month"
+                name="expirationMonth"
+                value={expirationMonth}
+                onChange={handleInputChange}
+                placeholder="Mes de vencimiento"
+                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+                  errors.expirationMonth ? "border-red-600" : ""
+                }`}
+              />
+              {errors.expirationMonth && (
+                <p className="text-red-400 text-xs w-full">{errors.expirationMonth}</p>
+              )}
+            </div>
+            <div className="flex-col w-3/5">
+              <input
+                type="text"
+                id="expiration-year"
+                name="expirationYear"
+                value={expirationYear}
+                onChange={handleInputChange}
+                placeholder="Año de vencimiento"
+                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+                  errors.expirationYear ? "border-red-500" : ""
+                }`}
+              />
+              {errors.expirationYear && (
+                <p className="text-red-500 text-xs">{errors.expirationYear}</p>
+              )}
+            </div>
           </div>
           <input
             type="text"
@@ -217,12 +238,12 @@ const CreditCardForm = () => {
             value={ccv}
             onChange={handleInputChange}
             placeholder="CCV"
-            className={`w-1/3 bg-blue-100 p-2 rounded-lg mb-2 ${errors.ccv ? "border-red-500" : ""}`}
+            className={`w-1/3 p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${errors.ccv ? "border-red-600" : ""}`}
           />
-          {errors.ccv && <p className="text-red-500 text-xs">{errors.ccv}</p>}
+          {errors.ccv && <p className="text-red-400 text-xs">{errors.ccv}</p>}
         </fieldset>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-          Pagar
+        <button type="submit" className="bg-c-boton-accion text-white p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm border-solid border-2 border-c-boton-accion outline-none ">
+          Cargar
         </button>
       </form>
     </div>

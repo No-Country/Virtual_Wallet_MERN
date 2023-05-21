@@ -20,7 +20,7 @@ function App() {
         <Route path="/credit-card" element={<BillPayment />}></Route>
         <Route path="/currency-dollar" element={<BillPayment />}></Route>
 
-        <Route path="/credito" element={<CreditCardForm />}></Route>
+        <Route path="/creditCard" element={<CreditCardForm />}></Route>
       </Routes>
     </Layout>
   );
