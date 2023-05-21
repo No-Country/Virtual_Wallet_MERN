@@ -112,11 +112,11 @@ const CreditCardForm = () => {
 
   return (
     <section className="w-ful min-h-[80vh] flex justify-start items-start gap-3">
-    <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center  gap-6">
-      <div className={`credit-card-box checkout bg-blue-400 w-[350px] h-[200px] rounded-lg  relative ${isFlipped ? "flipped" : ""}`} onClick={flipCard}>
-        <div className="cardFather w-[100%] h-[100%] p-4" style={{ transform: isFlipped ? 'rotateY(180deg)' : 'none' }}>
-          <section className="cardChildren w-[100%] h-[100%] relative">
-            <section className="credit-card-front bg-purple-500 w-[100%] h-[100%] absolute top-0 left-0 transform-style-preserve-3d" style={{}}>
+    <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6">
+      <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid border-2 border-c-boton-accion overflow-hidden perspective-1000 relative `} onClick={flipCard}>
+          <section className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`} style={{transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
+            
+            <section className="flip-card-fron w-[100%] h-[100%] absolute top-0 left-0 bg-purple-500 text-white" style={{ backfaceVisibility: 'hidden'}}>
               <div className="chip"></div>
               <div className="logo">
                 <svg
@@ -145,7 +145,7 @@ const CreditCardForm = () => {
                 </div>
               </div>
             </section>
-            <section className="credit-card-back bg-slate-500 w-[100%] h-[100%] absolute top-0 left-0 backface-visibility-hidden transform-style-preserve-3d" style={{ transform: 'rotateY(180deg)'}}>
+            <section className="flip-card-back w-[100%] h-[100%] absolute top-0 left-0 bg-slate-500 text-yellow-50" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)'}}>
               <div className="strip"></div>
               <div className="logo">
                 <svg
@@ -168,7 +168,6 @@ const CreditCardForm = () => {
               </div>
             </section>
           </section>
-        </div>
       </div>
 
       <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
