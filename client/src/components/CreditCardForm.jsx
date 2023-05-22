@@ -118,56 +118,41 @@ const CreditCardForm = () => {
       <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
           <section className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`} style={{transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
             
-            <section className="flip-card-fron w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2" style={{ backfaceVisibility: 'hidden'}}>
-              <div className="chip"></div>
-              <div className="logo">
-                <svg
-                  version="1.1"
-                  id="visa"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  x="0px"
-                  y="0px"
-                  width="47.834px"
-                  height="47.834px"
-                  viewBox="0 0 47.834 47.834"
-                >
-                  {/* SVG path para el logotipo de Visa */}
-                </svg>
-              </div>
-              <div className="number text-white">{cardNumber}</div>
-              <div className="card-holder">
-                <label className="text-white">Titular de la tarjeta</label>
-                <div className="text-white">{cardHolder}</div>
-              </div>
-              <div className="card-expiration-date">
-                <label className="text-white">Vence</label>
-                <div className="text-white">
-                  {expirationMonth}/{expirationYear}
+            <section className="flip-card-fron w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2 flex flex-col gap-3" style={{ backfaceVisibility: 'hidden'}}>
+              <section className="w-full h-[42px] flex justify-between items-cente" >
+                <div className="chip w-[100px] h-[40px] flex justify-start items-center font-titulo font-bold">
+                  <h2>Pingui Card</h2>
                 </div>
-              </div>
+                <div className="logo w-[45px] h-auto rounded-full overflow-hidden border-2 border-opacity-20 border-white">
+                  <img className="w-[100%] h-[100%] object-cover" src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg" alt="pinguino logo" />  
+                </div>
+              </section>
+              <section className="w-full h-auto flex justify-between items-center" >
+                <div className="chip w-[40px] h-[40px] ">
+                  <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1684733944/wallet/chip_n8mvm7.png" alt="chip" />
+                </div>
+              </section>
+              <div className="number text-white font-parrafo">{cardNumber.replace(/\d{4}(?=.)/g, '$& ')}</div>
+              <section className="w-full h-auto  flex justify-start items-center gap-4">
+                <div className="card-holder">
+                  <div className="text-white font-titulo font-md">{cardHolder}</div>
+                </div>
+                <div className="card-expiration-date">
+                  <div className="text-white">
+                    vto {expirationMonth}/{expirationYear}
+                  </div>
+                </div>
+              </section>
             </section>
-            <section className="flip-card-back w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2 " style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)'}}>
-              <div className="strip"></div>
-              <div className="logo">
-                <svg
-                  version="1.1"
-                  id="visa"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  x="0px"
-                  y="0px"
-                  width="47.834px"
-                  height="47.834px"
-                  viewBox="0 0 47.834 47.834"
-                >
-                  {/* SVG path para el logotipo de Visa */}
-                </svg>
+            <section className="flip-card-back w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2 overflow-hidden flex flex-col gap-2" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)'}}>
+              <div className="bandMagnetic w-full h-[50px] relative">
+                <div className="w-[120%] h-[50px] absolute bg-black left-[-10px] top-0"></div>
               </div>
-              <div className="ccv">
-                <label className="text-white">CCV</label>
-                <div className="text-white">{ccv}</div>
+              <p className="w-full h-auto text-white font-parrafo text-[.4rem] text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate illo vitae quisquam </p>
+              <div className="ccv w-full h-[30px] relative bg-slate-500 flex justify-end items-center pr-2">
+                <div className="text-white font-parrafo font-md">{ccv}</div>
               </div>
+              <p className="w-full h-auto text-white font-parrafo text-[.4rem] text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab atque beatae non id, sit nulla eos dolor eligendi corrupti cupiditate officiis debitis sequi repudiandae voluptates. Nobis alias at rem ab.<br></br><br></br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab atque beatae non id, sit nulla eos dolor eligendi corrupti cupiditate officiis debitis sequi repudiandae voluptates. Nobis alias at rem ab</p>
             </section>
           </section>
       </div>
