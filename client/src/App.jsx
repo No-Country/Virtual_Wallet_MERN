@@ -38,6 +38,7 @@ function App() {
           element={<TermsAndConditions />}
         ></Route>
         <Route path="/subMenu" element={<VerticalMenu />}></Route>
+
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </Layout>
