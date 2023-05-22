@@ -109,14 +109,16 @@ const CreditCardForm = () => {
     }
 
   };
+  
+  const backgroundImage = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684718648/wallet/pinguiWallet-bg-prompt-hero1_cke13p.jpg'
 
   return (
     <section className="w-ful min-h-[80vh] flex justify-start items-start gap-3">
-    <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6">
-      <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid border-2 border-c-boton-accion overflow-hidden perspective-1000 relative `} onClick={flipCard}>
+    <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6 " style={{ backgroundImage: `url(${backgroundImage})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
+      <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
           <section className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`} style={{transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
             
-            <section className="flip-card-fron w-[100%] h-[100%] absolute top-0 left-0 bg-purple-500 text-white" style={{ backfaceVisibility: 'hidden'}}>
+            <section className="flip-card-fron w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2" style={{ backfaceVisibility: 'hidden'}}>
               <div className="chip"></div>
               <div className="logo">
                 <svg
@@ -145,7 +147,7 @@ const CreditCardForm = () => {
                 </div>
               </div>
             </section>
-            <section className="flip-card-back w-[100%] h-[100%] absolute top-0 left-0 bg-slate-500 text-yellow-50" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)'}}>
+            <section className="flip-card-back w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2 " style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)'}}>
               <div className="strip"></div>
               <div className="logo">
                 <svg
@@ -179,7 +181,7 @@ const CreditCardForm = () => {
             value={cardNumber}
             onChange={handleInputChange}
             placeholder="Número de tarjeta"
-            className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+            className={`w-full rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${
               errors.cardNumber ? "border-red-600 " : ""
             }`}
           />
@@ -191,13 +193,13 @@ const CreditCardForm = () => {
             value={cardHolder}
             onChange={handleInputChange}
             placeholder="Titular de la tarjeta"
-            className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+            className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${
               errors.cardHolder ? "border-red-600" : ""
             }`}
           />
           {errors.cardHolder && <p className="text-red-400 text-xs">{errors.cardHolder}</p>}
           <div className="expiry-date-group flex gap-2">
-            <div className="flex-col w-2/5">
+            <div className="flex-col w-2/4">
               <input
                 type="text"
                 id="expiration-month"
@@ -205,7 +207,7 @@ const CreditCardForm = () => {
                 value={expirationMonth}
                 onChange={handleInputChange}
                 placeholder="Mes de vencimiento"
-                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${
                   errors.expirationMonth ? "border-red-600" : ""
                 }`}
               />
@@ -213,7 +215,7 @@ const CreditCardForm = () => {
                 <p className="text-red-400 text-xs w-full">{errors.expirationMonth}</p>
               )}
             </div>
-            <div className="flex-col w-3/5">
+            <div className="flex-col w-2/4">
               <input
                 type="text"
                 id="expiration-year"
@@ -221,7 +223,7 @@ const CreditCardForm = () => {
                 value={expirationYear}
                 onChange={handleInputChange}
                 placeholder="Año de vencimiento"
-                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${
+                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${
                   errors.expirationYear ? "border-red-500" : ""
                 }`}
               />
@@ -237,11 +239,11 @@ const CreditCardForm = () => {
             value={ccv}
             onChange={handleInputChange}
             placeholder="CCV"
-            className={`w-1/3 p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm text-c-sombra border-solid border-2 border-c-boton-accion outline-none bg-c-subtitulo ${errors.ccv ? "border-red-600" : ""}`}
+            className={`w-1/3 p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${errors.ccv ? "border-red-600" : ""}`}
           />
           {errors.ccv && <p className="text-red-400 text-xs">{errors.ccv}</p>}
         </fieldset>
-        <button type="submit" className="bg-c-boton-accion text-white p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm border-solid border-2 border-c-boton-accion outline-none ">
+        <button type="submit" className="bg-c-boton-accion text-white p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm border-solid border-2 border-c-boton-accion outline-none hover:bg-c-titulo hover:text-c-fuente-principal hover:border-c-titulo transition duration-300 ease-in-out">
           Cargar
         </button>
       </form>
