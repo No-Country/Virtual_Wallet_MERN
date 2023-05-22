@@ -11,6 +11,7 @@ import SecurityAndPrivacy from './pages/SecurityAndPrivacy'
 import NotFound from './pages/NotFound'
 import InfomationTransparency from './pages/InfomationTransparency'
 import TermsAndConditions from './pages/TermsAndConditions'
+import VerticalMenu from './components/VerticalMenu'
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
           path="/terms-conditions"
           element={<TermsAndConditions />}
         ></Route>
+        <Route path="/subMenu" element={<VerticalMenu />}></Route>
+
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </Layout>
