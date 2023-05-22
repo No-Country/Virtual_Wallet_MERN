@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../slices/authSlice'
-const logo =
-  'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg'
-
+import logo from '../img/logo.png'
 const initialState = {
   name: '',
   surname: '',

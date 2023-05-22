@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
+import logo from '../img/logo.png'
+import logoName from '../img/logo-nombre.png'
 
 const Footer = () => {
   return (
     <footer className="bg-demo flex justify-evenly items-start p-10">
       <article>
-        <h2 className="mb-3 text-center">Logo</h2>
+        <div className="flex justify-center items-center w-[120px]">
+          <img src={logo} alt="Logo" />
+          <img className="-ml-8 mt-4" src={logoName} alt="Logo" />
+        </div>
         <div className="flex justify-center gap-5 text-2xl">
           <a
             href="https://facebook.com"
@@ -45,13 +50,13 @@ const Footer = () => {
         </h2>
         <div className="flex flex-col gap-2">
           <Link to="#" className="text-sm">
-            Escribinos a <i>numero</i>
+            Escríbenos a <i className="font-semibold">+1 555-123-4567</i>
           </Link>
           <Link to="#" className="text-sm">
-            <i>Avenida</i>
+            Avenida <i className="font-semibold">Esperanza Celeste</i>
           </Link>
           <Link to="#" className="text-sm">
-            <i>Dirección</i>
+            Dirección <i className="font-semibold">Calle Sol, número 123</i>
           </Link>
         </div>
       </article>
