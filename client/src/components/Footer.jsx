@@ -29,10 +29,14 @@ const Footer = () => {
       <article>
         <h2 className="mb-3 font-semibold">INFORMACIÓN LEGAL</h2>
         <ul className="text-sm flex flex-col gap-3">
-          <Link to="#">Transparencia de la Información</Link>
-          <Link to="#">Politicas de Seguridad y Privacidad</Link>
-          <Link to="#">Términos y Condiciones</Link>
-          <Link to="#">Trabajá con Nosotros</Link>
+          <Link to="/information-transparency">
+            Transparencia de la Información
+          </Link>
+          <Link to="/security-privacy">
+            Politicas de Seguridad y Privacidad
+          </Link>
+          <Link to="/terms-conditions">Términos y Condiciones</Link>
+          <Link to="/contact">Trabajá con Nosotros</Link>
         </ul>
       </article>
       <article>

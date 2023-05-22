@@ -11,9 +11,9 @@ const Navbar = () => {
       <div>
         <Link
           to={'/'}
-          className="font-titulo font-bold text-1xl text-c-icono-carrito"
+          className="font-titulo font-bold text-2xl text-c-icono-carrito"
         >
-          PinguiWallet
+          PingüiWallet
         </Link>
       </div>
       <ul className="flex justify-evenly items-center gap-10">
