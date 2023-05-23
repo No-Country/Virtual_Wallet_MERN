@@ -2,8 +2,9 @@ import { Banner } from '../components/Banner'
 import { SeparatorLogo } from '../components/SeparatorLogo'
 import { GenericTitle } from '../components/GenericTitle'
 import { ItemCardList } from '../components/ItemCardList.jsx'
-import { Faqs } from '../components/Faqs'
 import { SecuritySectionBanner } from '../components/SecuritySectionBanner'
+import SavingBanner from '../components/SavingBanner'
+import Faqs from '../components/Faqs'
 
 export const Main = ({ children }) => {
   return (
@@ -11,10 +12,10 @@ export const Main = ({ children }) => {
       <main className="my-2 bg-c-fondo w-full h-auto flex flex-col gap-10">
         <Banner />
         <SeparatorLogo />
-        <GenericTitle title="Te simplificamos el trabajo!" />
+        <GenericTitle title="Te simplificamos el trabajo" />
         <ItemCardList />
         <SecuritySectionBanner />
-        <GenericTitle title="¿Qué más debo saber?" />
+        <SavingBanner />
         <Faqs />
         {children}
       </main>

@@ -1,133 +1,156 @@
-import { useState } from 'react'
+import * as React from 'react'
+import { styled } from '@mui/material/styles'
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp'
+import MuiAccordion from '@mui/material/Accordion'
+import MuiAccordionSummary from '@mui/material/AccordionSummary'
+import MuiAccordionDetails from '@mui/material/AccordionDetails'
+import Typography from '@mui/material/Typography'
 
-export const Faqs = () => {
-  const [openAccordions, setOpenAccordions] = useState([])
+const Accordion = styled((props) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  '&:not(:last-child)': {
+    borderBottom: 0
+  },
+  '&:before': {
+    display: 'none'
+  }
+}))
 
-  const toggleAccordion = (index) => {
-    const updatedAccordions = [...openAccordions]
-    updatedAccordions[index] = !updatedAccordions[index]
-    setOpenAccordions(updatedAccordions)
+const AccordionSummary = styled((props) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, .05)'
+      : 'rgba(0, 0, 0, .03)',
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(90deg)'
+  },
+  '& .MuiAccordionSummary-content': {
+    marginLeft: theme.spacing(1)
+  }
+}))
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(0, 0, 0, .125)'
+}))
+
+export default function Faqs() {
+  const [expanded, setExpanded] = React.useState('panel1')
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false)
   }
 
   return (
-    <section className="px-4 pt-0 pb-20 mx-auto max-w-7xl md:px-2">
-      <div className="text-sm border-t border-b border-gray-200 divide-y divide-gray-200">
-        <div>
-          <button
-            onClick={() => toggleAccordion(0)}
-            className="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
-            role="button"
-            aria-controls="faq1"
-            aria-expanded={openAccordions[0] ? 'true' : 'false'}
-          >
-            ¿Qué es PinguiWallet? 🥰🥰
-            <svg
-              className={`flex-none w-4 h-4 ml-4 transition transform ${
-                open ? 'rotate-45' : ''
-              }`}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          {openAccordions[0] && (
-            <div className="w-90 pb-5 pr-0 text-gray-700 md:pr-40" id="faq1">
-              PinguiWallet es una wallet argentina diseñada para ayudar a las
-              personas a gestionar su dinero de forma intuitiva. Está inspirada
-              en la sostenibilidad y tiene como objetivo facilitar el acceso a
-              las nuevas tecnologías, brindando también apoyo a las personas
-              mayores.
-            </div>
-          )}
-        </div>
-        <div>
-          <button
-            onClick={() => toggleAccordion(1)}
-            className="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
-            role="button"
-            aria-controls="faq2"
-            aria-expanded={openAccordions[1] ? 'true' : 'false'}
-          >
-            ¿Qué necesito para abrir una cuenta en PinguiWallet? 😳😳
-            <svg
-              className={`flex-none w-4 h-4 ml-4 transition transform ${
-                open ? 'rotate-45' : ''
-              }`}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          {openAccordions[1] && (
-            <div className="pb-5 pr-0 text-gray-700 md:pr-40" id="faq2">
-              Necesitarás tener a mano los siguientes documentos e información:
-              <ul>
-                <li>Documento Nacional de Identidad (DNI) válido.</li>
-                <li>Ser una persona física mayor de edad.</li>
-                <li>
-                  Datos personales como nombre completo, dirección y fecha de
-                  nacimiento.
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-        <div>
-          <button
-            onClick={() => toggleAccordion(2)}
-            className="flex items-center justify-between w-full py-4 pr-1 font-semibold text-left text-gray-800 outline-none hover:text-primary focus:text-primary focus:outline-none"
-            role="button"
-            aria-controls="faq3"
-            aria-expanded={openAccordions[2] ? 'true' : 'false'}
-          >
-            ¿Cómo puedo contactar al equipo de soporte de PinguiWallet? 🤔🤔
-            <svg
-              className={`flex-none w-4 h-4 ml-4 transition transform ${
-                open ? 'rotate-45' : ''
-              }`}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          {openAccordions[2] && (
-            <div className="pb-5 pr-0 text-gray-700 md:pr-40" id="faq3">
-              Si tienes alguna consulta o necesitas ayuda, puedes ponerte en
-              contacto con nuestro equipo de soporte a través de los siguientes
-              canales:
-              <ul>
-                <li>☎ Número de teléfono: 2944-666666</li>
-                <li>✉ Email: pinguiServices@gmail.com</li>
-                <li>🔴🎬 Chat en vivo en nuestro sitio web </li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
+    <section className="px-40 pb-20 bg-fondo -mt-10">
+      <h2 className="my-10 text-center font-bold text-secundario text-2xl">
+        ¿Qué más debo saber?
+      </h2>
+      <Accordion
+        expanded={expanded === 'panel1'}
+        onChange={handleChange('panel1')}
+      >
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Typography>¿Qué es PingüiWallet?</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            PingüiWallet es una wallet argentina diseñada para ayudar a las
+            personas a gestionar su dinero de forma intuitiva. Está inspirada en
+            la sostenibilidad y tiene como objetivo facilitar el acceso a las
+            nuevas tecnologías, brindando también apoyo a las personas mayores.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === 'panel2'}
+        onChange={handleChange('panel2')}
+      >
+        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <Typography>
+            ¿Qué necesito para abrir una cuenta en PingüiWallet?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Necesitarás tener a mano los siguientes documentos e información:
+            <ul>
+              <li>Documento Nacional de Identidad (DNI) válido.</li>
+              <li>Ser una persona físicamayor de edad.</li>
+              <li>
+                Datos personales como nombre completo, dirección y fecha de
+                nacimiento.
+              </li>
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === 'panel3'}
+        onChange={handleChange('panel3')}
+      >
+        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+          <Typography>
+            {' '}
+            ¿Cómo puedo contactar al equipo de soporte de PingüiWallet?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Si tienes alguna consulta o necesitas ayuda, puedes ponerte en
+            contacto con nuestro equipo de soporte a través de los siguientes
+            canales:
+            <ul>
+              <li>☎ Número de teléfono: +1 555-123-4567</li>
+              <li>✉ Email: walletnc.latam@gmail.com</li>
+              <li>🔴🎬 Chat en vivo en nuestro sitio web</li>
+            </ul>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
     </section>
   )
 }
+
+// import Accordion from 'react-bootstrap/Accordion';
+
+// function BasicExample() {
+//   return (
+//     <Accordion defaultActiveKey="0">
+//       <Accordion.Item eventKey="0">
+//         <Accordion.Header>Accordion Item #1</Accordion.Header>
+//         <Accordion.Body>
+//           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+//           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+//           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+//           aliquip ex ea commodo consequat. Duis aute irure dolor in
+//           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+//           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+//           culpa qui officia deserunt mollit anim id est laborum.
+//         </Accordion.Body>
+//       </Accordion.Item>
+//       <Accordion.Item eventKey="1">
+//         <Accordion.Header>Accordion Item #2</Accordion.Header>
+//         <Accordion.Body>
+//           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+//           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+//           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+//           aliquip ex ea commodo consequat. Duis aute irure dolor in
+//           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+//           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+//           culpa qui officia deserunt mollit anim id est laborum.
+//         </Accordion.Body>
+//       </Accordion.Item>
+//     </Accordion>
+//   );
+// }
+
+// export default BasicExample;

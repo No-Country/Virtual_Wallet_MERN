@@ -8,7 +8,7 @@ const Navbar = () => {
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated)
 
   return (
-    <nav className="w-full flex justify-between items-center px-24">
+    <nav className="w-full flex justify-between items-center px-24 bg-fondo">
       <Link to="/">
         <div className="flex justify-start items-center w-[150px]">
           <img src={logo} alt="Logo" />
@@ -17,17 +17,21 @@ const Navbar = () => {
       </Link>
       <ul className="flex justify-evenly items-center gap-10">
         <Link to="#" className="liNavBar">
-          ¿Qué es <i>nombre</i>
+          ¿Qué es{' '}
+          <i className="font-semibold text-principal hover:text-secundario">
+            PingüiWallet
+          </i>
+          ?
         </Link>
-        <Link to="#" className="liNavBar">
-          Ayuda
+        <Link to="/contact" className="liNavBar hover:text-secundario">
+          Contacto
         </Link>
-        <Link to="/login" className="liNavBar">
+        <Link to="/login" className="liNavBar hover:text-secundario">
           Iniciar Sesión
         </Link>
         <Link
           to="/register"
-          className="liNavBar bg-c-botones py-1 px-7 rounded"
+          className="liNavBar bg-principal text-white py-2 px-4 rounded hover:bg-secundario"
         >
           Registrarse
         </Link>

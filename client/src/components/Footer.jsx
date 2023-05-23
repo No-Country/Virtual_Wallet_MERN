@@ -46,18 +46,18 @@ const Footer = () => {
       </article>
       <article>
         <h2 className="mb-3 font-semibold">
-          Comienza a usar <i>nombre</i>
+          Comienza a usar <i className="text-principal">PingüiWallet</i>
         </h2>
         <div className="flex flex-col gap-2">
-          <Link to="#" className="text-sm">
+          <p className="text-sm">
             Escríbenos a <i className="font-semibold">+1 555-123-4567</i>
-          </Link>
-          <Link to="#" className="text-sm">
+          </p>
+          <p className="text-sm">
             Avenida <i className="font-semibold">Esperanza Celeste</i>
-          </Link>
-          <Link to="#" className="text-sm">
+          </p>
+          <p className="text-sm">
             Dirección <i className="font-semibold">Calle Sol, número 123</i>
-          </Link>
+          </p>
         </div>
       </article>
     </footer>
