@@ -25,7 +25,7 @@ const CardsAdd = () => {
   };
 
   return (
-    <section className="flex items-center justify-center ">
+    <section className="flex items-center justify-center w-[90%] sm:w-[90%] h-[auto]">
       <div className="bg-white p-8 h-full min-w-min flex flex-col items-center  rounded-lg mr-10 ">
         <h2 className="text-2xl font-semibold mb-4">Mis Tarjetas</h2>
         <div className="relative w-80 p-6 bg-[#D9D9D9] rounded-lg shadow-md">
