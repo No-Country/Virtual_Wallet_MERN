@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login, loginSuccess } from '../slices/authSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../img/logo.png'
+
 export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const { loading, error } = useSelector((state) => state?.auth)
-  const navigate = useNavigate()
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated)
-  console.log(isAuthenticated)
+  const state = useSelector((state) => state)
+  const navigate = useNavigate()
+  console.log(state)
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate('/home')

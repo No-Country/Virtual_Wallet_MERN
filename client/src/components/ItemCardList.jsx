@@ -2,12 +2,12 @@ import { ItemCard } from './ItemCard'
 
 const listServices = [
   {
-    service: 'Paga tus facturas sin moverte de tu casa ',
+    service: 'Paga tus facturas sin moverte de tu casa',
     name: 'cash',
     icon: 'wallet-outline'
   },
   {
-    service: 'Visualiza todoa tus trajetas desde un solo lugar ',
+    service: 'Visualiza todas tus trajetas desde un solo lugar',
     name: 'credit-card',
     icon: 'card-outline'
   },
@@ -20,13 +20,9 @@ const listServices = [
 
 export const ItemCardList = () => {
   return (
-    <section className="w-full h-auto flex justify-center p-7 sm:gap-14 gap-10 flex-wrap">
+    <section className="h-auto flex justify-center items-center p-7 sm:gap-14 gap-10 flex-wrap">
       {listServices.map((element) => {
-        return (
-          <article key={element.id}>
-            <ItemCard element={element} />
-          </article>
-        )
+        return <ItemCard key={element.id} element={element} />
       })}
     </section>
   )

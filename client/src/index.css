@@ -1,58 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
-
-:root {
-  --color-fondo: 248, 248, 248;
-  --color-contenedor: 255, 255, 255;
-  --color-botones: 92, 167, 232;
-  --color-sombra: 204, 204, 204;
-  --color-titulo: 15, 76, 129;
-  --color-subtitulo: 97, 97, 97;
-  --color-fuente: 0, 0, 0;
-  --color-fuente-secundario: 79, 79, 79;
-  --color-boton-accion: 51, 204, 153;
-  --color-seccion-historial: 242, 242, 242;
-  --color-fondo-carrito: 242, 242, 242;
-  --color-icono-carrito: 91, 165, 231;
-
-  --prueba1: #3077E9;
-  --60: #EAF2FD;
-  --100: #C5D8FA;
-}
-
-.dark-mode {
-  --color-fondo: 46, 46, 46;
-  --color-contenedor: 63, 63, 63;
-  --color-botones: 92, 167, 232;
-  --color-sombra: 79, 79, 79;
-  --color-titulo: 248, 248, 248;
-  --color-subtitulo: 204, 204, 204;
-  --color-fuente: 255, 255, 255;
-  --color-fuente-secundario: 178, 178, 178;
-  --color-boton-accion: 51, 204, 153;
-  --color-seccion-historial: 63, 63, 63;
-  --color-fondo-carrito: 63, 63, 63;
-  --color-icono-carrito: 91, 165, 231;
-}
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-/* .card {
-  transition: transform 0.5s ease;
-  transform-style: preserve-3d;
-}
- */
-/* .credit-card-box {
-  perspective: 1000px;
+:root {
+  --color-principal: #4b4fa6;
+  --color-secundario: #fc7e09;
+  --color-fondo: #eaeef7;
 }
 
-.credit-card-box.flipped {
-  transform: rotateY(180deg);
-} */
+.gradient {
+  background: rgb(62, 65, 136);
+  background: linear-gradient(
+    0deg,
+    rgba(62, 65, 136, 1) 0%,
+    rgba(48, 49, 75, 1) 100%
+  );
+}
+
+.gradient-secundario {
+  background: rgb(64, 53, 53);
+  background: linear-gradient(
+    0deg,
+    rgba(64, 53, 53, 1) 0%,
+    rgba(200, 107, 20, 1) 100%
+  );
+}
 
 @layer components {
   .inputBgCard {
@@ -71,5 +44,4 @@
   .inputBgCard::placeholder {
     color: #fff;
   }
-
 }

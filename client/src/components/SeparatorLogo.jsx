@@ -1,14 +1,13 @@
-const logo =
-  'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg'
-
+import logo from '../img/logo.png'
 export const SeparatorLogo = () => {
   return (
     <section className="separatorLogo w-full h-[100px] flex justify-center items-center">
-      <div
-        className="rounded-[50%] bg-white w-[90px] h-[90px] border-1 border-c-botones overflow-hidden"
-        style={{ boxShadow: '9px 9px 19px #cccccc,-9px -9px 19px #f4f4f4' }}
-      >
-        <img className="object-cover" src={logo} alt="Logo PinguiWallet" />
+      <div className="w-[120px] h-[120px] border-1 border-c-botones overflow-hidden">
+        <img
+          className="object-cover w-full h-full"
+          src={logo}
+          alt="Logo PinguiWallet"
+        />
       </div>
     </section>
   )

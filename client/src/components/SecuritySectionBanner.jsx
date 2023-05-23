@@ -1,39 +1,29 @@
 export const SecuritySectionBanner = () => {
-  const backgroundImage =
-    'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684425094/wallet/pinguin3_fghwaj.jpg'
-
   return (
-    <section className="relative m-10 rounded">
-      <div className="h-[500px] md:h-[400px] rounded">
-        <div
-          className="bg-cover bg-center h-[100%] rounded"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        >
-          <div className="absolute inset-0 bg-gray-800 bg-opacity-10 flex items-center">
-            <div className="w-1/3 mx-0 h-[100%] inset-0 bg-gray-800 bg-opacity-10 backdrop-blur-sm flex items-center justify-center">
-              <h1 className="text-4xl font-bold text-c-contenedor font-titulo">
-                PinguiWallet
-              </h1>
-            </div>
-            <div className="flex flex-wrap justify-center gap-4 w-2/3">
-              <div className="bg-c-cart-opaca bg-opacity-80 p-4 rounded-md w-[240px] h-[200px]">
-                <p className="text-c-fondo font-semibold">
-                  Somos una Wallet segura
-                </p>
-                <p className="text-c-fuente">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-              </div>
-              <div className="bg-c-cart-opaca bg-opacity-80 p-4 rounded-md w-[240px] h-[200px]">
-                <p className="text-c-fondo font-semibold">
-                  Otra nota sobre seguridad
-                </p>
-                <p className="text-c-fuente">
-                  Praesent feugiat malesuada tristique.
-                </p>
-              </div>
-              {/* Agrega más pequeñas cards opacas aquí si es necesario */}
-            </div>
+    <section className="w-[1000px] h-[300px] m-auto gradient rounded-2xl">
+      <div className="flex justify-evenly h-full">
+        <div className="p-5 h-[100%]">
+          <h2 className="w-[200px] text-2xl text-white">
+            Máxima seguridad garantizada
+          </h2>
+        </div>
+        <div className="flex justify-center items-center gap-4">
+          <div className="bg-secundario p-3 rounded w-[250px] h-[200px] gradient-secundario">
+            <h4 className="font-semibold mb-3">
+              ¡Tu seguridad es nuestra prioridad!
+            </h4>
+            <p className="text-sm">
+              Nos comprometemos a brindarte un entorno seguro y confiable para
+              todas tus transacciones financieras.
+            </p>
+          </div>
+          <div className="bg-secundario p-3 rounded w-[250px] h-[200px] gradient-secundario">
+            <h4 className="font-semibold mb-3">¡Seguridad sin compromisos!</h4>
+            <br />
+            <p className="text-sm">
+              Nos esforzamos por brindarte una experiencia segura sin
+              comprometer la comodidad y la eficiencia.
+            </p>
           </div>
         </div>
       </div>
