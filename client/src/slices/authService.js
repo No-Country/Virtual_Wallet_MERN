@@ -29,9 +29,7 @@ const userLogin = async (credentials) => {
   }
 
   const data = await response.json()
-  console.log(data)
   return data
 }
 
 export const authService = { userLogin, userRegister }
-
