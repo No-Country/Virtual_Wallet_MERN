@@ -1,33 +1,13 @@
-import { useDispatch, useSelector } from "react-redux"
-import { logout } from "../slices/authSlice"
-import { fetchUserById, selectUser } from "../slices/userSlice";
-import { useEffect } from "react";
 
 export const VerticalMenu = () => {
-  const user2 = useSelector((state) => state.auth.user)
-  console.log("Usuario: ",user2.id)
-
-  const dispatch = useDispatch();
-  // const buscaUser = useSelector(selectUser) 
-
-  // useEffect(() => {
-  //   dispatch(fetchUserById(user))
-  // },[dispatch, user])
-
-
-  // if (!buscaUser){
-  //   return <div> Cargando usuario..</div>
-  // }
-
   const usuario = {
     logo: 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg',
-    ...user2
+    name: 'username',
+    email: 'usuario@gmail.com',
+    card: '0000000000000000000',
+    gastos:  '0',
+    ahorros: '0',
   } 
-
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    dispatch(logout())
-  }
 
   return (
     <div className="sticky top-0 flex w-1/6  sm:w-1/5 h-[100vh] gap-1 flex-col justify-start items-start bg-c-fondo">
@@ -40,7 +20,7 @@ export const VerticalMenu = () => {
         />
         <div>
           <p className="text-xs hidden sm:block">
-            <strong className="block font-medium font-titulo text-c-titulo">{usuario.username}</strong>
+            <strong className="block font-medium font-titulo text-c-titulo">{usuario.name}</strong>
             <span className="font-parrafo text-fuente"> {usuario.email} </span>
           </p>
         </div>
@@ -106,7 +86,7 @@ export const VerticalMenu = () => {
         <span className="w-full h-[1px] bg-c-fuente opacity-5"></span>
         <section className="actividad w-full h-auto bg-c-fondo" >
           <a href="#"
-            className="flex justify-center sm:justify-start sm:items-center text-2xl sm:text-lg gap-2 bg-c-fondo hover:bg-c-botones text-c-titulo hover:text-c-fondo transition duration-300 ease-in-out px-4 py-2 font-bold" onClick={handleLogout}>
+            className="flex justify-center sm:justify-start sm:items-center text-2xl sm:text-lg gap-2 bg-c-fondo hover:bg-c-botones text-c-titulo hover:text-c-fondo transition duration-300 ease-in-out px-4 py-2 font-bold" >
             <ion-icon name="log-out-outline"></ion-icon>
             <span className="text-sm font-medium hidden sm:block"> logout </span>
           </a>
