@@ -1,21 +1,29 @@
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../slices/authSlice"
+import { fetchUserById, selectUser } from "../slices/userSlice";
+import { useEffect } from "react";
 
 export const VerticalMenu = () => {
-  const user = useSelector((state) => state.auth.user)
+  const user2 = useSelector((state) => state.auth.user)
+  console.log("Usuario: ",user2.id)
 
-  console.log(user)
+  const dispatch = useDispatch();
+  // const buscaUser = useSelector(selectUser) 
+
+  // useEffect(() => {
+  //   dispatch(fetchUserById(user))
+  // },[dispatch, user])
+
+
+  // if (!buscaUser){
+  //   return <div> Cargando usuario..</div>
+  // }
 
   const usuario = {
     logo: 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg',
-    name: 'username',
-    email: 'usuario@gmail.com',
-    card: '0000000000000000000',
-    gastos:  '0',
-    ahorros: '0',
+    ...user2
   } 
 
-  const dispatch = useDispatch()
   const handleLogout = () => {
     localStorage.removeItem('token')
     dispatch(logout())
@@ -32,7 +40,7 @@ export const VerticalMenu = () => {
         />
         <div>
           <p className="text-xs hidden sm:block">
-            <strong className="block font-medium font-titulo text-c-titulo">{usuario.name}</strong>
+            <strong className="block font-medium font-titulo text-c-titulo">{usuario.username}</strong>
             <span className="font-parrafo text-fuente"> {usuario.email} </span>
           </p>
         </div>

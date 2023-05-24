@@ -44,8 +44,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess: (state, action) => {
-      const { token } = action.payload
-
+      const { token } = action.payload;
       if (token) {
         localStorage.setItem('token', token)
         state.isAuthenticated = true
