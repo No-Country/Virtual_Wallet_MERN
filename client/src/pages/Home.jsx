@@ -1,13 +1,11 @@
-import { Route } from 'react-router-dom';
 import { useEffect } from "react";
 
 import { MoneyOnAccount } from "../components/MoneyOnAccount";
 import CardsAdd from "../components/CardsAdd";
-import { Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import VerticalMenu from "../components/VerticalMenu";
 import Bienvenida from "../components/Bienvenida";
-import Perfil from './Perfil';
 
 export const Home = () => {
   const navigate = useNavigate();
