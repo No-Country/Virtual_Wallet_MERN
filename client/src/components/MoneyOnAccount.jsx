@@ -7,6 +7,8 @@ export const MoneyOnAccount = () => {
     setShowBalance(!showBalance);
   };
 
+  const info = { saldo: 1000 , ususario: 'usuario de pruebas'} 
+
   return (
     <div className="flex flex-row items-center justify-center w-full">
       <div className="bg-white rounded-md p-4 w-[90%] sm:w-[90%] lg:w-[400px]">
@@ -15,7 +17,7 @@ export const MoneyOnAccount = () => {
           <div className="flex items-center ">
             {showBalance ? (
               <div className="ml-2">
-                <p className="text-4xl font-bold">$1,000.00</p>
+                <p className="text-4xl font-bold">{info.saldo}</p>
                 <p className="text-gray-500">Saldo disponible</p>
               </div>
             ) : (
