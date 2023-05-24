@@ -4,6 +4,8 @@
 @tailwind utilities;
 
 :root {
+  --custom-blue: #4758EF;
+  --custom-purple: #703C6D;
   --color-principal: #4b4fa6;
   --color-secundario: #fc7e09;
   --color-fondo: #eaeef7;
@@ -11,20 +13,16 @@
 
 .gradient {
   background: rgb(62, 65, 136);
-  background: linear-gradient(
-    0deg,
-    rgba(62, 65, 136, 1) 0%,
-    rgba(48, 49, 75, 1) 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(62, 65, 136, 1) 0%,
+      rgba(48, 49, 75, 1) 100%);
 }
 
 .gradient-secundario {
   background: rgb(64, 53, 53);
-  background: linear-gradient(
-    0deg,
-    rgba(64, 53, 53, 1) 0%,
-    rgba(200, 107, 20, 1) 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(64, 53, 53, 1) 0%,
+      rgba(200, 107, 20, 1) 100%);
 }
 
 @layer components {

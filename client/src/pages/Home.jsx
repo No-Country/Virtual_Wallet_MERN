@@ -9,7 +9,8 @@ import VerticalMenu from "../components/VerticalMenu";
 export const Home = () => {
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
-  
+ 
+
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/");
