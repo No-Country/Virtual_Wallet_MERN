@@ -6,7 +6,7 @@ import { SecuritySectionBanner } from '../components/SecuritySectionBanner'
 import SavingBanner from '../components/SavingBanner'
 import Faqs from '../components/Faqs'
 
-export const Main = ({ children }) => {
+export const Main = () => {
   return (
     <>
       <main className="my-2 bg-c-fondo w-full h-auto flex flex-col gap-10">
@@ -17,7 +17,6 @@ export const Main = ({ children }) => {
         <SecuritySectionBanner />
         <SavingBanner />
         <Faqs />
-        {children}
       </main>
     </>
   )

@@ -8,7 +8,7 @@ export const MoneyOnAccount = () => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center w-full pt-5">
+    <div className="flex flex-row items-center justify-center w-full">
       <div className="bg-white rounded-md p-4 w-[90%] sm:w-[90%] lg:w-[400px]">
         <div>
           <h2 className="text-2xl font-semibold">Mi Dinero</h2>
