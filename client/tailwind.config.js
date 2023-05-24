@@ -17,6 +17,14 @@ export default {
         principal: 'var(--color-principal)',
         secundario: 'var(--color-secundario)',
         fondo: 'var(--color-fondo)',
+        
+        //solo submenu
+        bgSubmenu:'var(--bg-submenu)',
+        colorBotonSubmenu:'var(--color-boton-submenu)',
+        hoverBotonSubmenu:'var(--hover-boton-submenu)',
+        colorFuente1Submenu:'var(--color-fuente1-submenu)',
+        colorFuente2Submenu:'var(--color-fuente2-submenu)',
+        
         'custom-blue': 'var(--custom-blue)',
         'custom-purple': 'var(--custom-purple)',
       }

@@ -11,6 +11,7 @@ export const fetchUserByid = createAsyncThunk(
       throw new Error('Error al obtener el usuario');
     }
     const data = await response.json();
+    console.log("DATA ->->", data);
     return data;
   }
 );
@@ -24,6 +25,7 @@ const userSlice = createSlice({
   },
   reducers: {
     // ... Otras acciones y reducers ...
+
   },
   extraReducers: (builder) => {
     builder

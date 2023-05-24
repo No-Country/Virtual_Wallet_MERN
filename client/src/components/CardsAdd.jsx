@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+// import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CardsAdd = () => {
-  const [tarjetas, setTarjetas] = useState([
-    { id: 1, numero: "**** **** **** 1234" },
-    { id: 2, numero: "**** **** **** 5678" },
-    { id: 3, numero: "**** **** **** 9012" },
-  ]);
-  const [tarjetaActual, setTarjetaActual] = useState(0);
+  const cardDePrueba = { id: 1, numero: "**** **** **** 1234" };
 
-  const agregarTarjeta = () => {
-    const nuevaTarjeta = {
-      id: tarjetas.length + 1,
-      numero: "**** **** **** 3456", // Número de la nueva tarjeta
-    };
-    setTarjetas([...tarjetas, nuevaTarjeta]);
-  };
+  // const [tarjetas, setTarjetas] = useState([
+  //   { id: 1, numero: "**** **** **** 1234" },
+  //   { id: 2, numero: "**** **** **** 5678" },
+  //   { id: 3, numero: "**** **** **** 9012" },
+  // ]);
+  // const [tarjetaActual, setTarjetaActual] = useState(0);
 
-  const cambiarTarjeta = (direccion) => {
-    if (direccion === "izquierda") {
-      setTarjetaActual(tarjetaActual - 1);
-    } else if (direccion === "derecha") {
-      setTarjetaActual(tarjetaActual + 1);
-    }
-  };
+  // const agregarTarjeta = () => {
+  //   const nuevaTarjeta = {
+  //     id: tarjetas.length + 1,
+  //     numero: "**** **** **** 3456", // Número de la nueva tarjeta
+  //   };
+  //   setTarjetas([...tarjetas, nuevaTarjeta]);
+  // };
+
+  // const cambiarTarjeta = (direccion) => {
+  //   if (direccion === "izquierda") {
+  //     setTarjetaActual(tarjetaActual - 1);
+  //   } else if (direccion === "derecha") {
+  //     setTarjetaActual(tarjetaActual + 1);
+  //   }
+  // };
 
   return (
     <section className="flex items-center justify-center w-[90%] sm:w-[90%] h-[auto]">
@@ -32,15 +35,15 @@ const CardsAdd = () => {
           <div className="flex items-center justify-start mb-4">
             <button
               className="text-gray-500 hover:text-gray-700 focus:outline-none absolute top-0 left-0 mt-2 ml-2"
-              onClick={() => cambiarTarjeta("izquierda")}
-              disabled={tarjetaActual === 0}
+              // onClick={() => cambiarTarjeta("izquierda")}
+              // disabled={tarjetaActual === 0}
             >
               {"<"}
             </button>
             <button
               className="text-gray-500 hover:text-gray-700 focus:outline-none absolute top-0 right-0 mt-2 mr-2"
-              onClick={() => cambiarTarjeta("derecha")}
-              disabled={tarjetaActual === tarjetas.length - 1}
+              // onClick={() => cambiarTarjeta("derecha")}
+              // disabled={tarjetaActual === tarjetas.length - 1}
             >
               {">"}
             </button>
@@ -62,15 +65,16 @@ const CardsAdd = () => {
             {/* Aquí puedes agregar el código para el chip con el icono */}
           </div>
           <div className="text-2xl font-bold text-start mb-4 mt-10 ">
-            {tarjetas[tarjetaActual].numero}
+            {/* {tarjetas[tarjetaActual].numero} */}
+            {cardDePrueba.numero}
           </div>
         </div>
-        <button
+        <Link to={'/creditCard'}
           className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-          onClick={agregarTarjeta}
+          // onClick={agregarTarjeta}
         >
           Agregar Tarjeta
-        </button>
+        </Link>
       </div>
 
       <div className="bg-white p-8 h-full min-w-min flex flex-col items-center  rounded-lg mr-10 ">

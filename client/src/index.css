@@ -9,6 +9,14 @@
   --color-principal: #4b4fa6;
   --color-secundario: #fc7e09;
   --color-fondo: #eaeef7;
+  --color-fondo-secundary: #ffff;
+
+  /* sub menu */
+  --bg-submenu: #424D8C;
+  --color-boton-submenu: #ffff;
+  --hover-boton-submenu: #788BF9AD;
+  --color-fuente1-submenu: #fc7e09;
+  --color-fuente2-submenu: #ffff;
 }
 
 .gradient {

@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound'
 import InfomationTransparency from './pages/InfomationTransparency'
 import TermsAndConditions from './pages/TermsAndConditions'
 import VerticalMenu from './components/VerticalMenu'
+import Perfil from './pages/Perfil'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/credit-card" element={<BillPayment />}></Route>
         <Route path="/currency-dollar" element={<BillPayment />}></Route>
         <Route path="/creditCard" element={<CreditCardForm />}></Route>
+        <Route path="/perfil" element={<Perfil />}></Route>
+
         <Route
           path="/security-privacy"
           element={<SecurityAndPrivacy />}
