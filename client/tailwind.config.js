@@ -16,7 +16,9 @@ export default {
         error: 'red',
         principal: 'var(--color-principal)',
         secundario: 'var(--color-secundario)',
-        fondo: 'var(--color-fondo)'
+        fondo: 'var(--color-fondo)',
+        'custom-blue': 'var(--custom-blue)',
+        'custom-purple': 'var(--custom-purple)',
       }
     }
   },
