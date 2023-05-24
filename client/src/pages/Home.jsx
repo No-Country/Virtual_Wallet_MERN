@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-import { DropDownMenu } from "../components/DropDownMenu";
 import { MoneyOnAccount } from "../components/MoneyOnAccount";
 import CardsAdd from "../components/CardsAdd";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import VerticalMenu from "../components/VerticalMenu";
 
-export const Home = ({ children }) => {
+export const Home = () => {
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
-  console.log(isAuthenticated);
+  
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/");
@@ -18,12 +17,14 @@ export const Home = ({ children }) => {
   }, [isAuthenticated, navigate]);
   return (
     <>
-      <div className="bg-[#EAEEF7]">
+      <section className="home w-full h-auto flex flex-wrap bg-slate-500">
         <VerticalMenu></VerticalMenu>
-        <MoneyOnAccount></MoneyOnAccount>
-        {/* <DropDownMenu></DropDownMenu> */}
-        <CardsAdd></CardsAdd>
-      </div>
+        <section className="main w-5/6 sm:w-4/5 flex flex-col flex-wrap justify-start gap-5 items-center bg-orange-500 overflow-hidden pt-5 pb-5">
+          <MoneyOnAccount></MoneyOnAccount>
+          {/* <DropDownMenu></DropDownMenu> */}
+          <CardsAdd></CardsAdd>
+        </section>
+      </section>
     </>
   );
 };

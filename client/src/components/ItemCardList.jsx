@@ -2,16 +2,19 @@ import { ItemCard } from './ItemCard'
 
 const listServices = [
   {
+    id:1,
     service: 'Paga tus facturas sin moverte de tu casa',
     name: 'cash',
     icon: 'wallet-outline'
   },
   {
+    id:2,
     service: 'Visualiza todas tus trajetas desde un solo lugar',
     name: 'credit-card',
     icon: 'card-outline'
   },
   {
+    id:3,
     service: 'Transferencias rápidas y seguras',
     name: 'currency-dollar',
     icon: 'cash-outline'
