@@ -2,12 +2,21 @@ import { Link } from 'react-router-dom'
 
 export const ItemCard = ({ element }) => {
   return (
-    <>
-      <Link to={`/${element.name}`} className='itemCard w-[300px] h-[100px] sm:w-[150px] sm:h-[150px] border-1 border-c-subtitulo rounded-[4px] p-2 bg-c-titulo flex sm:flex-col items-center justify-around' style={{ boxShadow: '10px 10px 9px #cccccc, -10px -10px 9px #f4f4f4' }} >
-        <h2 className='w-1/2 sm:w-full font-titulo text-sm text-c-contenedor'>{element.service}</h2>
-        <div className='w-1/2 sm:w-full flex items-center justify-end h-auto'><span className='text-c-boton-accion' style={{fontSize:'1rem'}} dangerouslySetInnerHTML={{ __html: element.svg}} ></span></div>
+    <article className="w-[23rem] h-[350px] gradient rounded-2xl p-3 pt-6 relative">
+      <Link
+        to={`/${element.name}`}
+        className="itemCard border-1 border-c-subtitulo rounded-[4px] p-2 flex sm:flex-col items-center justify-around"
+      >
+        <h2 className="pr-10 sm:w-full font-titulo text-2xl text-white">
+          {element.service}
+        </h2>
+        <div
+          className="w-1/2 sm:w-full flex items-center justify-end h-auto text-secundario absolute bottom-5 right-5"
+          style={{ fontSize: '4rem' }}
+        >
+          <ion-icon name={element.icon}></ion-icon>
+        </div>
       </Link>
-    </>
+    </article>
   )
 }
-

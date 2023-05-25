@@ -12,38 +12,40 @@ export default {
         instagram: '#C13584',
         twitter: '#00acee',
         shadow: '#ccc',
-        demo: '#eddede',
-        'c-fondo':'rgb(var(--color-fondo))',
-        'c-contenedor':'rgb(var(--color-contenedor))',
-        'c-botones': 'rgb(var(--color-botones))',
-        'c-sombra': 'rgb(var(--color-sombra))',
-        'c-titulo': 'rgb(var(--color-titulo))',
-        'c-subtitulo': 'rgb(var(--color-subtitulo))',
-        'c-fuente': 'rgb(var(--color-fuente))',
-        'c-fuente-secundario': 'rgb(var(--color-fuente-secundario))',
-        'c-boton-accion': 'rgb(var(--color-boton-accion))',
-        'c-seccion-historial': 'rgb(var(--color-seccion-historial))',
-        'c-fondo-carrito': 'rgb(var(--color-fondo-carrito))',
-        'c-icono-carrito': 'rgb(var(--color-icono-carrito))',
+        successfully: 'green',
+        error: 'red',
+        principal: 'var(--color-principal)',
+        secundario: 'var(--color-secundario)',
+        fondo: 'var(--color-fondo)',
+        
+        //solo submenu
+        bgSubmenu:'var(--bg-submenu)',
+        colorBotonSubmenu:'var(--color-boton-submenu)',
+        hoverBotonSubmenu:'var(--hover-boton-submenu)',
+        colorFuente1Submenu:'var(--color-fuente1-submenu)',
+        colorFuente2Submenu:'var(--color-fuente2-submenu)',
+        
+        'custom-blue': 'var(--custom-blue)',
+        'custom-purple': 'var(--custom-purple)',
       }
     }
   },
   plugins: [
-    function ({ addUtilities  }) {
+    function ({ addUtilities }) {
       const customUtilities = {
-        'liNavBar': {
+        liNavBar: {
           //propiedad css que queremos que aplique , para no repetir tanta cadena de codigo
-          color:'rgb(var(--color-titulo))',
-          fontFamily:'Heebo, sans-serif',
-          fontWeight:'medium',
-        },
+          color: 'rgb(var(--color-titulo))',
+          fontFamily: 'Heebo, sans-serif',
+          fontWeight: 'medium'
+        }
         //otras clases
       }
       addUtilities(customUtilities, {
         respectPrefix: false,
         respectImportant: false,
-        //definimos el mombre de lacapa personalizada  
-        layer: 'custom',
+        //definimos el mombre de lacapa personalizada
+        layer: 'custom'
       })
     }
   ]

@@ -1,35 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
-
-:root {
-  --color-fondo: 248, 248, 248;
-  --color-contenedor: 255, 255, 255;
-  --color-botones: 92, 167, 232;
-  --color-sombra: 204, 204, 204;
-  --color-titulo: 15, 76, 129;
-  --color-subtitulo: 97, 97, 97;
-  --color-fuente: 0, 0, 0;
-  --color-fuente-secundario: 79, 79, 79;
-  --color-boton-accion: 51, 204, 153;
-  --color-seccion-historial: 242, 242, 242;
-  --color-fondo-carrito: 242, 242, 242;
-  --color-icono-carrito: 91, 165, 231;
-}
-
-.dark-mode {
-  --color-fondo: 46, 46, 46;
-  --color-contenedor: 63, 63, 63;
-  --color-botones: 92, 167, 232;
-  --color-sombra: 79, 79, 79;
-  --color-titulo: 248, 248, 248;
-  --color-subtitulo: 204, 204, 204;
-  --color-fuente: 255, 255, 255;
-  --color-fuente-secundario: 178, 178, 178;
-  --color-boton-accion: 51, 204, 153;
-  --color-seccion-historial: 63, 63, 63;
-  --color-fondo-carrito: 63, 63, 63;
-  --color-icono-carrito: 91, 165, 231;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --custom-blue: #4758EF;
+  --custom-purple: #703C6D;
+  --color-principal: #4b4fa6;
+  --color-secundario: #fc7e09;
+  --color-fondo: #eaeef7;
+  --color-fondo-secundary: #ffff;
+
+  /* sub menu */
+  --bg-submenu: #424D8C;
+  --color-boton-submenu: #ffff;
+  --hover-boton-submenu: #788BF9AD;
+  --color-fuente1-submenu: #fc7e09;
+  --color-fuente2-submenu: #ffff;
+}
+
+.gradient {
+  background: rgb(62, 65, 136);
+  background: linear-gradient(0deg,
+      rgba(62, 65, 136, 1) 0%,
+      rgba(48, 49, 75, 1) 100%);
+}
+
+.gradient-secundario {
+  background: rgb(64, 53, 53);
+  background: linear-gradient(0deg,
+      rgba(64, 53, 53, 1) 0%,
+      rgba(200, 107, 20, 1) 100%);
+}
+
+@layer components {
+  .inputBgCard {
+    color: white;
+    background-color: rgba(59, 130, 246, 0.6);
+    /* bg-blue-600 with 60% opacity */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    /* shadow-md */
+    backdrop-filter: blur(4px);
+    /* backdrop-blur-md */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    /* border-2 with 20% opacity */
+    padding: 0.25rem;
+  }
+
+  .inputBgCard::placeholder {
+    color: #fff;
+  }
+}
