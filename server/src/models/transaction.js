@@ -9,6 +9,9 @@ const transactionSchema = mongoose.Schema({
     type: String,
     enum: ["transferencia", "servicio", "impuesto"],
   },
+  receiver_account: {
+    type: String,
+  },
   amount: {
     type: Number,
   },
