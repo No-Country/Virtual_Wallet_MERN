@@ -17,6 +17,9 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
     },
+    account_number: {
+      type: String,
+    },
   },
   {
     timestamp: true,

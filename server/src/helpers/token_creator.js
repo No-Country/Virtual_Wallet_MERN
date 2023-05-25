@@ -6,7 +6,7 @@ exports.create_token = (user) => {
   let payload = {
     sub: user._id,
     iat: moment().unix(),
-    exp: moment().add(1, "days").unix(),
+    exp: moment().add(24, "hours").unix(),
   };
   return jwt.encode(payload, process.env.SECRET_TOKEN);
 };

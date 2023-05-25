@@ -1,6 +1,7 @@
 const { create_user, get_user_by_email } = require("../services/auth_service");
 const { create_token } = require("../helpers/token_creator");
 const bcrypt = require("bcrypt");
+const { v4: uuidv4 } = require('uuid');
 
 exports.register = async (req, res) => {
   try {
@@ -12,9 +13,11 @@ exports.register = async (req, res) => {
 
     const salt = 10;
     const password = await bcrypt.hash(req.body.password, salt)
+    const account_number = uuidv4().replace(/-/g, '').slice(0, 10);
 
-    const user = await create_user({ name, surname, username, email, password });
-    return res.status(200).json(user).end();
+    const user = await create_user({ name, surname, username, email, password, account_number });
+    const { password: omit_psw, ...user_omit_psw } = user;
+    return res.status(200).json(user_omit_psw).end();
   } catch (err) {
     return res.sendStatus(500);
   }
