@@ -32,6 +32,7 @@ exports.login = async (req, res) => {
     if(!validated_password) return res.status(400).json({ message: "USUARIO O CONTRASEÑA INCORRECTA" })
 
     const token = create_token(user);
+    console.log(token)
     const { _id, username } = user
 
     return res.status(200).json({ _id, username, token });

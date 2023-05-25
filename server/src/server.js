@@ -24,7 +24,27 @@ app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   try {
-    res.send("PENGUIN-WALLET SERVER RUNNING.");
+    res.send(`
+    <html>
+      <head>
+        <title>PENGUIN-WALLET</title>
+        <style>
+          body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+          }
+          h1 {
+            color: yellow;
+            text-align: center;
+            margin-top: 25rem;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>PENGUIN-WALLET SERVER RUNNING.</h1>
+      </body>
+    </html>
+  `);
   } catch (err) {
     return res.sendStatus(500);
   }
