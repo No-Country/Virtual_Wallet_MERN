@@ -1,16 +1,15 @@
-import Navbar from './Navbar'
 import Footer from './Footer'
-import { useSelector } from 'react-redux'
+
+import Nav from './Nav'
 
 const Layout = ({ children }) => {
-  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated)
 
   return (
-    <>
-      {isAuthenticated ? null : <Navbar />}
+    <div className='principal w-full h-auto bg-purple flex flex flex-wrap'>
+      <Nav />
       {children}
       <Footer />
-    </>
+    </div>
   )
 }
 

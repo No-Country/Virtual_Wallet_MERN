@@ -113,7 +113,7 @@ const CreditCardForm = () => {
   const backgroundImage = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684718648/wallet/pinguiWallet-bg-prompt-hero1_cke13p.jpg'
 
   return (
-    <section className="w-ful min-h-[80vh] flex justify-start items-start gap-3">
+    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 min-h-[80vh] flex justify-start items-start gap-3">
     <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6 " style={{ backgroundImage: `url(${backgroundImage})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
       <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
           <section className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`} style={{transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
