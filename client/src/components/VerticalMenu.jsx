@@ -7,15 +7,16 @@ import { fetchUserByid, selectUser } from "../slices/userSlice"
 
 export const VerticalMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
-  
+  const [botonFaqs, setBotonFaqs ] = useState(false)
+
   const dispatch = useDispatch()
   const userCargado = useSelector(selectUser);
 
   const { user } = useSelector((state) => state.auth)
-  console.log("usuario: ",user._id)
-
+  // console.log("usuario: ",user._id)
   const userId = user._id;
 
+  //una vez añadan la imagen de perfil, se elimina esta linea
   const usuario = {
     logo: 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg',
     ...userCargado
@@ -27,11 +28,13 @@ export const VerticalMenu = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
-    localStorage.setItem('usuario', '')
     dispatch(logout())
   }
+  
+  const handleAyuda = () => {
+    setBotonFaqs(!botonFaqs)
+  }
   console.log('USUARIO -> ', usuario)
-
 
   return (
     <div className="relative flex w-1/6 sm:w-1/5 min-h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
@@ -70,11 +73,24 @@ export const VerticalMenu = () => {
             <ion-icon name="card-outline"></ion-icon>
             <span className="text-sm font-medium hidden sm:block"> Tarjetas </span>
           </a>
-          <a href="#"
+          <a onClick={handleAyuda}
             className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden" >
             <ion-icon name="help-outline"></ion-icon>
             <span className="text-sm font-normal hidden sm:block"> Ayuda </span>
           </a>
+          {botonFaqs && (
+          <><Link to="/home/denuncias"
+            className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden" >
+            🚨
+            <span className="text-sm font-medium hidden sm:block"> Denuncias </span>
+          </Link>
+          <Link to="/home/reclamos"
+            className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden" >
+            ⚠️
+            <span className="text-sm font-medium hidden sm:block"> Reclamo </span>
+          </Link>
+          </>
+          )}
         </section>
 
         <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
