@@ -32,7 +32,7 @@ export const VerticalMenu = () => {
 
 
   return (
-    <div className="relative flex w-1/6 sm:w-1/5 h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
+    <div className="relative flex w-1/6 sm:w-1/5 min-h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
     <div className="sticky top-0 w-full h-[80px] overflow-hidden bg-bgSubmenu z-10 flex justify-center items-center sm:justify-start sm:items-start sm:gap-2">
       <Link to="/home" className="w-[40px] h-[40px] sm:w-[80px] sm:h-[80px] flex justify-center items-center sm:justify-start sm:items-center bg-submenu sm:p-4 hover:bg-c-botones transition-colors duration-300 ease-in-out ">
         <img
