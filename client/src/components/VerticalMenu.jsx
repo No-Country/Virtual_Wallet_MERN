@@ -32,9 +32,9 @@ export const VerticalMenu = () => {
 
 
   return (
-    <div className="sticky top-0 flex w-1/6 sm:w-1/5 h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
-    <div className="w-full h-[80px] overflow-hidden bg-bgSubmenu z-10 flex justify-center items-center sm:justify-start sm:items-start sm:gap-2">
-      <a href="#" className="w-[40px] h-[40px] sm:w-[80px] sm:h-[80px] flex justify-center items-center sm:justify-start sm:items-center bg-submenu sm:p-4 hover:bg-c-botones transition-colors duration-300 ease-in-out ">
+    <div className="relative flex w-1/6 sm:w-1/5 h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
+    <div className="sticky top-0 w-full h-[80px] overflow-hidden bg-bgSubmenu z-10 flex justify-center items-center sm:justify-start sm:items-start sm:gap-2">
+      <Link to="/home" className="w-[40px] h-[40px] sm:w-[80px] sm:h-[80px] flex justify-center items-center sm:justify-start sm:items-center bg-submenu sm:p-4 hover:bg-c-botones transition-colors duration-300 ease-in-out ">
         <img
           alt="Man"
           src={usuario.logo}
@@ -46,14 +46,14 @@ export const VerticalMenu = () => {
             <span className="font-parrafo font-[600] text-colorFuente2Submenu text-"> {usuario.email} </span>
           </p>
         </div>
-      </a>
+      </Link>
     </div>
     <div className="w-full h-auto overflow-hidden">
       <nav aria-label="Main Nav" className="mt-0 flex flex-col gap-1 w-[100%] h-[100%] overflow-hidden">
         
         <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
         <section className="subPerfil w-full h-auto bg-c-fondo flex justify-center items-center">
-          <Link to="/perfil"
+          <Link to="/home/perfil"
             className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
           >
             <ion-icon name="person-outline"></ion-icon>
