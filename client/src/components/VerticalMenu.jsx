@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../slices/authSlice"
@@ -5,6 +6,7 @@ import { Link } from "react-router-dom"
 import { fetchUserByid, selectUser } from "../slices/userSlice"
 
 export const VerticalMenu = () => {
+  const [isOpen, setIsOpen] = useState(false)
   
   const dispatch = useDispatch()
   const userCargado = useSelector(selectUser);
@@ -115,6 +117,13 @@ export const VerticalMenu = () => {
             <ion-icon name="log-out-outline"></ion-icon>
             <span className="text-sm font-medium hidden sm:block"> logout </span>
           </Link>
+        </section>
+        <section className='w-full h-auto bg-c-fondo flex flex-col justify-center items-center content-center'>
+          <div className={`nav_toggle ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </section>
       </nav>
     </div>
