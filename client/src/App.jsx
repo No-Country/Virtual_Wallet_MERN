@@ -11,22 +11,31 @@ import SecurityAndPrivacy from './pages/SecurityAndPrivacy'
 import NotFound from './pages/NotFound'
 import InfomationTransparency from './pages/InfomationTransparency'
 import TermsAndConditions from './pages/TermsAndConditions'
-import VerticalMenu from './components/VerticalMenu'
 import Perfil from './pages/Perfil'
+import Denuncias from './components/Denuncias'
 
 function App() {
   return (
     <Layout>
       <Routes>
-        <Route exact path="/home" element={<Home />} />
+        {/* ruta para landing */}
+        <Route path="/" element={<Main />}>
+          
+        </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Main />}></Route>
+
+        {/* ruta para home sel usuario*/}
+        <Route exact path="/home" element={<Home />} >
+        </Route>
+        <Route path="/home/creditCard" element={<CreditCardForm />} />
+        <Route path='/home/perfil' element={<Perfil />} />
+        <Route path='/home/denuncias' element={<Denuncias />} />
+
+        {/* otras rutas */}
         <Route path="/cash" element={<BillPayment />}></Route>
         <Route path="/credit-card" element={<BillPayment />}></Route>
         <Route path="/currency-dollar" element={<BillPayment />}></Route>
-        <Route path="/creditCard" element={<CreditCardForm />}></Route>
-        <Route path="/perfil" element={<Perfil />}></Route>
 
         <Route
           path="/security-privacy"
@@ -40,7 +49,6 @@ function App() {
           path="/terms-conditions"
           element={<TermsAndConditions />}
         ></Route>
-        <Route path="/subMenu" element={<VerticalMenu />}></Route>
 
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
