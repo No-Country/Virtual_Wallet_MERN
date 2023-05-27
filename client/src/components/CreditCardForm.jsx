@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+  //estado para rotar card
 const CreditCardForm = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
@@ -8,7 +8,6 @@ const CreditCardForm = () => {
   const [ccv, setCcv] = useState("");
   const [errors, setErrors] = useState({});
 
-  //estado para rotar card
   const [isFlipped, setIsFlipped] = useState(false);
 
   const flipCard = () => {
