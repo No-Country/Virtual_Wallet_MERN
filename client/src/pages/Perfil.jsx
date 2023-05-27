@@ -56,10 +56,11 @@ const Perfil = () => {
       return;
     } else if (Object.keys(validationErrors).length === 0) {
       setErrors({});
-
+      console.log("id del ususario ->",user?._id)
       // actualizamos usuario
       dispatch(updateUser({ userId: user?._id, data })) 
-      .then(() => {
+      .then((res) => {
+        console.log("Respuesta -> ",res)
         setSuccessMessage('Usuario actualizado'); // Establecer el mensaje de éxito
   
         // Cambiar los estados editUsername, editEmail, editName y editSurname a false
@@ -81,7 +82,11 @@ const Perfil = () => {
     setName(user.name);
     setSurname(user.surname);
 
-    dispatch(clearUser());
+    setEditUsername(false);
+    setEditEmail(false);
+    setEditName(false);
+    setEditSurname(false);
+    // dispatch(clearUser());
 
     // Limpiar los errores de validación y el mensaje de éxito al limpiar el usuario
     setErrors({});
