@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 
 
 const NavProfileCard = () => {
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
 
 const user = useSelector((state) => state.user.user);
 const update = useSelector((state)=> state.user.update);
 
-const [username, setUsername] = useState('');
-const [email, setEmail] = useState('');
+console.log(user);
 
 const logo = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg';
 
@@ -28,8 +29,12 @@ useEffect(() => {
         />
         <div>
           <p className="text-xs hidden sm:block pl-1">
-            <strong className="block font-titulo text-colorFuente1Submenu text-sm font-[600]">{username || null}</strong>
-            <span className="font-parrafo font-[600] text-colorFuente2Submenu text-"> {email || null} </span>
+            {username == null ? null : (
+              <strong className="block font-titulo text-colorFuente1Submenu text-sm font-[600]">{username}</strong>
+            )}
+            {email == null ? null : (
+              <span className="font-parrafo font-[600] text-colorFuente2Submenu text-"> {email} </span>
+            )}
           </p>
         </div>
       </Link>
