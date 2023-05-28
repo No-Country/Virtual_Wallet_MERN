@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom'
 const NavProfileCard = () => {
 
 const user = useSelector((state) => state.user.user);
-const update =useSelector((state)=> state.user.update);
+const update = useSelector((state)=> state.user.update);
 
-const [username, setUsername] = useState(user.username);
-const [email, setEmail] = useState(user.email);
+const [username, setUsername] = useState('');
+const [email, setEmail] = useState('');
+
 const logo = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg';
 
 useEffect(() => {
