@@ -219,7 +219,7 @@ const CreditCardForm = () => {
             </section>
           </section>
 
-          {successMessage && <p className="w-full mt-3 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>}
+          {successMessage && <p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>}
       </div>
 
       <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
