@@ -106,7 +106,13 @@ const cardSlice = createSlice({
     updating: false, //indica el estado de actualización
     updateError: null, // almacenaa errores de actualización
   },
-  reducers: {},
+  reducers: {
+    clearCards(state) {
+      state.cards = [];
+      state.loading = false;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     // Reducer para la acción getUserCards
     builder.addCase(getUserCards.pending, (state) => {
@@ -172,4 +178,7 @@ const cardSlice = createSlice({
   },
 });
 
+
+export const selectCards = (state) => state.card.cards;
+export const { clearCards } = cardSlice.actions;
 export default cardSlice.reducer;

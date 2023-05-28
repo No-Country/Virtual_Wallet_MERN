@@ -15,8 +15,11 @@ console.log(user);
 const logo = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684361186/wallet/A_vibrant_and_energetic_scene_of_a_reggaeton_pengu_h2o30b.jpg';
 
 useEffect(() => {
-  setUsername(user.username)
-  setEmail(user.email)
+  console.log(user)
+  if (user) {
+    setUsername(user.username)
+    setEmail(user.email)
+  }
 },[update, user])
 
   return (
