@@ -9,6 +9,14 @@
   --color-principal: #4b4fa6;
   --color-secundario: #fc7e09;
   --color-fondo: #eaeef7;
+  --color-fondo-secundary: #ffff;
+
+  /* sub menu */
+  --bg-submenu: #424D8C;
+  --color-boton-submenu: #ffff;
+  --hover-boton-submenu: #788BF9AD;
+  --color-fuente1-submenu: #fc7e09;
+  --color-fuente2-submenu: #ffff;
 }
 
 .gradient {
@@ -41,5 +49,53 @@
 
   .inputBgCard::placeholder {
     color: #fff;
+  }
+
+  .nav_item {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: rgb(255, 128, 0);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    transform: translateX(-100%)
+  }
+
+  .nav_item.open {
+    transform: translateX(0);
+  }
+
+  .nav_toggle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .nav_toggle span {
+    width: 26px;
+    height: 4px;
+    background: wheat;
+    margin-bottom: 3px;
+    border-radius: 2px;
+    transform-origin: 5px 0px;
+    transition: all 0.2s linear;
+  }
+
+  .nav_toggle.open>span {
+    transform: rotate(45deg) translate(0px, 0px);
+  }
+
+  .nav_toggle.open>span:nth-child(2) {
+    display: none;
+  }
+
+  .nav_toggle.open>span:nth-child(3) {
+    transform: rotate(-45deg) translate(-5px, 1px);
   }
 }

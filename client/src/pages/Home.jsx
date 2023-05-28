@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import VerticalMenu from "../components/VerticalMenu";
 import ComponentIntermediate from "../components/componentIntermediate";
+import Bienvenida from "../components/Bienvenida";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -14,13 +15,12 @@ export const Home = () => {
       navigate("/");
     }
   }, [isAuthenticated, navigate]);
+
   return (
     <>
-      <section className="home w-full h-auto flex flex-wrap bg-slate-500">
-        <VerticalMenu></VerticalMenu>
-        <section className="main w-5/6 sm:w-4/5 flex flex-col flex-wrap justify-start gap-5 items-center bg-orange-500 overflow-hidden pt-5 pb-5">
-          <ComponentIntermediate></ComponentIntermediate>
-        </section>
+      <section className="relative main w-5/6 sm:w-4/5 flex flex-col flex-wrap justify-start gap-5 items-center bg-fondo overflow-hidden pt-5 pb-5">
+        <Bienvenida></Bienvenida>
+        <ComponentIntermediate></ComponentIntermediate>
       </section>
     </>
   );

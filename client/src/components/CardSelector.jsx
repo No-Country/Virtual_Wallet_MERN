@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MoneyOnAccount } from "./MoneyOnAccount";
+import { Link } from "react-router-dom";
 
 const CardSelector = ({ cards }) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
@@ -13,6 +14,12 @@ const CardSelector = ({ cards }) => {
       (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
     );
   };
+  console.log(cards);
+
+  // Comprobar si no hay tarjetas agregadas
+  if (!cards || cards.length === 0) {
+    return <div>No hay tarjetas agregadas</div>;
+  }
 
   const selectedCard = cards[selectedCardIndex];
 
@@ -30,11 +37,11 @@ const CardSelector = ({ cards }) => {
         </button>
         <section
           className={`flip-card bg-transparent w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `}
-          style={{ zIndex: 1 }} // Agrega esta línea para establecer el z-index en 1
+          style={{ zIndex: 1 }}
         >
           <div
             className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `}
-            style={{ zIndex: 0 }} // Establecer un z-index bajo aquí
+            style={{ zIndex: 0 }}
           >
             <section
               className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`}
@@ -82,6 +89,15 @@ const CardSelector = ({ cards }) => {
                     </div>
                   </div>
                 </section>
+                <div>
+                  <Link
+                    to={"/home/creditCard"}
+                    className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                    // onClick={agregarTarjeta}
+                  >
+                    Agregar Tarjeta
+                  </Link>
+                </div>
               </section>
               <section
                 className="flip-card-back w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2 overflow-hidden flex flex-col gap-2"

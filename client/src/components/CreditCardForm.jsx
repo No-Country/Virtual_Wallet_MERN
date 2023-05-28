@@ -122,7 +122,7 @@ const CreditCardForm = () => {
     "https://res.cloudinary.com/dpiwmbsog/image/upload/v1684718648/wallet/pinguiWallet-bg-prompt-hero1_cke13p.jpg";
 
   return (
-    <section className="w-ful min-h-[80vh] flex justify-start items-start gap-3">
+    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 min-h-[80vh] flex justify-start items-start gap-3">
       <div
         className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6 "
         style={{

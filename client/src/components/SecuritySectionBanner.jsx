@@ -1,32 +1,33 @@
 export const SecuritySectionBanner = () => {
   return (
-    <section className="w-[1000px] h-[300px] m-auto gradient rounded-2xl">
-      <div className="flex justify-evenly h-full">
-        <div className="p-5 h-[100%]">
-          <h2 className="w-[200px] text-2xl text-white">
-            Máxima seguridad garantizada
-          </h2>
-        </div>
-        <div className="flex justify-center items-center gap-4">
-          <div className="bg-secundario p-3 rounded w-[250px] h-[200px] gradient-secundario">
-            <h4 className="font-semibold mb-3">
-              ¡Tu seguridad es nuestra prioridad!
-            </h4>
-            <p className="text-sm">
-              Nos comprometemos a brindarte un entorno seguro y confiable para
-              todas tus transacciones financieras.
-            </p>
+    <section className="w-full h-auto flex justify-center items-center">
+      <section className="w-full h-auto sm:h-[300px] lg:max-w-[1000px] p-5 gradient rounded-[5px]">
+        <div className="flex sm:flex-row flex-col w-full h-full justify-evenly">
+          <div className="w-full sm:w-1/3 lg:w-[200px] font-titulo">
+            <h2 className=" text-2xl text-white text-center">
+              Máxima seguridad garantizada
+            </h2>
           </div>
-          <div className="bg-secundario p-3 rounded w-[250px] h-[200px] gradient-secundario">
-            <h4 className="font-semibold mb-3">¡Seguridad sin compromisos!</h4>
-            <br />
-            <p className="text-sm">
-              Nos esforzamos por brindarte una experiencia segura sin
-              comprometer la comodidad y la eficiencia.
-            </p>
+          <div className="flex w-full sm:w-2/3  h-auto justify-center items-end gap-4">
+            <div className="bg-secundario p-3 rounded-[4px] w-[250px] h-[200px] gradient-secundario flex flex-col gap-2 justify-center items-center">
+              <h2 className="font-titulo font-[600] text-colorFuente2Submenu mb-1">
+                ¡Tu seguridad es nuestra prioridad!
+              </h2>
+              <p className="font-parrafo font-[400] text-sm text-shadow">
+                Nos comprometemos a brindarte un entorno seguro y confiable para
+                todas tus transacciones financieras.
+              </p>
+            </div>
+            <div className="bg-secundario p-3 rounded-[4px] w-[250px] h-[200px] gradient-secundario flex flex-col gap-2 justify-center items-center">
+              <h2 className="font-titulo font-[600] text-colorFuente2Submenu mb-1">¡Seguridad sin compromisos!</h2>
+              <p className="font-parrafo font-[400] text-sm text-shadow">
+                Nos esforzamos por brindarte una experiencia segura sin
+                comprometer la comodidad y la eficiencia.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
   )
 }

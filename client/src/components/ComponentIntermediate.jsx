@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardSelector from "./CardSelector";
+import { axiosCard } from "../slices/cardSlice";
 
 const ComponentIntermediate = () => {
-  // aca iria el llamdo a la DB para traer la info de la tarjetas
-  const cardList = [
-    { id: 1, number: "1234 5678 9012 3456", balance: "$1,000.00" },
-    { id: 2, number: "9876 5432 1098 7654", balance: "$500.00" },
-    // Agrega más tarjetas si es necesario
-  ];
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    dispatch(axiosCard(token));
+  }, [dispatch, token]);
+
+  const cardData = useSelector((state) => state?.card?.data);
+  const cardError = useSelector((state) => state?.card?.error);
+  console.log(cardData);
+
+  if (cardError) {
+    return <div>Error al cargar la tarjeta: {cardError}</div>;
+  }
 
   return (
     <div>
-      <CardSelector cards={cardList} />
+      <CardSelector cards={cardData} />
     </div>
   );
 };
