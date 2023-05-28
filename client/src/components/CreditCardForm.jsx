@@ -1,14 +1,23 @@
 import { useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { createCard } from "../slices/cardSlice";
+  //estado para rotar card
 const CreditCardForm = () => {
+  const userId = useSelector((state) => state.user.user);
+  console.log("id -> ",userId)
+  const dispatch = useDispatch();
+
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [expirationMonth, setExpirationMonth] = useState("");
   const [expirationYear, setExpirationYear] = useState("");
   const [ccv, setCcv] = useState("");
+  const [cardType, setCardType] = useState('');
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
-  //estado para rotar card
+
+  //para rotar la card
   const [isFlipped, setIsFlipped] = useState(false);
 
   const flipCard = () => {
@@ -33,6 +42,9 @@ const CreditCardForm = () => {
       case "ccv":
         setCcv(value);
         break;
+      case "cardType":
+        setCardType(value);
+        break;
       default:
         break;
     }
@@ -41,8 +53,22 @@ const CreditCardForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = {
+      name :cardHolder,
+      description : "Tarjeta de credito",
+      type: cardType,
+      number: cardNumber,
+      expiration_date: `${expirationMonth}/${expirationYear}`,
+      cvv: ccv,
+      user: userId,
+    };
+    console.log(formData);
+
+    // reset errores
+    setErrors({});
+    // validar formulario
     const validationErrors = {};
-    // Realizar lógica de envío del formulario aquí
 
     //validar numero de tarjeta 
     if(!cardNumber) {
@@ -90,23 +116,60 @@ const CreditCardForm = () => {
       validationErrors.ccv = "El CVV debe tener 3 digitos";
     }
     
-    setErrors(validationErrors);
+    // validar tipo de tarjeta
+    if(!cardType) {
+      validationErrors.cardType = "El tipo de tarjeta es requerido";
+    }
 
-    //Si no hay errore continua con la ejecucion
-    // Si no hay errores, puedes continuar con el proceso de pago
-    if (Object.keys(validationErrors).length === 0) {
-      // Procesar el pago
+    // veridicamos si hay errores
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setSuccessMessage('');
+      return;
+    }else if (Object.keys(validationErrors).length === 0) {
+      // si no hay error podemos cargar la tarjeta
       console.log("¡cdatos validos para cargarlos a la db!");
-      const formData = {
-        cardNumber,
-        cardHolder,
-        expirationMonth,
-        expirationYear,
-        ccv,
-      };
-      console.log(formData);
+      dispatch(createCard(formData))
+      .then((res) => {
+        console.log("respuesta ->", res)
+        console.log("Respuesta2 -> ",res.payload.message)
+
+        setSuccessMessage(res.payload.message);// de esta forma empezamos a controlar el error
+
+        //podemos hacer el reset de los campos
+        setCardNumber('');
+        setCardHolder('');
+        setExpirationMonth('');
+        setExpirationYear('');
+        setCcv('');
+        setCardType('');
+        setErrors({});
+        
+      })
+      .catch((error) => {
+        console.log("error ->", error)
+        setSuccessMessage(error.message);
+        //podemos hacer el reset de los campos
+        setCardNumber('');
+        setCardHolder('');
+        setExpirationMonth('');
+        setExpirationYear('');
+        setCcv('');
+        setCardType('');
+        setErrors({});
+      })
       // ...
     }
+
+    /** necesario : 
+     * name,  
+     * description, sera una descripcion random??
+     * type,  visa master, american, etc
+     * number,  
+     * expiration_date, 
+     * cvv, 
+     * user, 
+     * balance */ //plata que posee la card (no usar ,tendra 1000 auto)
 
   };
   
@@ -155,6 +218,8 @@ const CreditCardForm = () => {
               <p className="w-full h-auto text-white font-parrafo text-[.4rem] text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab atque beatae non id, sit nulla eos dolor eligendi corrupti cupiditate officiis debitis sequi repudiandae voluptates. Nobis alias at rem ab.<br></br><br></br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab atque beatae non id, sit nulla eos dolor eligendi corrupti cupiditate officiis debitis sequi repudiandae voluptates. Nobis alias at rem ab</p>
             </section>
           </section>
+
+          {successMessage && <p className="w-full mt-3 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>}
       </div>
 
       <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
@@ -217,16 +282,28 @@ const CreditCardForm = () => {
               )}
             </div>
           </div>
-          <input
-            type="text"
-            id="ccv"
-            name="ccv"
-            value={ccv}
-            onChange={handleInputChange}
-            placeholder="CCV"
-            className={`w-1/3 p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${errors.ccv ? "border-red-600" : ""}`}
-          />
-          {errors.ccv && <p className="text-red-400 text-xs">{errors.ccv}</p>}
+          <div className="expiry-date-group flex gap-2">
+            <div className="flex-col w-2/4">
+              <input
+                type="text"
+                id="ccv"
+                name="ccv"
+                value={ccv}
+                onChange={handleInputChange}
+                placeholder="CCV"
+                className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${errors.ccv ? "border-red-600" : ""}`}
+              />
+              {errors.ccv && <p className="text-red-400 text-xs">{errors.ccv}</p>}
+            </div>
+            <div className="flex-col w-2/4">
+              <select className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${errors.cardType ? "border-red-600" : "" }`} value={cardType} name="cardType" onChange={handleInputChange}>
+                <option value="">tipo</option>
+                <option value="debito">debit</option>
+                <option value="credito">credit</option>
+              </select>
+              {errors.cardType && <p className="text-red-400 text-xs w-full">{errors.cardType}</p>}
+            </div>
+          </div>
         </fieldset>
         <button type="submit" className="bg-c-boton-accion text-white p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm border-solid border-2 border-c-boton-accion outline-none hover:bg-c-titulo hover:text-c-fuente-principal hover:border-c-titulo transition duration-300 ease-in-out">
           Cargar

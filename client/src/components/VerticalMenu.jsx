@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../slices/authSlice"
 import { Link } from "react-router-dom"
 import { fetchUserByid, selectUser } from "../slices/userSlice"
+import NavProfileCard from './NavProfileCard'
 
 export const VerticalMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,8 +14,17 @@ export const VerticalMenu = () => {
   const userCargado = useSelector(selectUser);
 
   const { user } = useSelector((state) => state.auth)
+  const update =useSelector((state)=> state.user.update);
+
   // console.log("usuario: ",user._id)
+
+  
   const userId = user._id;
+
+  //me interesa que lo haga solo una vez
+  useEffect(() => {
+    localStorage.setItem('userId', user._id);
+  },[user,update])
 
   //una vez añadan la imagen de perfil, se elimina esta linea
   const usuario = {
@@ -28,6 +38,7 @@ export const VerticalMenu = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('userId');
     dispatch(logout())
   }
   
@@ -38,21 +49,7 @@ export const VerticalMenu = () => {
 
   return (
     <div className="relative flex w-1/6 sm:w-1/5 min-h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
-    <div className="sticky top-0 w-full h-[80px] overflow-hidden bg-bgSubmenu z-10 flex justify-center items-center sm:justify-start sm:items-start sm:gap-2">
-      <Link to="/home" className="w-[40px] h-[40px] sm:w-[80px] sm:h-[80px] flex justify-center items-center sm:justify-start sm:items-center bg-submenu sm:p-4 hover:bg-c-botones transition-colors duration-300 ease-in-out ">
-        <img
-          alt="Man"
-          src={usuario.logo}
-          className="h-[100%] w-[100%] rounded-full object-cover"
-        />
-        <div>
-          <p className="text-xs hidden sm:block pl-1">
-            <strong className="block font-titulo text-colorFuente1Submenu text-sm font-[600]">{usuario.surname}</strong>
-            <span className="font-parrafo font-[600] text-colorFuente2Submenu text-"> {usuario.email} </span>
-          </p>
-        </div>
-      </Link>
-    </div>
+    <NavProfileCard/>
     <div className="w-full h-auto overflow-hidden">
       <nav aria-label="Main Nav" className="mt-0 flex flex-col gap-1 w-[100%] h-[100%] overflow-hidden">
         
