@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const cardSlice = createSlice({
+const cardFabianSlice = createSlice({
   name: "card",
   initialState: {
     data: null,
@@ -36,4 +36,4 @@ export const axiosCard = (token) => async (dispatch) => {
   }
 };
 
-export default cardSlice.reducer;
+export default cardFabianSlice.reducer;

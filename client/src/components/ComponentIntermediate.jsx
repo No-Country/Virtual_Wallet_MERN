@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardSelector from "./CardSelector";
-import { axiosCard } from "../slices/cardSlice";
+import { axiosCard } from "../slices/cardFabianSlice";
 
 const ComponentIntermediate = () => {
   const dispatch = useDispatch();
