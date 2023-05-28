@@ -1,7 +1,23 @@
 // import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
+
 const CardsAdd = () => {
+  // const [cardDePrueba, setCardDePrueba] = useState({ id: 1, numero: "**** **** **** 1234" })
+  // const dispatch = useDispatch();
+  // const cards = useSelector(selectCards)
+
+  // useEffect(()=>{
+  //   dispatch(getUserCards)
+    
+  // },[dispatch])
+
+  // if (cards.length === 0) {
+  //   console.log("No hay tarjetas para mostrar");
+  // } else {
+  //   console.log("estas son las  cars -> ",cards);
+  // }
   const cardDePrueba = { id: 1, numero: "**** **** **** 1234" };
 
   // const [tarjetas, setTarjetas] = useState([

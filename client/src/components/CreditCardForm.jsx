@@ -4,6 +4,7 @@ import { createCard } from "../slices/cardSlice";
   //estado para rotar card
 const CreditCardForm = () => {
   const userId = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.auth.user.token);
   console.log("id -> ",userId)
   const dispatch = useDispatch();
 
@@ -17,6 +18,8 @@ const CreditCardForm = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
 
+  console.log("token Token: :: ",token)
+  
   //para rotar la card
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -56,14 +59,15 @@ const CreditCardForm = () => {
 
     const formData = {
       name :cardHolder,
-      description : "Tarjeta de credito",
+      description : "Pingui card",
       type: cardType,
-      number: cardNumber,
+      number: Number(cardNumber),
       expiration_date: `${expirationMonth}/${expirationYear}`,
-      cvv: ccv,
+      cvv: Number(ccv),
       user: userId,
+      balance: Number(2000),
     };
-    console.log(formData);
+    console.log("Form Data ->",formData);
 
     // reset errores
     setErrors({});
@@ -129,25 +133,29 @@ const CreditCardForm = () => {
     }else if (Object.keys(validationErrors).length === 0) {
       // si no hay error podemos cargar la tarjeta
       console.log("¡cdatos validos para cargarlos a la db!");
+      console.log("Form Data ->",formData);
       dispatch(createCard(formData))
       .then((res) => {
-        console.log("respuesta ->", res)
-        console.log("Respuesta2 -> ",res.payload.message)
 
-        setSuccessMessage(res.payload.message);// de esta forma empezamos a controlar el error
+        console.log("respuesta ->", res);
+        if (res.error) {
+          setSuccessMessage(res.error.message);
+        }
+        // console.log("Respuesta2 -> ",res.payload.message);
+          setSuccessMessage("carga de tarjeta exitosa" );// de esta forma empezamos a controlar el error
 
-        //podemos hacer el reset de los campos
-        setCardNumber('');
-        setCardHolder('');
-        setExpirationMonth('');
-        setExpirationYear('');
-        setCcv('');
-        setCardType('');
-        setErrors({});
-        
+          //podemos hacer el reset de los campos
+          setCardNumber('');
+          setCardHolder('');
+          setExpirationMonth('');
+          setExpirationYear('');
+          setCcv('');
+          setCardType('');
+          setErrors({}); 
+          
       })
       .catch((error) => {
-        console.log("error ->", error)
+        console.log("error ->", error);
         setSuccessMessage(error.message);
         //podemos hacer el reset de los campos
         setCardNumber('');
@@ -176,7 +184,7 @@ const CreditCardForm = () => {
   const backgroundImage = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684718648/wallet/pinguiWallet-bg-prompt-hero1_cke13p.jpg'
 
   return (
-    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 min-h-[80vh] flex justify-start items-start gap-3">
+    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 min-h-[80vh] flex flex-col justify-start items-start gap-3">
     <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6 " style={{ backgroundImage: `url(${backgroundImage})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
       <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
           <section className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`} style={{transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
@@ -218,8 +226,6 @@ const CreditCardForm = () => {
               <p className="w-full h-auto text-white font-parrafo text-[.4rem] text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab atque beatae non id, sit nulla eos dolor eligendi corrupti cupiditate officiis debitis sequi repudiandae voluptates. Nobis alias at rem ab.<br></br><br></br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab atque beatae non id, sit nulla eos dolor eligendi corrupti cupiditate officiis debitis sequi repudiandae voluptates. Nobis alias at rem ab</p>
             </section>
           </section>
-
-          {successMessage && <p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>}
       </div>
 
       <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
@@ -298,8 +304,8 @@ const CreditCardForm = () => {
             <div className="flex-col w-2/4">
               <select className={`w-full p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm outline-none inputBgCard ${errors.cardType ? "border-red-600" : "" }`} value={cardType} name="cardType" onChange={handleInputChange}>
                 <option value="">tipo</option>
-                <option value="debito">debit</option>
-                <option value="credito">credit</option>
+                <option value="debit">debit</option>
+                <option value="credit">credit</option>
               </select>
               {errors.cardType && <p className="text-red-400 text-xs w-full">{errors.cardType}</p>}
             </div>
@@ -310,6 +316,7 @@ const CreditCardForm = () => {
         </button>
       </form>
     </div>
+    {successMessage ? (<p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>) : null }
     </section>
   );
 };

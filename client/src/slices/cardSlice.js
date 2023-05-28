@@ -30,7 +30,7 @@ export const getUserCards = createAsyncThunk('/card/getUserCards', async (_, { g
 // Acción asincrónica para crear una tarjeta de crédito
 export const createCard = createAsyncThunk('/card/createCard', async (cardData, { getState }) => {
   const { auth } = getState();
-  const token = auth.token;
+  const token = auth.user.token;
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -41,7 +41,7 @@ export const createCard = createAsyncThunk('/card/createCard', async (cardData, 
   };
 
   try {
-    const response = await fetch(`${API_URL}/cards`, requestOptions);
+    const response = await fetch(`${API_URL}/card`, requestOptions);
     if (!response.ok) {
       throw new Error('Error creating card');
     }
