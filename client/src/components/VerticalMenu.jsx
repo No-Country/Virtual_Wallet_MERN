@@ -12,18 +12,18 @@ export const VerticalMenu = () => {
 
   const dispatch = useDispatch();
   const userCargado = useSelector(selectUser);
+  const token = localStorage.getItem("token");
 
   const { user } = useSelector((state) => state.auth);
-  const update = useSelector((state) => state.user.update);
+  // const update =useSelector((state)=> state.user.update);
 
   // console.log("usuario: ",user._id)
-
   const userId = user?._id;
 
   //me interesa que lo haga solo una vez
   useEffect(() => {
     localStorage.setItem("userId", user?._id);
-  }, [user, update]);
+  }, [dispatch, token]);
 
   //una vez añadan la imagen de perfil, se elimina esta linea
   const usuario = {
@@ -70,8 +70,8 @@ export const VerticalMenu = () => {
 
           <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
           <section className="cards w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
-            <a
-              href="#"
+            <Link
+              to="/home/tarjetas"
               className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
             >
               <ion-icon name="card-outline"></ion-icon>
@@ -79,7 +79,7 @@ export const VerticalMenu = () => {
                 {" "}
                 Tarjetas{" "}
               </span>
-            </a>
+            </Link>
             <a
               onClick={handleAyuda}
               className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"

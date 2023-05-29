@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:5000/api';
 // Acción asincrónica para obtener las tarjetas del usuario
 export const getUserCards = createAsyncThunk('/card/getUserCards', async (_, { getState }) => {
   const { auth } = getState();
-  const token = auth.token;
+  const token = auth.user.token;
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -16,7 +16,7 @@ export const getUserCards = createAsyncThunk('/card/getUserCards', async (_, { g
   };
 
   try {
-    const response = await fetch(`${API_URL}/cards`, requestOptions);
+    const response = await fetch(`${API_URL}/card`, requestOptions);
     if (!response.ok) {
       throw new Error('Error retrieving user cards');
     }
@@ -30,7 +30,7 @@ export const getUserCards = createAsyncThunk('/card/getUserCards', async (_, { g
 // Acción asincrónica para crear una tarjeta de crédito
 export const createCard = createAsyncThunk('/card/createCard', async (cardData, { getState }) => {
   const { auth } = getState();
-  const token = auth.token;
+  const token = auth.user.token;
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -41,7 +41,7 @@ export const createCard = createAsyncThunk('/card/createCard', async (cardData, 
   };
 
   try {
-    const response = await fetch(`${API_URL}/cards`, requestOptions);
+    const response = await fetch(`${API_URL}/card`, requestOptions);
     if (!response.ok) {
       throw new Error('Error creating card');
     }
@@ -53,9 +53,9 @@ export const createCard = createAsyncThunk('/card/createCard', async (cardData, 
 });
 
 // Acción asincrónica para eliminar una tarjeta de crédito
-export const deleteCard = createAsyncThunk('/card/deleteCard', async (cardId, { getState }) => {
+export const deleteCard = createAsyncThunk('card/deleteCard', async (cardId, { getState }) => {
   const { auth } = getState();
-  const token = auth.token;
+  const token = auth.user.token;
   const requestOptions = {
     method: 'DELETE',
     headers: {
@@ -65,7 +65,7 @@ export const deleteCard = createAsyncThunk('/card/deleteCard', async (cardId, { 
   };
 
   try {
-    const response = await fetch(`${API_URL}/cards/${cardId}`, requestOptions);
+    const response = await fetch(`${API_URL}/card/${cardId}`, requestOptions);
     if (!response.ok) {
       throw new Error('Error deleting card');
     }
@@ -78,7 +78,7 @@ export const updateCard = createAsyncThunk(
   'card/updateCard',
   async ({ cardId, data }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${API_URL}/cards/${cardId}`, {
+      const response = await fetch(`${API_URL}/card/${cardId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
