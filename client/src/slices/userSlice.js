@@ -1,14 +1,14 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const API_URL = 'http://localhost:5000/api/user';
+const API_URL = "http://localhost:5000/api/user";
 
 // Acción asincrónica para obtener un usuario por ID
 export const fetchUserByid = createAsyncThunk(
-  'user/fetchUserById',
+  "user/fetchUserById",
   async (userId) => {
     const response = await fetch(`${API_URL}/get-one/${userId}`);
     if (!response.ok) {
-      throw new Error('Error al obtener el usuario');
+      throw new Error("Error al obtener el usuario");
     }
     const data = await response.json();
     console.log("DATA ->->", data);
@@ -18,17 +18,17 @@ export const fetchUserByid = createAsyncThunk(
 
 //accion asincronica para actualizar un usuario
 export const updateUser = createAsyncThunk(
-  'user/updateUser',
+  "user/updateUser",
   async ({ userId, userData }) => {
     const response = await fetch(`${API_URL}/update-one/${userId}`, {
-      method : 'PATCH',
-      headers : {
-        'Content-Type' : 'application/json'
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
     });
-    if(!response.ok){
-      throw new Error('Error al actualizar el usuario');
+    if (!response.ok) {
+      throw new Error("Error al actualizar el usuario");
     }
     const data = await response.json();
     return data;
@@ -37,13 +37,13 @@ export const updateUser = createAsyncThunk(
 
 // Acción asincrónica para eliminar un usuario
 export const deleteUser = createAsyncThunk(
-  'user/deleteUser',
+  "user/deleteUser",
   async (userId) => {
     const response = await fetch(`${API_URL}/delete-one/${userId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     if (!response.ok) {
-      throw new Error('Error al eliminar el usuario');
+      throw new Error("Error al eliminar el usuario");
     }
     const data = await response.json();
     return data;
@@ -51,16 +51,16 @@ export const deleteUser = createAsyncThunk(
 );
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
     user: null,
     loading: false,
     error: null,
-    deleted: false, 
+    deleted: false,
     updated: false,
   },
   reducers: {
-     // Acción para limpiar el estado del usuario
+    // Acción para limpiar el estado del usuario
     clearUser(state) {
       state.user = null;
       state.loading = false;
@@ -73,7 +73,6 @@ const userSlice = createSlice({
     markUserAsDeleted(state) {
       state.deleted = true;
     },
-
   },
   extraReducers: (builder) => {
     builder
@@ -117,7 +116,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
-  }
+  },
 });
 
 // ... Exportar acciones y reducer ...
