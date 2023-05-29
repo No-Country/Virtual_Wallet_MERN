@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../slices/userSlice";
+import { fetchUserByid, updateUser } from "../slices/userSlice";
 
 const Perfil = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state?.user?.user);
+  const id = useSelector((state) => state?.auth.user._id)
+  const token = localStorage.getItem("token");
 
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
@@ -18,6 +20,11 @@ const Perfil = () => {
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    dispatch(fetchUserByid(id))
+    console.log("Perfil -> ",user)
+  },[dispatch, token])
 
   const handleUpdateUser = () => {
     const data = {

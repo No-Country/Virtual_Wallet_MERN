@@ -1,13 +1,15 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserByid } from "../slices/userSlice";
 
 const Bienvenida = () => {
-  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state?.user?.user);
 
   useEffect(() => {
-    console.log("Bienvenida ",user)
-
-  },[user])
+    dispatch(fetchUserByid(user?.id))
+    console.log("Bienvenida -> ",user)
+  },[dispatch, user])
 
   console.log("Bienvenida ",user)
   return (

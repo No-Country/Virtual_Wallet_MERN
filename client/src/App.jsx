@@ -13,6 +13,7 @@ import InfomationTransparency from './pages/InfomationTransparency'
 import TermsAndConditions from './pages/TermsAndConditions'
 import Perfil from './pages/Perfil'
 import Denuncias from './components/Denuncias'
+import CreditCardList from './components/CreditCardList'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/home/creditCard" element={<CreditCardForm />} />
         <Route path='/home/perfil' element={<Perfil />} />
         <Route path='/home/denuncias' element={<Denuncias />} />
+        <Route path='/home/tarjetas' element={<CreditCardList />} />
 
         {/* otras rutas */}
         <Route path="/cash" element={<BillPayment />}></Route>
