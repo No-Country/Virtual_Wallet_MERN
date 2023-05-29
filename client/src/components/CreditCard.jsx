@@ -34,7 +34,7 @@ const CreditCard = ({ objeto }) => {
   }
 
   return (
-    <div className="bg-[#333] w-full max-w-[450px] sm:w-[420px] h-auto p-5 flex flex-col justify-start items-center gap-5 rounded-[4px] relative" >
+    <div className="bg-hoverBotonSubmenu w-full max-w-[450px] sm:w-[420px] h-auto p-5 flex flex-col justify-start items-center gap-5 rounded-[4px] relative" >
       {isConfirmed && (
           <div className="modal w-full h-auto p-2 text-center">
             <div className="modal-content">

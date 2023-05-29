@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import VerticalMenu from "../components/VerticalMenu";
-import ComponentIntermediate from "../components/componentIntermediate";
 import Bienvenida from "../components/Bienvenida";
+import ComponentIntermediate from "../components/ComponentIntermediate";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -26,4 +24,3 @@ export const Home = () => {
   );
 };
 
-// 
