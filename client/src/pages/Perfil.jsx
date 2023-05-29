@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser, updateUser } from "../slices/userSlice";
+import { updateUser } from "../slices/userSlice";
 
 const Perfil = () => {
   const dispatch = useDispatch();
@@ -47,6 +47,8 @@ const Perfil = () => {
     }
     if (!surname) {
       validationErrors.surname = "El apellido no puede estar vacio"
+    }else if (!/^[a-zA-Z\s]+$/.test(surname)){
+      validationErrors.surname = "El apellido solo puede contener letras"
     }
 
     // veridicamos si hay errores
@@ -56,11 +58,14 @@ const Perfil = () => {
       return;
     } else if (Object.keys(validationErrors).length === 0) {
       setErrors({});
-
+      console.log("id del ususario ->",user?._id)
       // actualizamos usuario
       dispatch(updateUser({ userId: user?._id, data })) 
-      .then(() => {
-        setSuccessMessage('Usuario actualizado'); // Establecer el mensaje de éxito
+      .then((res) => {
+        console.log("Respuesta -> ",res)
+        console.log("Respuesta2 -> ",res.payload.message)
+      
+        setSuccessMessage(res.payload.message); // Establecer el mensaje de éxito
   
         // Cambiar los estados editUsername, editEmail, editName y editSurname a false
         setEditUsername(false);
@@ -70,7 +75,7 @@ const Perfil = () => {
       })
       .catch((error) => {
         // Manejar cualquier error de actualización aquí
-        console.log(error);
+        setSuccessMessage(error);
       });
     }
   }
@@ -81,7 +86,11 @@ const Perfil = () => {
     setName(user.name);
     setSurname(user.surname);
 
-    dispatch(clearUser());
+    setEditUsername(false);
+    setEditEmail(false);
+    setEditName(false);
+    setEditSurname(false);
+    // dispatch(clearUser());
 
     // Limpiar los errores de validación y el mensaje de éxito al limpiar el usuario
     setErrors({});

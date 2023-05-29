@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const cardFabianSlice = createSlice({
-  name: "card",
+  name: "cardFabian",
   initialState: {
     data: null,
     error: null,
@@ -20,7 +20,7 @@ const cardFabianSlice = createSlice({
   },
 });
 
-export const { axiosCardSuccess, axiosCardFailure } = cardSlice.actions;
+export const { axiosCardSuccess, axiosCardFailure } = cardFabianSlice.actions;
 
 export const axiosCard = (token) => async (dispatch) => {
   try {

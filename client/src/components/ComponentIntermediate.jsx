@@ -10,7 +10,7 @@ const ComponentIntermediate = () => {
     dispatch(axiosCard(token));
   }, [dispatch, token]);
 
-  const cardData = useSelector((state) => state?.card?.data);
+  const cardData = useSelector((state) => state?.cardFabian?.data);
   const cardError = useSelector((state) => state?.card?.error);
   console.log(cardData);
 
