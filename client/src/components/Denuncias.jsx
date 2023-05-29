@@ -1,13 +1,20 @@
 import { useState } from "react";
 import TitulosPages from "./TitulosPages"
+import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import { createMessage } from "../slices/contactSlice";
 
 const Denuncias = () => {
+  const dispatch = useDispatch();
+
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [denuncia, setDenuncia] = useState('');
   const [archivo, setArchivo] = useState(null);
   const [errors, setErrors] = useState({});
+
+  const [successMessage, setSuccessMessage] = useState('');
 
 
   const handleNombreChange = (e) => {
@@ -31,8 +38,23 @@ const Denuncias = () => {
     setArchivo(file);
   };
 
+  // requerimientos para contytactos:
+  // name: string
+  // email: string
+  // message: string
+  // ref_number : string
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const refNumber = uuidv4();
+
+    //vamos adaptarlo a una consulta de contacts
+    const nuevaDenuncia = {
+      name:nombre + ' ' + apellido,
+      email: email,
+      message:denuncia,
+      ref_number: refNumber,
+    };
 
     const validationErrors = {}
 
@@ -70,121 +92,127 @@ const Denuncias = () => {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setSuccessMessage(''); // Limpiar el mensaje de éxito si hay errores
       return;
     } else if (Object.keys(validationErrors).length === 0) {
       // Crear un objeto con los datos de la denuncia
-      const nuevaDenuncia = {
-        nombre,
-        apellido,
-        email,
-        denuncia,
-        archivo,
-      };
-
+      setErrors({});
       // enviamos la denuncia
       console.log(nuevaDenuncia)
-      setErrors({});
+      dispatch(createMessage(nuevaDenuncia))
+      .then((res) => {
+        console.log("Respuesta -> ",res)
+        // console.log("Respuesta2 -> ",res.payload.message)
+      
+        setSuccessMessage("Su denuncia fue enviada con éxito"); // Establecer el mensaje de éxito
+          // Limpiar el formulario
+          setNombre('');
+          setApellido('');
+          setEmail('');
+          setDenuncia('');
+          setArchivo(null);
+          setErrors('');
+      })
+      .catch((error) => {
+        // Manejar cualquier error de actualización aquí
+        setSuccessMessage("error al procesar la denuncia");
+        console.log("Error -> ",error)
+      
+      });
     }
-    
-
-    // Limpiar el formulario
-    setNombre('');
-    setApellido('');
-    setEmail('');
-    setDenuncia('');
-    setArchivo(null);
-    setErrors('');
-
   };
 
   return (
-    <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto gap-4 sm:gap-6">
-      <section className="w-full h-auto flex flex-col gap-2 items-center justify-center ">
+    <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
+      {successMessage && <div className="w-full h-[80px] flex items-center justify-center">
+        <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
+        </div>}
+      <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
         <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>
         
-        <form onSubmit={handleSubmit}>
-      <div className="mb-4">
-        <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
-          Nombre:
-        </label>
-        <input
-          type="text"
-          id="nombre"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-          value={nombre}
-          onChange={handleNombreChange}
-          required
-        />
-        {errors.nombre && <p className="text-red-500">{errors.nombre}</p>}
+      <form onSubmit={handleSubmit} className="w-[80%] sm:w-[400px]">
+        <div className="mb-4">
+          <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
+            Nombre:
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            value={nombre}
+            onChange={handleNombreChange}
+            required
+          />
+          {errors.nombre && <p className="text-red-500">{errors.nombre}</p>}
 
-      </div>
+        </div>
 
-      <div className="mb-4">
-        <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
-          Apellido:
-        </label>
-        <input
-          type="text"
-          id="apellido"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-          value={apellido}
-          onChange={handleApellidoChange}
-          required
-        />
-        {errors.apellido && <p className="text-red-500">{errors.apellido}</p>}
-      </div>
+        <div className="mb-4">
+          <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
+            Apellido:
+          </label>
+          <input
+            type="text"
+            id="apellido"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            value={apellido}
+            onChange={handleApellidoChange}
+            required
+          />
+          {errors.apellido && <p className="text-red-500">{errors.apellido}</p>}
+        </div>
 
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Email:
-        </label>
-        <input
-          type="email"
-          id="email"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-          value={email}
-          onChange={handleEmailChange}
-          required
-        />
-        {errors.email && <p className="text-red-500">{errors.email}</p>} 
-      </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Email:
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            value={email}
+            onChange={handleEmailChange}
+            required
+          />
+          {errors.email && <p className="text-red-500">{errors.email}</p>} 
+        </div>
 
-      <div className="mb-4">
-        <label htmlFor="denuncia" className="block text-sm font-medium text-gray-700">
-          Denuncia:
-        </label>
-        <textarea
-          id="denuncia"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 resize-none"
-          value={denuncia}
-          onChange={handleDenunciaChange}
-          required
-        />
-        {errors.denuncia && <p className="text-red-500">{errors.denuncia}</p>}
-      </div>
+        <div className="mb-4">
+          <label htmlFor="denuncia" className="block text-sm font-medium text-gray-700">
+            Denuncia:
+          </label>
+          <textarea
+            id="denuncia"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 resize-none"
+            value={denuncia}
+            onChange={handleDenunciaChange}
+            required
+          />
+          {errors.denuncia && <p className="text-red-500">{errors.denuncia}</p>}
+        </div>
 
-      <div className="mb-4">
-        <label htmlFor="archivo" className="block text-sm font-medium text-gray-700">
-          Adjuntar archivo (máximo 2MB):
-        </label>
-        <input
-          type="file"
-          id="archivo"
-          accept=".jpg,.png"
-          className="mt-1"
-          onChange={handleArchivoChange}
-          required
-        />
-        {errors.archivo && <p className="text-red-500">{errors.archivo}</p>}
-      </div>
+        <div className="mb-4">
+          <label htmlFor="archivo" className="block text-sm font-medium text-gray-700">
+            Adjuntar archivo (máximo 2MB):
+          </label>
+          <input
+            type="file"
+            id="archivo"
+            accept=".jpg,.png"
+            className="mt-1"
+            onChange={handleArchivoChange}
+            required
+          />
+          {errors.archivo && <p className="text-red-500">{errors.archivo}</p>}
+        </div>
 
-      <button
-        type="submit"
-        className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition duration-300 ease-in-out"
-      >
-        Enviar Denuncia
-      </button>
-    </form>
+        <button
+          type="submit"
+          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition duration-300 ease-in-out"
+        >
+          Enviar Denuncia
+        </button>
+      </form>
       </section>
     </div>           
   )
