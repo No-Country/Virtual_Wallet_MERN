@@ -53,7 +53,7 @@ export const createCard = createAsyncThunk('/card/createCard', async (cardData, 
 });
 
 // Acción asincrónica para eliminar una tarjeta de crédito
-export const deleteCard = createAsyncThunk('/card/deleteCard', async (cardId, { getState }) => {
+export const deleteCard = createAsyncThunk('card/deleteCard', async (cardId, { getState }) => {
   const { auth } = getState();
   const token = auth.user.token;
   const requestOptions = {
