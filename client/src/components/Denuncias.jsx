@@ -15,6 +15,8 @@ const Denuncias = () => {
   const [errors, setErrors] = useState({});
 
   const [successMessage, setSuccessMessage] = useState('');
+  const [cononModal, setConfirmModal] = useState(false);
+  const [aceptoPoliticas, setAceptoPoliticas] = useState(false);
 
 
   const handleNombreChange = (e) => {
@@ -90,6 +92,11 @@ const Denuncias = () => {
       validationErrors.archivo = 'El archivo debe ser de máximo 2MB';
     }
 
+    // validar las politicas de privacidad
+    if (!aceptoPoliticas) {
+      validationErrors.politicas = 'Debe aceptar las políticas de privacidad';
+    }
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setSuccessMessage(''); // Limpiar el mensaje de éxito si hay errores
@@ -103,8 +110,10 @@ const Denuncias = () => {
       .then((res) => {
         console.log("Respuesta -> ",res)
         // console.log("Respuesta2 -> ",res.payload.message)
-      
+
         setSuccessMessage("Su denuncia fue enviada con éxito"); // Establecer el mensaje de éxito
+        setConfirmModal(true)
+
           // Limpiar el formulario
           setNombre('');
           setApellido('');
@@ -115,30 +124,37 @@ const Denuncias = () => {
       })
       .catch((error) => {
         // Manejar cualquier error de actualización aquí
+        setConfirmModal(true)
         setSuccessMessage("error al procesar la denuncia");
         console.log("Error -> ",error)
       
-      });
+      })
+      .finally(() => {
+        setTimeout(() => {
+        setConfirmModal(false)
+        },4000)
+      })
     }
   };
 
   return (
     <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
-      {successMessage && <div className="w-full h-[80px] flex items-center justify-center">
-        <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
-        </div>}
+      {cononModal ?  (<div className="w-full h-[80px] flex items-center justify-center">
+          <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
+        </div>) : null
+      }
       <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
         <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>
         
-      <form onSubmit={handleSubmit} className="w-[80%] sm:w-[400px]">
+      <form onSubmit={handleSubmit} className="w-[80%] sm:w-[400px] p-3 bg-hoverBotonSubmenu rounded-[4px]">
         <div className="mb-4">
-          <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="nombre" className="block text-sm font-titulo font-[600] text-principal">
             Nombre:
           </label>
           <input
             type="text"
             id="nombre"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm"
             value={nombre}
             onChange={handleNombreChange}
             required
@@ -148,13 +164,13 @@ const Denuncias = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="apellido" className="block text-sm font-titulo font-[600] text-principal">
             Apellido:
           </label>
           <input
             type="text"
             id="apellido"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm"
             value={apellido}
             onChange={handleApellidoChange}
             required
@@ -163,13 +179,13 @@ const Denuncias = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block text-sm font-titulo font-[600] text-principal">
             Email:
           </label>
           <input
             type="email"
             id="email"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm"
             value={email}
             onChange={handleEmailChange}
             required
@@ -178,12 +194,12 @@ const Denuncias = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="denuncia" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="denuncia" className="block text-sm font-titulo font-[600] text-principal">
             Denuncia:
           </label>
           <textarea
             id="denuncia"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 resize-none"
+            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm resize-none"
             value={denuncia}
             onChange={handleDenunciaChange}
             required
@@ -192,23 +208,39 @@ const Denuncias = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="archivo" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="archivo" className="block text-sm font-titulo font-[600] text-principal">
             Adjuntar archivo (máximo 2MB):
           </label>
           <input
             type="file"
             id="archivo"
             accept=".jpg,.png"
-            className="mt-1"
+            className="w-full h-auto flex flex-wrap rounded-md text-colorFuente2Submenu bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-1 text-[.9rem] font-[600]"
             onChange={handleArchivoChange}
             required
           />
           {errors.archivo && <p className="text-red-500">{errors.archivo}</p>}
         </div>
+        <div className="mb-4 flex flex-col justify-start items-start p-1">
+          <div className="flex justify-start items-center">
+            <input
+              type="checkbox"
+              id="aceptoPoliticas"
+              className="mr-2"
+              checked={aceptoPoliticas}
+              onChange={() => setAceptoPoliticas(!aceptoPoliticas)}
+            />
+            <label htmlFor="aceptoPoliticas" className="block text-sm font-titulo font-[600] text-principal">
+              Acepto las políticas de seguridad y privacidad
+            </label>
+          </div>
+          {errors.politicas && <p className="text-red-500">{errors.politicas}</p>}
+        </div>
+
 
         <button
           type="submit"
-          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition duration-300 ease-in-out"
+          className="h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600]"
         >
           Enviar Denuncia
         </button>
@@ -219,3 +251,9 @@ const Denuncias = () => {
 }
 
 export default Denuncias
+
+{/* cotones confirmacion acetar o declinar  */}
+{/* <section className="flex flex-row items-center justify-center gap-2 w-full p-3">
+<button onClick={handleUpdateUser} className="w-[150px] h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-1 text-[.9rem] font-[600]">Actualizar Usuario</button>
+<button onClick={handleClearUser} className="w-[150px] h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-1 text-[.9rem] font-[600]">Limpiar Usuario</button>
+</section> */}
