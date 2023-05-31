@@ -13,6 +13,7 @@ export const VerticalMenu = ({ isOpen }) => {
   const dispatch = useDispatch();
   const userCargado = useSelector(selectUser);
   const token = localStorage.getItem("token");
+  const update =  useSelector((state) => state.user.update);
 
   const { user } = useSelector((state) => state.auth);
   // const update =useSelector((state)=> state.user.update);
@@ -23,7 +24,7 @@ export const VerticalMenu = ({ isOpen }) => {
   //me interesa que lo haga solo una vez
   useEffect(() => {
     localStorage.setItem("userId", user?._id);
-  }, [dispatch, token]);
+  }, [dispatch, token, update]);
 
   //una vez añadan la imagen de perfil, se elimina esta linea
   const usuario = {
@@ -33,7 +34,7 @@ export const VerticalMenu = ({ isOpen }) => {
 
   useEffect(() => {
     dispatch(fetchUserByid(userId));
-  }, [dispatch, userId]);
+  }, [dispatch, userId, update]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
