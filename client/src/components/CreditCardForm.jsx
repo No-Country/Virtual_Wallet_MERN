@@ -17,6 +17,8 @@ const CreditCardForm = () => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
 
+  const [cononModal, setConfirmModal] = useState(false);
+
 
   console.log("token Token: :: ",token)
   
@@ -140,9 +142,11 @@ const CreditCardForm = () => {
         console.log("respuesta ->", res);
         if (res.error) {
           setSuccessMessage(res.error.message);
+          setConfirmModal(true)
         }
         // console.log("Respuesta2 -> ",res.payload.message);
           setSuccessMessage("carga de tarjeta exitosa" );// de esta forma empezamos a controlar el error
+          setConfirmModal(true)
 
           //podemos hacer el reset de los campos
           setCardNumber('');
@@ -157,6 +161,8 @@ const CreditCardForm = () => {
       .catch((error) => {
         console.log("error ->", error);
         setSuccessMessage(error.message);
+        setConfirmModal(true)
+
         //podemos hacer el reset de los campos
         setCardNumber('');
         setCardHolder('');
@@ -165,6 +171,11 @@ const CreditCardForm = () => {
         setCcv('');
         setCardType('');
         setErrors({});
+      })
+      .finally(() => {
+        setTimeout(() => {
+        setConfirmModal(false)
+        },4000)
       })
       // ...
     }
@@ -180,13 +191,16 @@ const CreditCardForm = () => {
      * balance */ //plata que posee la card (no usar ,tendra 1000 auto)
 
   };
-  
-  const backgroundImage = 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1684718648/wallet/pinguiWallet-bg-prompt-hero1_cke13p.jpg'
 
   return (
-    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 min-h-[80vh] flex flex-col justify-start items-start gap-3">
-    <div className="bg-c-fuente-secundario w-full h-[400px] p-6 flex justify-center items-center gap-6 " style={{ backgroundImage: `url(${backgroundImage})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
-      <div className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
+    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 h-screen flex flex-col justify-center items-start gap-3">
+
+    {cononModal ? (<p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>) : null }
+
+    <div className="bg-hoverBotonSubmenu w-full h-[400px] p-6 flex justify-center items-center gap-6 ">
+      
+      {/* esta es la card */}
+      <div className={`flip-card bg-transparent w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
           <section className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out relative`} style={{transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}>
             
             <section className="flip-card-fron w-[100%] h-[100%] absolute top-0 left-0 text-white bg-blue-600 bg-opacity-60 shadow-md rounded-lg backdrop-filter backdrop-blur-md border-2 border-opacity-20 border-white p-2 flex flex-col gap-3" style={{ backfaceVisibility: 'hidden'}}>
@@ -228,6 +242,7 @@ const CreditCardForm = () => {
           </section>
       </div>
 
+      {/* formulario */}
       <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
         <fieldset>
           <input
@@ -311,12 +326,12 @@ const CreditCardForm = () => {
             </div>
           </div>
         </fieldset>
-        <button type="submit" className="bg-c-boton-accion text-white p-1 rounded-[4px] mb-2 font-parrafo font-normal text-sm border-solid border-2 border-c-boton-accion outline-none hover:bg-c-titulo hover:text-c-fuente-principal hover:border-c-titulo transition duration-300 ease-in-out">
+        <button type="submit" 
+        className="h-auto w-[100px] bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.8rem] font-[600]">
           Cargar
         </button>
       </form>
     </div>
-    {successMessage ? (<p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>) : null }
     </section>
   );
 };

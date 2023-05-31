@@ -155,7 +155,7 @@ const Reclamos = () => {
           <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
         </div>) : null
         }
-          <form onSubmit={handleSubmit} className="w-[90%] sm:w-[450px] h-auto p-5 bg-[#EAE8E8] rounded-[4px] flex flex-col gap-5">
+          <form onSubmit={handleSubmit} className="w-[90%] sm:w-[450px] h-auto p-5 bg-bgForm rounded-[4px] flex flex-col gap-5">
             <h2 className="font-titulo font-[600] text-principal pt-2 pb-2">Detalles de la queja y/o reclamo, pedido del consumidor</h2>
             <div >
               <input

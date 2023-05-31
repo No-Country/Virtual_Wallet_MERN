@@ -8,11 +8,12 @@ const CreditCardList = () => {
   const dispatch = useDispatch();
   const cards = useSelector(selectCards);
   const token = localStorage.getItem("token");
+  const deleteUp = useSelector(state => state.card.delete);
 
   useEffect(() => {
     dispatch(getUserCards());
-  }, [dispatch, token]);
-
+  }, [dispatch, token, deleteUp]);
+  
   console.log(cards);
 
   return (

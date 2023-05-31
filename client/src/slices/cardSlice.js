@@ -103,6 +103,7 @@ const cardSlice = createSlice({
     cards: [],
     loading: false,
     error: null,
+    delete: false, // indica el estado de eliminación
     updating: false, //indica el estado de actualización
     updateError: null, // almacenaa errores de actualización
   },
@@ -147,15 +148,18 @@ const cardSlice = createSlice({
     // Reducer para la acción deleteCard
     builder.addCase(deleteCard.pending, (state) => {
       state.loading = true;
+      state.delete = false;
       state.error = null;
     });
     builder.addCase(deleteCard.fulfilled, (state, action) => {
       state.cards = state.cards.filter((card) => card._id !== action.payload);
       state.loading = false;
+      state.delete = true;
       state.error = null;
     });
     builder.addCase(deleteCard.rejected, (state, action) => {
       state.loading = false;
+      state.delete = false;
       state.error = action.error.message;
     });
     // Reducer para la acción updateCard

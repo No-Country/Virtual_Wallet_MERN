@@ -139,112 +139,108 @@ const Denuncias = () => {
 
   return (
     <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
-      {cononModal ?  (<div className="w-full h-[80px] flex items-center justify-center">
-          <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
-        </div>) : null
-      }
+      
       <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
-        <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>
-        
-      <form onSubmit={handleSubmit} className="w-[80%] sm:w-[400px] p-3 bg-hoverBotonSubmenu rounded-[4px]">
-        <div className="mb-4">
-          <label htmlFor="nombre" className="block text-sm font-titulo font-[600] text-principal">
-            Nombre:
-          </label>
-          <input
-            type="text"
-            id="nombre"
-            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm"
-            value={nombre}
-            onChange={handleNombreChange}
-            required
-          />
-          {errors.nombre && <p className="text-red-500">{errors.nombre}</p>}
+      <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>
+        <div className="h-auto w-full flex flex-col items-center justify-center pt-5 pb-5">
+          {cononModal ?  (<div className="w-full h-[80px] flex items-center justify-center">
+              <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
+            </div>) : null
+          }
+          <form onSubmit={handleSubmit} className="w-[90%] sm:w-[450px] h-auto p-5 bg-bgForm rounded-[4px] flex flex-col gap-5">
+          <h2 className="font-titulo font-[600] text-principal pt-2 pb-2">Este es un canal exclusivo para denuncias, estamos prestos a escucharte.</h2>
+            <div>
+              <input
+                type="text"
+                id="nombre"
+                className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[400]
+                text-[.8rem] text-principal "
+                placeholder="Ingrese su nobre"
+                value={nombre}
+                onChange={handleNombreChange}
+                required
+              />
+              {errors.nombre && <p className="text-red-500">{errors.nombre}</p>}
 
+            </div>
+            <div>
+              <input
+                type="text"
+                id="apellido"
+                className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[400]
+                text-[.8rem] text-principal "
+                placeholder="Ingrese su apellido"
+                value={apellido}
+                onChange={handleApellidoChange}
+                required
+              />
+              {errors.apellido && <p className="text-red-500">{errors.apellido}</p>}
+            </div>
+
+            <div>
+              <input
+                type="email"
+                id="email"
+                className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo text-principal font-[400] text-[.8rem]"
+                placeholder="Ingrese su email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+              {errors.email && <p className="text-red-500">{errors.email}</p>} 
+            </div>
+
+            <div >
+              <textarea
+                id="denuncia"
+                className="block w-full h-[100px] rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[400] text-principal text-[.8rem] resize-none"
+                placeholder="Describa el incidente con el mayor detalle posible"
+                value={denuncia}
+                onChange={handleDenunciaChange}
+                required
+              />
+              {errors.denuncia && <p className="text-red-500">{errors.denuncia}</p>}
+            </div>
+
+            <div className="flex flex-col justify-start items-start gap-1">
+              <label htmlFor="archivo" className="block text-sm font-titulo font-[400] text-principal">
+              Adjuntar archivo (máximo 2MB):
+              </label>
+              <input
+                type="file"
+                id="archivo"
+                accept=".jpg,.png"
+                className="w-full h-auto flex flex-wrap rounded-md text-colorFuente2Submenu bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-1 text-[.9rem] font-[600]"
+                onChange={handleArchivoChange}
+                required
+              />
+              {errors.archivo && <p className="text-red-500">{errors.archivo}</p>}
+            </div>
+            <div className="flex flex-col justify-start items-start p-1">
+              <div className="flex justify-start items-center">
+                <input
+                  type="checkbox"
+                  id="aceptoPoliticas"
+                  className="mr-2"
+                  checked={aceptoPoliticas}
+                  onChange={() => setAceptoPoliticas(!aceptoPoliticas)}
+                />
+                <label htmlFor="aceptoPoliticas" className="block text-sm font-titulo font-[400] text-principal">
+                Acepto las políticas de seguridad y privacidad
+                </label>
+                {errors.politicas && <p className="text-red-500">{errors.politicas}</p>}
+              </div>
+            </div>
+            <div className="w-full h-[100px] justify-center items-center flex flex-row">
+              <button
+                type="submit"
+                className="h-auto w-[150px] bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.8rem] font-[600]"
+              >
+                Enviar Denuncia
+              </button>
+            </div>
+          </form>
         </div>
-
-        <div className="mb-4">
-          <label htmlFor="apellido" className="block text-sm font-titulo font-[600] text-principal">
-            Apellido:
-          </label>
-          <input
-            type="text"
-            id="apellido"
-            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm"
-            value={apellido}
-            onChange={handleApellidoChange}
-            required
-          />
-          {errors.apellido && <p className="text-red-500">{errors.apellido}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-titulo font-[600] text-principal">
-            Email:
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          {errors.email && <p className="text-red-500">{errors.email}</p>} 
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="denuncia" className="block text-sm font-titulo font-[600] text-principal">
-            Denuncia:
-          </label>
-          <textarea
-            id="denuncia"
-            className="block w-full rounded-[2px] border-none outline-none shadow-sm focus:ring focus:ring-hoverBotonSubmenu focus:ring-opacity-100 p-1 font-parrafo font-[500] text-principal text-sm resize-none"
-            value={denuncia}
-            onChange={handleDenunciaChange}
-            required
-          />
-          {errors.denuncia && <p className="text-red-500">{errors.denuncia}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="archivo" className="block text-sm font-titulo font-[600] text-principal">
-            Adjuntar archivo (máximo 2MB):
-          </label>
-          <input
-            type="file"
-            id="archivo"
-            accept=".jpg,.png"
-            className="w-full h-auto flex flex-wrap rounded-md text-colorFuente2Submenu bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-1 text-[.9rem] font-[600]"
-            onChange={handleArchivoChange}
-            required
-          />
-          {errors.archivo && <p className="text-red-500">{errors.archivo}</p>}
-        </div>
-        <div className="mb-4 flex flex-col justify-start items-start p-1">
-          <div className="flex justify-start items-center">
-            <input
-              type="checkbox"
-              id="aceptoPoliticas"
-              className="mr-2"
-              checked={aceptoPoliticas}
-              onChange={() => setAceptoPoliticas(!aceptoPoliticas)}
-            />
-            <label htmlFor="aceptoPoliticas" className="block text-sm font-titulo font-[600] text-principal">
-              Acepto las políticas de seguridad y privacidad
-            </label>
-          </div>
-          {errors.politicas && <p className="text-red-500">{errors.politicas}</p>}
-        </div>
-
-
-        <button
-          type="submit"
-          className="h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600]"
-        >
-          Enviar Denuncia
-        </button>
-      </form>
       </section>
     </div>           
   )
