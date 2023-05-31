@@ -6,6 +6,8 @@ const Perfil = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.user);
   const id = useSelector((state) => state?.auth.user._id)
+  const updated = useSelector((state) => state?.user?.update)
+  
   const token = localStorage.getItem("token");
 
   const [username, setUsername] = useState(user.username);
@@ -24,7 +26,7 @@ const Perfil = () => {
   useEffect(() => {
     dispatch(fetchUserByid(id))
     console.log("Perfil -> ",user)
-  },[dispatch, token])
+  },[dispatch, token, updated])
 
   const handleUpdateUser = () => {
     const data = {

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { fetchUserByid, selectUser } from "../slices/userSlice";
 import NavProfileCard from "./NavProfileCard";
 
-export const VerticalMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const VerticalMenu = ({ isOpen }) => {
+
   const [botonFaqs, setBotonFaqs] = useState(false);
 
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ export const VerticalMenu = () => {
   console.log("USUARIO -> ", usuario);
 
   return (
-    <div className="relative flex w-1/6 sm:w-1/5 min-h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu">
+    <div className={`relative min-w-[70px] flex min-h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0": "-translate-x-[160px]"}`}>
       <NavProfileCard />
       <div className="w-full h-auto overflow-hidden">
         <nav
@@ -58,7 +58,7 @@ export const VerticalMenu = () => {
           <section className="subPerfil w-full h-auto bg-c-fondo flex justify-center items-center">
             <Link
               to="/home/perfil"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="person-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -72,7 +72,7 @@ export const VerticalMenu = () => {
           <section className="cards w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
             <Link
               to="/home/tarjetas"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="card-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -82,7 +82,7 @@ export const VerticalMenu = () => {
             </Link>
             <a
               onClick={handleAyuda}
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="help-outline"></ion-icon>
               <span className="text-sm font-normal hidden sm:block">
@@ -94,7 +94,7 @@ export const VerticalMenu = () => {
               <>
                 <Link
                   to="/home/denuncias"
-                  className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+                  className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
                 >
                   🚨
                   <span className="text-sm font-medium hidden sm:block">
@@ -104,7 +104,7 @@ export const VerticalMenu = () => {
                 </Link>
                 <Link
                   to="/home/reclamos"
-                  className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+                  className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
                 >
                   ⚠️
                   <span className="text-sm font-medium hidden sm:block">
@@ -120,7 +120,7 @@ export const VerticalMenu = () => {
           <section className="activity w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
             <a
               href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="cash-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -130,7 +130,7 @@ export const VerticalMenu = () => {
             </a>
             <a
               href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="wallet-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -140,7 +140,7 @@ export const VerticalMenu = () => {
             </a>
             <a
               href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="heart-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -154,7 +154,7 @@ export const VerticalMenu = () => {
           <section className="faturas w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
             <a
               href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="document-text-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -164,7 +164,7 @@ export const VerticalMenu = () => {
             </a>
             <a
               href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="reader-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -179,7 +179,7 @@ export const VerticalMenu = () => {
             <Link
               to="/"
               onClick={handleLogout}
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden"
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
               <ion-icon name="log-out-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
@@ -189,14 +189,7 @@ export const VerticalMenu = () => {
             </Link>
           </section>
           <section className="w-full h-auto bg-c-fondo flex flex-col justify-center items-center content-center">
-            <div
-              className={`nav_toggle ${isOpen ? "open" : ""}`}
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            
           </section>
         </nav>
       </div>
