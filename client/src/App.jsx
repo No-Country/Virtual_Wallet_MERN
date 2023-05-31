@@ -14,6 +14,7 @@ import TermsAndConditions from './pages/TermsAndConditions'
 import Perfil from './pages/Perfil'
 import Denuncias from './components/Denuncias'
 import CreditCardList from './components/CreditCardList'
+import Reclamos from './pages/Reclamos'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/home/creditCard" element={<CreditCardForm />} />
         <Route path='/home/perfil' element={<Perfil />} />
         <Route path='/home/denuncias' element={<Denuncias />} />
+        <Route path='/home/reclamos' element={<Reclamos />} />
         <Route path='/home/tarjetas' element={<CreditCardList />} />
 
         {/* otras rutas */}
@@ -39,18 +41,9 @@ function App() {
         <Route path="/credit-card" element={<BillPayment />}></Route>
         <Route path="/currency-dollar" element={<BillPayment />}></Route>
 
-        <Route
-          path="/security-privacy"
-          element={<SecurityAndPrivacy />}
-        ></Route>
-        <Route
-          path="/information-transparency"
-          element={<InfomationTransparency />}
-        ></Route>
-        <Route
-          path="/terms-conditions"
-          element={<TermsAndConditions />}
-        ></Route>
+        <Route path="/security-privacy" element={<SecurityAndPrivacy />}></Route>
+        <Route path="/information-transparency" element={<InfomationTransparency />} ></Route>
+        <Route  path="/terms-conditions" element={<TermsAndConditions />} ></Route>
 
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
