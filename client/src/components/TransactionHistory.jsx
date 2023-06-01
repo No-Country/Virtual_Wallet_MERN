@@ -1,4 +1,3 @@
-import React from "react";
 
 const TransactionHistory = ({ transactions }) => {
   // Verificar si transactions es un array o un objeto iterable
