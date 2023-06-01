@@ -1,10 +1,23 @@
 import { useState } from "react";
+import { createTransaction } from "../slices/transactionSlice";
+import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+
 export const MoneyOnAccount = ({ card }) => {
+  const dispatch = useDispatch();
   const [showBalance, setShowBalance] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
+  const [cardType, setCardType] = useState("");
+  const token = localStorage.getItem("token");
+  console.log(token);
+
   const [concept, setConcept] = useState("");
   const [amount, setAmount] = useState("");
-  const [accountNumber, setAccountNumber] = useState("");
+  const [receiver_account, setReceiver_account] = useState("");
+  console.log(cardType);
+  console.log(concept);
+  console.log(receiver_account);
+  console.log(amount);
 
   const toggleBalance = () => {
     setShowBalance(!showBalance);
@@ -13,15 +26,23 @@ export const MoneyOnAccount = ({ card }) => {
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
+  console.log(card._id);
 
   const handleTransfer = () => {
-    // Perform transfer logic here
-    console.log("Transfer details:", card, concept, amount, accountNumber);
-    // Clear input fields
+    dispatch(
+      createTransaction({
+        card: cardType,
+        concept,
+        receiver_account,
+        amount,
+        cardId: card._id,
+        token,
+      })
+    );
     setConcept("");
     setAmount("");
-    setAccountNumber("");
-    // Close the popup
+
+    setReceiver_account("");
     togglePopup();
   };
 
@@ -116,13 +137,16 @@ export const MoneyOnAccount = ({ card }) => {
         >
           <div className="bg-white rounded-xl p-4 w-80">
             <h2 className="text-2xl font-semibold">Transferir Dinero</h2>
-            <input
-              type="number"
-              placeholder="Tarjeta"
-              value={card}
-              onChange={(e) => setCard(e.target.value)}
+            <select
+              value={cardType}
+              onChange={(e) => setCardType(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-2 mt-4"
-            />
+            >
+              <option value="">Seleccione una tarjeta</option>
+              <option value="visa">Visa</option>
+              <option value="mastercard">Mastercard</option>
+              <option value="amex">Amex</option>
+            </select>
             <select
               value={concept}
               onChange={(e) => setConcept(e.target.value)}
@@ -142,9 +166,9 @@ export const MoneyOnAccount = ({ card }) => {
             />
             <input
               type="text"
-              placeholder="Número de cuenta"
-              value={accountNumber}
-              onChange={(e) => setAccountNumber(e.target.value)}
+              placeholder="ReceiverAccount"
+              value={receiver_account}
+              onChange={(e) => setReceiver_account(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-2 mt-2"
             />
             <div className="flex justify-end mt-4">
