@@ -2,7 +2,7 @@ import TitulosPages from "../components/TitulosPages"
 
 const SecurityAndPrivacy = () => {
   return (
-    <section className="w-full flex flex-col justify-center items-center text-center my-20">
+    <section className="w-full flex flex-col justify-center items-center text-center">
       <TitulosPages titulo={"Políticas de Seguridad y Privacidad"} />
       <div className="my-10 w-[90%] sm:w-[70%] text-start bg-fondo p-5 relative">
         <h4 className="font-titulo font-[700] text-md  mt-10 mb-5">
@@ -27,10 +27,8 @@ const SecurityAndPrivacy = () => {
           referencia/salida, sistema operativo, fecha/hora, y datos de
           navegación. Esta información nos ayuda a mejorar la funcionalidad y la
           seguridad de nuestro sitio web y a comprender mejor las necesidades de
-          nuestros usuarios.
-          <br />
-          <br />
-          Además, podemos solicitar información personal adicional, como tu
+          nuestros usuarios.</p>
+          <p> Además, podemos solicitar información personal adicional, como tu
           nombre, dirección de correo electrónico y número de teléfono, cuando
           te registras en nuestro sitio web, te suscribes a nuestros boletines,
           participas en encuestas o promociones, o interactúas con otras
@@ -40,9 +38,7 @@ const SecurityAndPrivacy = () => {
         <p className="font-parrafo font-[400] text-sm">
           Utilizamos la información recopilada para brindarte una experiencia
           personalizada en nuestro sitio web y para mejorar nuestros servicios.
-          Podemos utilizar la información para:
-          <br />
-          <br />
+          Podemos utilizar la información para:</p>
           <ul className="list-decimal list-outside w-full pl-4 mt-2 text-sm font-parrafo font-[400] flex flex-col gap-2">
             <li>Personalizar tu experiencia en el sitio web y presentarte
               contenido relevante. </li>{' '}
@@ -58,7 +54,6 @@ const SecurityAndPrivacy = () => {
               nuestros usuarios y mejorar nuestra plataforma.
             </li>
           </ul>
-        </p>
         <h4 className="font-titulo font-[700] text-md  mt-10 mb-5">
           Protección de la Información
         </h4>

@@ -16,7 +16,7 @@ export const Home = () => {
 
   return (
     <>
-      <section className="relative main w-5/6 sm:w-4/5 flex flex-col flex-wrap justify-start gap-5 items-center bg-fondo overflow-hidden pt-5 pb-5">
+      <section className="relative main w-full flex-col flex-wrap justify-start gap-5 items-center bg-fondo overflow-hidden pt-5 pb-5">
         <Bienvenida></Bienvenida>
         <ComponentIntermediate></ComponentIntermediate>
       </section>

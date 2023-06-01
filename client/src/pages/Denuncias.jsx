@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TitulosPages from "./TitulosPages"
+import TitulosPages from "../components/TitulosPages"
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { createMessage } from "../slices/contactSlice";
@@ -138,7 +138,7 @@ const Denuncias = () => {
   };
 
   return (
-    <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
+    <div className="flex w-full flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
       
       <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
       <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>

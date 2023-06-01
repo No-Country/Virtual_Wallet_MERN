@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MoneyOnAccount } from "./MoneyOnAccount";
 import { Link } from "react-router-dom";
 

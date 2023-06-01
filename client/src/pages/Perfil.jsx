@@ -6,6 +6,8 @@ const Perfil = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.user);
   const id = useSelector((state) => state?.auth.user._id)
+  const updated = useSelector((state) => state?.user?.update)
+  
   const token = localStorage.getItem("token");
 
   const [username, setUsername] = useState(user.username);
@@ -24,7 +26,7 @@ const Perfil = () => {
   useEffect(() => {
     dispatch(fetchUserByid(id))
     console.log("Perfil -> ",user)
-  },[dispatch, token])
+  },[dispatch, token, updated])
 
   const handleUpdateUser = () => {
     const data = {
@@ -109,7 +111,7 @@ const Perfil = () => {
   },[user])
 
   return (
-    <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full min-h-screen flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
 
       {/* imagen perfil */}
       <section className="w-[80px] sm:w-[200px] h-auto flex flex-col gap-2 items-center justify-center p-3">
