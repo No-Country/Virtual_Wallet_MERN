@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCard } from "../slices/cardSlice";
+import TitulosPages from "./TitulosPages";
   //estado para rotar card
 const CreditCardForm = () => {
   const userId = useSelector((state) => state.user.user);
@@ -193,11 +194,12 @@ const CreditCardForm = () => {
   };
 
   return (
-    <section className="statucmain w-5/6 sm:w-4/5 bg-fondo overflow-hidden pt-5 pb-5 h-screen flex flex-col justify-center items-start gap-3">
+    <section className="statucmain w-full min-h-screen h-auto bg-fondo overflow-hidden flex flex-col justify-start items-center gap-3">
+    <TitulosPages titulo={"ingresa tu tarjeta"}/>
 
     {cononModal ? (<p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>) : null }
 
-    <div className="bg-hoverBotonSubmenu w-full h-[400px] p-6 flex justify-center items-center gap-6 ">
+    <div className="bg-hoverBotonSubmenu w-full h-auto sm:h-auto flex flex-column sm:flex-row justify-center items-center flex-wrap sm:flex-nowrap gap-6 pt-[5rem] pb-[5rem]">
       
       {/* esta es la card */}
       <div className={`flip-card bg-transparent w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000 relative `} onClick={flipCard}>
@@ -243,7 +245,7 @@ const CreditCardForm = () => {
       </div>
 
       {/* formulario */}
-      <form className="credit-card-form w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
+      <form className="credit-card-form w-[80%] sm:w-1/3 flex flex-col items-start justify-center gap-4" onSubmit={handleSubmit}>
         <fieldset>
           <input
             type="text"

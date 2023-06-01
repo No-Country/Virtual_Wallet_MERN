@@ -16,10 +16,13 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className='principal w-full h-auto bg-purple flex flex-wrap'>
+    <div className='principal w-full h-auto bg-purple flex flex-wrap relative overflow-hidden items-center justify-center'>
+      
       {isAuthenticated ? <NavSecundary toggleMenu={toggleMenu}/> : null}
       {isAuthenticated ? <VerticalMenu isOpen={isOpen}/> : <Navbar />}
+      <div className='main w-full sm:w-full xl:w-[80%] flex justify-center'>
       {children}
+      </div>
       <Footer />
     </div>
   )

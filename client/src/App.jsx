@@ -12,9 +12,11 @@ import NotFound from './pages/NotFound'
 import InfomationTransparency from './pages/InfomationTransparency'
 import TermsAndConditions from './pages/TermsAndConditions'
 import Perfil from './pages/Perfil'
-import Denuncias from './components/Denuncias'
+import Denuncias from './pages/Denuncias'
 import CreditCardList from './components/CreditCardList'
 import Reclamos from './pages/Reclamos'
+import Categorias from './pages/Categorias'
+import PresupuestoToggle from './components/PresupuestoToggle'
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
         <Route path='/home/denuncias' element={<Denuncias />} />
         <Route path='/home/reclamos' element={<Reclamos />} />
         <Route path='/home/tarjetas' element={<CreditCardList />} />
+        <Route path='/home/categorias' element={<Categorias />}/>
+        <Route path='/home/ingresarPresupuesto' element={<PresupuestoToggle />}/>
 
         {/* otras rutas */}
         <Route path="/cash" element={<BillPayment />}></Route>

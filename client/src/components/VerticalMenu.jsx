@@ -48,7 +48,7 @@ export const VerticalMenu = ({ isOpen }) => {
   console.log("USUARIO -> ", usuario);
 
   return (
-    <div className={`relative min-w-[70px] flex min-h-[100vh] gap-1 flex-col justify-start items-start bg-bgSubmenu transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0": "-translate-x-[160px]"}`}>
+    <div className={`absolute mt-[60px] left-0 top-0 z-10  min-w-[70px] flex h-full gap-1 flex-col justify-start items-start bg-bgSubmenu transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0": "-translate-x-[160px]"}`}>
       <NavProfileCard />
       <div className="w-full h-auto overflow-hidden">
         <nav
@@ -139,16 +139,20 @@ export const VerticalMenu = ({ isOpen }) => {
                 Gastos{" "}
               </span>
             </a>
-            <a
-              href="#"
+            
+          </section>
+
+          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
+          <section className="activity w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
+            <Link to={'/home/categorias'}
               className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="heart-outline"></ion-icon>
+              <ion-icon name="file-tray-full-outline"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
                 {" "}
-                Ahorros{" "}
+                Categorias{" "}
               </span>
-            </a>
+            </Link>
           </section>
 
           <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>

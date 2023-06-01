@@ -119,7 +119,7 @@ const Reclamos = () => {
         console.log("Respuesta -> ",res)
         // console.log("Respuesta2 -> ",res.payload.message)
 
-        setSuccessMessage("Su denuncia fue enviada con éxito"); // Establecer el mensaje de éxito
+        setSuccessMessage("Su reclamo fue enviada con éxito"); // Establecer el mensaje de éxito
         setConfirmModal(true)
 
           // Limpiar el formulario
@@ -134,7 +134,7 @@ const Reclamos = () => {
       .catch((error) => {
         // Manejar cualquier error de actualización aquí
         setConfirmModal(true)
-        setSuccessMessage("error al procesar la denuncia");
+        setSuccessMessage("error al procesar su reclamo");
         console.log("Error -> ",error)
       
       })
@@ -147,7 +147,7 @@ const Reclamos = () => {
   };
 
   return (
-    <div className="flex w-5/6 sm:w-4/5 h-auto flex-col items-center justify-start sm:items-start  bg-fondo h-600px gap-4 sm:gap-6">
+    <div className="flex w-full h-auto flex-col items-center justify-start sm:items-start  bg-fondo h-600px gap-4 sm:gap-6">
       <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
         <TitulosPages titulo={"caLibro de reclamos"}></TitulosPages>
         <div className="h-auto w-full flex flex-col items-center justify-center pt-5 pb-5">

@@ -17,7 +17,7 @@ const CreditCardList = () => {
   console.log(cards);
 
   return (
-    <div className="flex w-5/6 sm:w-4/5 flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-0 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full min-h-screen flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-0 sm:p-6 gap-4 sm:gap-6">
       {/* informacion usuario */}
       <section className="flex sm:flex-row justify-center items-center w-full h-auto gap-2 flex-wrap box-border pt-3">
         <h2 className="w-full h-auto text-2xl font-titulo font-[700] text-[#0B0B0B] text-center">Información Personal</h2>

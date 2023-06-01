@@ -2,7 +2,7 @@ import TitulosPages from "../components/TitulosPages"
 
 const SecurityAndPrivacy = () => {
   return (
-    <section className="w-full flex flex-col justify-center items-center text-center my-20">
+    <section className="w-full flex flex-col justify-center items-center text-center">
       <TitulosPages titulo={"Políticas de Seguridad y Privacidad"} />
       <div className="my-10 w-[90%] sm:w-[70%] text-start bg-fondo p-5 relative">
         <h4 className="font-titulo font-[700] text-md  mt-10 mb-5">

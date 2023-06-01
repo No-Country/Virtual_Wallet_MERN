@@ -2,7 +2,7 @@ import TitulosPages from "../components/TitulosPages"
 
 const InfomationTransparency = () => {
   return (
-    <section className="w-full flex flex-col justify-center items-center text-center my-20">
+    <section className="w-full flex flex-col justify-center items-center text-center">
       <TitulosPages titulo={"Políticas de Transparencia de la Información"} />
       <div className="my-10 w-[90%] sm:w-[70%] text-start bg-fondo p-5 relative">
         <h4 className="font-titulo font-[700] text-md  mt-10 mb-5">
@@ -23,9 +23,7 @@ const InfomationTransparency = () => {
           en nuestro sitio web. Nos comprometemos a garantizar que la
           información sobre nuestros productos, servicios, políticas y
           procedimientos esté fácilmente disponible y sea comprensible para
-          nuestros usuarios. Esto incluye:
-          <br />
-          <br />
+          nuestros usuarios. Esto incluye:</p>
           <ul className="list-decimal list-outside w-full pl-4 mt-2 text-sm font-parrafo font-[400] flex flex-col gap-2">
             <li> Descripciones claras de nuestros productos y servicios,
               incluyendo características, funcionalidades y precios.
@@ -37,7 +35,6 @@ const InfomationTransparency = () => {
               o solicitudes de información adicional.
             </li>{' '}
           </ul>
-        </p>
         <h4 className="font-titulo font-[700] text-md  mt-10 mb-5">Comunicación Abierta</h4>
         <p className="font-parrafo font-[400] text-sm">
           Fomentamos una comunicación abierta y honesta con nuestros usuarios.
