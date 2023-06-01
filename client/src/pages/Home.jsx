@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Bienvenida from "../components/Bienvenida";
 import ComponentIntermediate from "../components/ComponentIntermediate";
+import TransactionContainer from "../components/TransactionContainer";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ export const Home = () => {
       <section className="relative main w-full flex-col flex-wrap justify-start gap-5 items-center bg-fondo overflow-hidden pt-5 pb-5">
         <Bienvenida></Bienvenida>
         <ComponentIntermediate></ComponentIntermediate>
+        <TransactionContainer></TransactionContainer>
       </section>
     </>
   );
 };
-
