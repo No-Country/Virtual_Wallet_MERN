@@ -1,4 +1,4 @@
-const { create, get } = require("../services/budget_service");
+const { create, get, remove } = require("../services/budget_service");
 
 exports.create_budget = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ exports.create_budget = async (req, res) => {
 
     return res.status(200).json(budget);
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     return res.sendStatus(500);
   }
 };
@@ -21,6 +21,18 @@ exports.get_budget = async (req, res) => {
     if (!budget.length) return res.sendStatus(404);
 
     return res.status(200).json(budget);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+};
+
+exports.delete_budget = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const removed = await remove(id);
+    if (!removed) return res.status(404);
+
+    return res.status(200).json({ message: "Budget removed", removed });
   } catch (err) {
     return res.sendStatus(500);
   }

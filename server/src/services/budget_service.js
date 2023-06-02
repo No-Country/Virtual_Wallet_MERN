@@ -4,3 +4,5 @@ exports.create = (data) => new Budget(data).save().then((budget) => budget.toObj
 
 exports.get = () => Budget.find();
 
+exports.remove = (id) => Budget.findByIdAndDelete(id);
+
