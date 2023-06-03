@@ -25,8 +25,9 @@ export const Login = () => {
 
     dispatch(login({ email, password }))
       .then((response) => {
-        const { token, user } = response.payload
-        dispatch(loginSuccess({ token, user }))
+        // console.log("LOGIN ->",response)
+        const { token, username, _id} = response.payload
+        dispatch(loginSuccess({ token, username, _id }))
         if (isAuthenticated) {
           return navigate('/home')
         }

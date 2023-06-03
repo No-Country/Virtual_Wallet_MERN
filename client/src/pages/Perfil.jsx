@@ -5,7 +5,7 @@ import { fetchUserByid, updateUser } from "../slices/userSlice";
 const Perfil = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.user);
-  const id = useSelector((state) => state?.auth.user._id)
+  const id = useSelector((state) => state?.user.user._id)
   const updated = useSelector((state) => state?.user?.update)
   
   const token = localStorage.getItem("token");

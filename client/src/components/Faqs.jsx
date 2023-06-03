@@ -82,14 +82,9 @@ export default function Faqs() {
         <AccordionDetails>
           <Typography>
             Necesitarás tener a mano los siguientes documentos e información:
-            <ul>
-              <li>Documento Nacional de Identidad (DNI) válido.</li>
-              <li>Ser una persona físicamayor de edad.</li>
-              <li>
-                Datos personales como nombre completo, dirección y fecha de
-                nacimiento.
-              </li>
-            </ul>
+              <span className="list-item w-full ml-4">👤 Ser una persona físicamayor de edad.</span>
+              <span className="list-item w-full ml-4">📝 Documento Nacional de Identidad (DNI) válido.</span>
+              <span className="list-item w-full ml-4">☎ Datos personales como nombre completo, dirección y fecha de nacimiento.</span>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -108,11 +103,11 @@ export default function Faqs() {
             Si tienes alguna consulta o necesitas ayuda, puedes ponerte en
             contacto con nuestro equipo de soporte a través de los siguientes
             canales:
-            <ul>
-              <li>☎ Número de teléfono: +1 555-123-4567</li>
-              <li>✉ Email: walletnc.latam@gmail.com</li>
-              <li>🔴🎬 Chat en vivo en nuestro sitio web</li>
-            </ul>
+
+              <span className="list-item w-full ml-4">☎ Número de teléfono: +1 555-123-4567</span>
+              <span className="list-item w-full ml-4">✉ Email: walletnc.latam@gmail.com</span>
+              <span className="list-item w-full ml-4">🔴🎬 Chat en vivo en nuestro sitio web</span>
+            
           </Typography>
         </AccordionDetails>
       </Accordion>

@@ -4,9 +4,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const API_URL = 'http://localhost:5000/api';
 
 // Acción asincrónica para obtener las tarjetas del usuario
-export const getUserCards = createAsyncThunk('/card/getUserCards', async (_, { getState }) => {
-  const { auth } = getState();
-  const token = auth.user.token;
+export const getUserCards = createAsyncThunk('/card/getUserCards', async () => {
+  // const { auth } = getState();
+  // const token = auth.user.token;
+
+  const token = localStorage.getItem("token")
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -28,9 +30,10 @@ export const getUserCards = createAsyncThunk('/card/getUserCards', async (_, { g
 });
 
 // Acción asincrónica para crear una tarjeta de crédito
-export const createCard = createAsyncThunk('/card/createCard', async (cardData, { getState }) => {
-  const { auth } = getState();
-  const token = auth.user.token;
+export const createCard = createAsyncThunk('/card/createCard', async (cardData) => {
+  // const { auth } = getState();
+  // const token = auth.user.token;
+  const token = localStorage.getItem("token")
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -53,9 +56,10 @@ export const createCard = createAsyncThunk('/card/createCard', async (cardData, 
 });
 
 // Acción asincrónica para eliminar una tarjeta de crédito
-export const deleteCard = createAsyncThunk('card/deleteCard', async (cardId, { getState }) => {
-  const { auth } = getState();
-  const token = auth.user.token;
+export const deleteCard = createAsyncThunk('card/deleteCard', async (cardId) => {
+  // const { auth } = getState();
+  // const token = auth.user.token;
+  const token = localStorage.getItem("token")
   const requestOptions = {
     method: 'DELETE',
     headers: {
@@ -186,3 +190,4 @@ const cardSlice = createSlice({
 export const selectCards = (state) => state.card.cards;
 export const { clearCards } = cardSlice.actions;
 export default cardSlice.reducer;
+

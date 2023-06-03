@@ -17,7 +17,7 @@ export const Home = () => {
 
   return (
     <>
-      <section className="relative main w-full flex-col flex-wrap justify-start gap-5 items-center bg-fondo overflow-hidden pt-5 pb-5">
+      <section className="relative main w-full min-h-screen flex-col flex-wrap justify-start gap-5 items-center bg-fondo overflow-hidden pt-5 pb-5">
         <Bienvenida></Bienvenida>
         <ComponentIntermediate></ComponentIntermediate>
         <TransactionContainer></TransactionContainer>
