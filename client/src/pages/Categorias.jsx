@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import CartPresupuesto from '../components/CartPresupuesto';
-import { limpiarPresupuestos } from '../slices/presupuestoSlice';
+import { limpiarPresupuestos, quitarPresupuesto } from '../slices/presupuestoSlice';
+import { useEffect } from 'react';
 
 
 const Categorias = () => {
@@ -10,17 +11,26 @@ const Categorias = () => {
   const dispatch = useDispatch();
   const presupuesto = useSelector(state => state.presupuesto.presupuestos)
   
-  console.log(presupuesto)
+  console.log("Presupuesto array ->" ,presupuesto)
   const handleToggle = () => {
     return navigate('/home/ingresarPresupuesto')
   }
 
   const handleLimpiar = () => {
-    dispatch(limpiarPresupuestos)
+    dispatch(limpiarPresupuestos())
+    console.log("hiceDispatch¡¡¡")
   }
 
+  const handleDelete = (id) => {
+    dispatch(quitarPresupuesto(id));
+  };
+
+  useEffect(()=>{
+    console.log(presupuesto)
+  },[dispatch, presupuesto])
+  
   return (
-    <div className="flex w-full min-h-screen flex-col items-center justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full min-h-screen h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
 
       <section className="flex sm:flex-row justify-between  items-center w-full h-auto gap-2 flex-nowrap box-border">
 
@@ -32,12 +42,16 @@ const Categorias = () => {
         </div>
       </section>
 
-        <section className="flex flex-row justify-start items-start w-full h-[500px] gap-2 flex-wrap box-border p-5">
+        <section className="flex flex-row justify-start items-start w-full h-auto  gap-2 flex-wrap box-border p-5">
           {/* aca renderizaremos los presupuestos */}
           {
             presupuesto.length > 0 ? presupuesto.map(presupuesto => {
               return (
-              <CartPresupuesto key={presupuesto.id} objeto={presupuesto} />
+              <CartPresupuesto 
+                key={presupuesto.name} 
+                objeto={presupuesto}
+                onDelete={handleDelete}
+                />
               )
             }) : (
               <section className="presupuesto w-[320px] h-[150px] p-5 rounded-[2px] bg-[#ffff] flex flex-col justify-start items-start gap-2 relative" style={{ boxShadow: '9px 9px 22px #ced1d9, -9px -9px 22px #ffffff'}}>

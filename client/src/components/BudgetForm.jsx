@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { agregarPresupuesto } from '../slices/presupuestoSlice';
+import { createBudget } from '../slices/budgetSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router';
 
 
-const PresupuestoToggle = () => {
+const BudgetForm  = () => {
   const presupuesto = useSelector(state => state.presupuesto.total);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -47,11 +48,10 @@ const PresupuestoToggle = () => {
 
     const nuevoPresupuesto = {
       id: uuidv4(),
-      nombre: selectedItem ? selectedItem.name : null,
-      icono: selectedItem ? selectedItem.icon : null,
-      color: selectedItem ? selectedItem.color : null,
-      monto: monto,
-      total: presupuesto,
+      limit: presupuesto,
+      categoey: selectedItem ? selectedItem.name : null,
+      amount: monto,
+      user: user,
     };
 
     const validaErrores = {}
@@ -78,8 +78,21 @@ const PresupuestoToggle = () => {
     }else if (Object.keys(validaErrores).length === 0){
       setErrors({});
       console.log(nuevoPresupuesto)
-      dispatch(agregarPresupuesto(nuevoPresupuesto));
-      navigate('/home/categorias');
+      dispatch(createBudget(nuevoPresupuesto))
+        .unwrap()
+        .then((res)=>{
+          navigate('/home/categorias');
+          console.log(res)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+        .finally(()=>{
+          setTimeout(() => {
+            console.log("se cargo")
+          },3000)
+        })
+      
       // .then((res)=>{
       //   console.log(res)
       //   setSuccessMessage("se cargo su presupuesto con exito")
@@ -156,7 +169,7 @@ const PresupuestoToggle = () => {
   )
 }
 
-export default PresupuestoToggle
+export default BudgetForm
 
 //ropa : <ion-icon name="shirt-outline"></ion-icon> 
 //<ion-icon name="shirt"></ion-icon>
