@@ -61,14 +61,14 @@ const InfomationTransparency = () => {
           adicional o presentar informes sobre nuestro desempeño, prácticas
           empresariales o resultados. Nos esforzamos por proporcionar informes
           transparentes y comprensibles que reflejen nuestro compromiso con la
-          integridad y la ética. Estos informes pueden incluir, entre otros:{' '}
+          integridad y la ética. Estos informes pueden incluir, entre otros:{' '}</p>
+        
           <ul className="list-decimal list-outside w-full pl-4 mt-2 text-sm font-parrafo font-[400] flex flex-col gap-2">
             <li>Informes de sostenibilidad y responsabilidad social
               corporativa. </li>
             <li>Divulgaciones financieras y reportes de rendimiento.</li>
             <li>Informes de seguridad y cumplimiento normativo.</li>
           </ul>
-        </p>
         <h4 className="font-titulo font-[700] text-md  mt-10 mb-5">
           Actualizaciones de la Política
         </h4>
@@ -79,8 +79,7 @@ const InfomationTransparency = () => {
           responsabilidad revisar periódicamente esta política para estar
           informado sobre cualquier cambio.
         </p>
-        <br />
-        <br />
+
         <p className="font-parrafo font-[400] text-sm">
           En <span className="text-c-titulo font-semibold">PingüiWallet</span>,
           nos esforzamos por mantener altos estándares de transparencia y

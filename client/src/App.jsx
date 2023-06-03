@@ -17,8 +17,40 @@ import CreditCardList from './components/CreditCardList'
 import Reclamos from './pages/Reclamos'
 import Categorias from './pages/Categorias'
 import PresupuestoToggle from './components/PresupuestoToggle'
+import Transaccion from './pages/Transaccion'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUserByid, selectUser } from './slices/userSlice'
+import { useEffect } from 'react'
 
 function App() {
+
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const identificador = localStorage.getItem("id2");
+
+    if (token) {
+      dispatch(fetchUserByid(identificador))
+      .then((res) => {
+        console.log("App ->",res)
+      })  
+      .catch((error) =>{
+        console.log("App ->",error)
+      })
+
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      if( localStorage.getItem("token")){
+        console.log("ya hay un token cargado")
+      }
+    } 
+  }, [user]);
+
   return (
     <Layout>
       <Routes>
@@ -39,6 +71,7 @@ function App() {
         <Route path='/home/tarjetas' element={<CreditCardList />} />
         <Route path='/home/categorias' element={<Categorias />}/>
         <Route path='/home/ingresarPresupuesto' element={<PresupuestoToggle />}/>
+        <Route path='/home/pruebaTrans' element={<Transaccion />}/>
 
         {/* otras rutas */}
         <Route path="/cash" element={<BillPayment />}></Route>

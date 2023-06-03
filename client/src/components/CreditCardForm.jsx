@@ -5,7 +5,6 @@ import TitulosPages from "./TitulosPages";
   //estado para rotar card
 const CreditCardForm = () => {
   const userId = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.auth.user.token);
   console.log("id -> ",userId)
   const dispatch = useDispatch();
 
@@ -21,7 +20,6 @@ const CreditCardForm = () => {
   const [cononModal, setConfirmModal] = useState(false);
 
 
-  console.log("token Token: :: ",token)
   
   //para rotar la card
   const [isFlipped, setIsFlipped] = useState(false);
