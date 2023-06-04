@@ -3,10 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const API_URL = 'http://localhost:5000/api/budget';
 const token = localStorage.getItem("token");
 
-// Función auxiliar para manejar las respuestas de error de la API
-const handleErrorResponse = (error) => {
-  return `Error desconocido. ${error}`;
-};
 
 // Acción asincrónica para crear un presupuesto
 export const createBudget = createAsyncThunk(
@@ -23,15 +19,14 @@ export const createBudget = createAsyncThunk(
       });
 
       if (!response.ok) {
-        const errorMessage = handleErrorResponse(response);
+        const errorMessage = await response.text();
         return thunkAPI.rejectWithValue(errorMessage);
       }
 
       const data = await response.json();
       return data;
     } catch (error) {
-      const errorMessage = handleErrorResponse(error);
-      return thunkAPI.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -42,21 +37,21 @@ export const getBudgets = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await fetch(`${API_URL}/get`, {
+        method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
       
       if (!response.ok) {
-        const errorMessage = handleErrorResponse(response);
+        const errorMessage = await response.text();
         return thunkAPI.rejectWithValue(errorMessage);
       }
 
       const data = await response.json();
       return data;
     } catch (error) {
-      const errorMessage = handleErrorResponse(error);
-      return thunkAPI.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -74,15 +69,14 @@ export const deleteBudget = createAsyncThunk(
       });
 
       if (!response.ok) {
-        const errorMessage = handleErrorResponse(response);
+        const errorMessage = await response.text();
         return thunkAPI.rejectWithValue(errorMessage);
       }
 
       const data = await response.json();
       return data;
     } catch (error) {
-      const errorMessage = handleErrorResponse(error);
-      return thunkAPI.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

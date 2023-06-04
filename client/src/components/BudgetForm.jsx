@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBudget } from '../slices/budgetSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router';
-
+import { getUserCards } from '../slices/cardSlice';
 
 const BudgetForm  = () => {
-  const presupuesto = useSelector(state => state.presupuesto.total);
+  const cards = useSelector(state => state.card.cards);
+  const presupuesto = cards.reduce((acc, card) => acc + card.balance, 0);
+
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,6 +35,13 @@ const BudgetForm  = () => {
   // const objeto2 = { nombre: objeto.nombre, icono: objeto.icono, presupuestoTotal: objeto.presupuestoTotal, total: objeto.total, color: objeto.color }
   console.log(presupuesto)
 
+  useEffect(() => {
+    dispatch(getUserCards())
+    .then((res)=>{
+      console.log("respuesta card->", res.payload)
+    })
+  }, [dispatch]);
+
   const handleCheckboxChange = (item) => {
     console.log(item)
     if (selectedItem === item) {
@@ -47,9 +56,8 @@ const BudgetForm  = () => {
   const handleAgregar = () => {
 
     const nuevoPresupuesto = {
-      id: uuidv4(),
       limit: presupuesto,
-      categoey: selectedItem ? selectedItem.name : null,
+      category: selectedItem ? selectedItem.name : null,
       amount: monto,
       user: user,
     };
@@ -79,12 +87,13 @@ const BudgetForm  = () => {
       setErrors({});
       console.log(nuevoPresupuesto)
       dispatch(createBudget(nuevoPresupuesto))
-        .unwrap()
         .then((res)=>{
-          navigate('/home/categorias');
+          console.log("respuesta ->", res)
+          navigate('/home/budgetList');
           console.log(res)
         })
         .catch((error)=>{
+          console.log("error ->", error)
           console.log(error)
         })
         .finally(()=>{
@@ -128,9 +137,9 @@ const BudgetForm  = () => {
     {
       items.map((element) => {
         return (
-          <div key={element.name}>
+          <div key={element.category + uuidv4()}>
             <label
-            className={`checkPresupuesto w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize   transition-all duration-300 ease-in`}
+            className={`${selectedItem === element ? "claseNueva" : ''} w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize  transition-all duration-300 ease-in `}
             >
               <span className={`w-[30px] h-[30px] flex justify-center items-center rounded-full ${element.color} text-colorFuente2Submenu text-[1.2rem] text-white transition-all duration-300 ease-in`}><ion-icon  name={element.icon}></ion-icon></span>
               {element.name}
@@ -140,6 +149,8 @@ const BudgetForm  = () => {
               onChange={() => handleCheckboxChange(element)}
               className="w-[20px] h-[20px] rounded-[50%] bg-purple-500 text-red-500 " 
               disabled={isCheckboxSelect}
+              // disabled={selectedItem !== null && selectedItem !== element}
+              checked={selectedItem === element}
               />
             </label>
             <div className="w-full h-[2px] bg-bgSubmenu rounded-sm opacity-40"></div> 

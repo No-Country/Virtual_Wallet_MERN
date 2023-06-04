@@ -155,6 +155,18 @@ export const VerticalMenu = ({ isOpen }) => {
             </Link>
           </section>
 
+          {/* BUDGET */}
+          <section className="activity w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
+            <Link to={'/home/budgetList'}
+              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+            >
+              <ion-icon name="file-tray-full-outline"></ion-icon>
+              <span className="text-sm font-medium hidden sm:block">
+                {" "}
+                Budget{" "}
+              </span>
+            </Link>
+          </section>
           <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
           <section className="faturas w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
             <a
