@@ -147,7 +147,7 @@ const Reclamos = () => {
   };
 
   return (
-    <div className="flex w-full h-auto flex-col items-center justify-start sm:items-start  bg-fondo h-600px gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] h-auto flex-col items-center justify-start sm:items-start  bg-fondo h-600px gap-4 sm:gap-6">
       <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
         <TitulosPages titulo={"caLibro de reclamos"}></TitulosPages>
         <div className="h-auto w-full flex flex-col items-center justify-center pt-5 pb-5">

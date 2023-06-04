@@ -140,7 +140,7 @@ const Denuncias = () => {
   return (
     <div className="flex w-full flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
       
-      <section className="w-full h-auto flex flex-col gap-5 items-center justify-center ">
+      <section className="w-full xl:w-[80%] h-auto flex flex-col gap-5 items-center justify-center ">
       <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>
         <div className="h-auto w-full flex flex-col items-center justify-center pt-5 pb-5">
           {cononModal ?  (<div className="w-full h-[80px] flex items-center justify-center">

@@ -9,14 +9,16 @@ import Faqs from "../components/Faqs";
 export const Main = () => {
   return (
     <>
-      <main className="my-2 bg-c-fondo w-full h-auto flex flex-col gap-10">
+      <main className="my-2 bg-c-fondo w-full h-auto flex items-center flex-col gap-10">
         <Banner />
-        <SeparatorLogo />
-        <GenericTitle title="Te simplificamos el trabajo" />
-        <ItemCardList />
-        <SecuritySectionBanner />
-        <SavingBanner />
-        <Faqs />
+        <div className="w-full xl:w-[80%] h-auto flex flex-col gap-10">
+          <SeparatorLogo />
+          <GenericTitle title="Te simplificamos el trabajo" />
+          <ItemCardList />
+          <SecuritySectionBanner />
+          <SavingBanner />
+          <Faqs />
+        </div>
       </main>
     </>
   );

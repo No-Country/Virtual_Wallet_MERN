@@ -2,7 +2,7 @@ import TitulosPages from "../components/TitulosPages"
 
 const TermsAndConditions = () => {
   return (
-    <section className="w-full flex flex-col justify-center items-center text-center">
+    <section className="w-full xl:w-[80%] flex flex-col justify-center items-center text-center">
       <TitulosPages titulo={"Términos y Condiciones"} />
       <div className="my-10 w-[90%] sm:w-[70%] text-start bg-fondo p-5 relative">
         <p className="font-parrafo font-[400] text-sm">

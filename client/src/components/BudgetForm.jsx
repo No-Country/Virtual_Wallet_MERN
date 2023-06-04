@@ -122,7 +122,7 @@ const BudgetForm  = () => {
   }
   
   return (
-    <div className="flex w-full min-h-screen flex-col items-center justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] min-h-screen flex-col items-center justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
       {/* {cononModal ? (
       <div className="w-full h-[80px] flex items-center justify-center">
         <p className="text-center text-green-500 font-parrafo font-[500]">{successMessage}</p>
