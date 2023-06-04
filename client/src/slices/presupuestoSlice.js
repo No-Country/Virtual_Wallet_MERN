@@ -9,21 +9,27 @@ const presupuestoSlice = createSlice({
   reducers:{
     agregarPresupuesto: (state, action) => {
       state.presupuestos.push(action.payload);
-    }
+    },
+    quitarPresupuesto: (state, action) => {
+      state.presupuestos = state.presupuestos.filter(
+        (presupuesto) => presupuesto.id !== action.payload
+      );
+    },
+    limpiarPresupuestos: (state) => {
+      state.presupuestos = [];
+    },
+    actualizarTotal: (state, action) => {
+      state.total = action.payload;
+    },
   },
-  quitarPresupuesto: (state, action) => {
-    state.presupuestos = state.presupuestos.filter(
-      (presupuesto) => presupuesto.id !== action.payload
-    );
-  },
-  limpiarPresupuestos: (state) => {
-    state.presupuestos = [];
-  },
-  actualizarTotal: (state, action) => {
-    state.total = action.payload;
-  },
+  
 
 })
 
-export const { agregarPresupuesto, quitarPresupuesto, limpiarPresupuestos, actualizarTotal } = presupuestoSlice.actions;
+export const { 
+  agregarPresupuesto, 
+  quitarPresupuesto, 
+  limpiarPresupuestos, 
+  actualizarTotal 
+} = presupuestoSlice.actions;
 export default presupuestoSlice.reducer;

@@ -21,6 +21,8 @@ import Transaccion from './pages/Transaccion'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserByid, selectUser } from './slices/userSlice'
 import { useEffect } from 'react'
+import BudgetForm from './components/BudgetForm'
+import BudgetList from './pages/BudgetList'
 
 function App() {
 
@@ -68,9 +70,16 @@ function App() {
         <Route path='/home/perfil' element={<Perfil />} />
         <Route path='/home/denuncias' element={<Denuncias />} />
         <Route path='/home/reclamos' element={<Reclamos />} />
+
         <Route path='/home/tarjetas' element={<CreditCardList />} />
         <Route path='/home/categorias' element={<Categorias />}/>
         <Route path='/home/ingresarPresupuesto' element={<PresupuestoToggle />}/>
+        
+         {/* probando */}
+        <Route path='/home/budgetList' element={<BudgetList />}/>
+        <Route path='/home/formPresupuesto' element={<BudgetForm />}/>
+
+  
         <Route path='/home/pruebaTrans' element={<Transaccion />}/>
 
         {/* otras rutas */}
