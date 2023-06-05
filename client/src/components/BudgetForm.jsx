@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { agregarPresupuesto } from '../slices/presupuestoSlice';
+import { createBudget } from '../slices/budgetSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router';
+import { getUserCards } from '../slices/cardSlice';
 
+const BudgetForm  = () => {
+  const cards = useSelector(state => state.card.cards);
+  const presupuesto = cards.reduce((acc, card) => acc + card.balance, 0);
 
-const PresupuestoToggle = () => {
-  const presupuesto = useSelector(state => state.presupuesto.total);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -32,6 +35,13 @@ const PresupuestoToggle = () => {
   // const objeto2 = { nombre: objeto.nombre, icono: objeto.icono, presupuestoTotal: objeto.presupuestoTotal, total: objeto.total, color: objeto.color }
   console.log(presupuesto)
 
+  useEffect(() => {
+    dispatch(getUserCards())
+    .then((res)=>{
+      console.log("respuesta card->", res.payload)
+    })
+  }, [dispatch]);
+
   const handleCheckboxChange = (item) => {
     console.log(item)
     if (selectedItem === item) {
@@ -46,12 +56,10 @@ const PresupuestoToggle = () => {
   const handleAgregar = () => {
 
     const nuevoPresupuesto = {
-      id: uuidv4(),
-      nombre: selectedItem ? selectedItem.name : null,
-      icono: selectedItem ? selectedItem.icon : null,
-      color: selectedItem ? selectedItem.color : null,
-      monto: monto,
-      total: presupuesto,
+      limit: presupuesto,
+      category: selectedItem ? selectedItem.name : null,
+      amount: monto,
+      user: user,
     };
 
     const validaErrores = {}
@@ -68,7 +76,7 @@ const PresupuestoToggle = () => {
       validaErrores.monto = "El monto es obligatorio"
     }else if(monto > presupuesto){
       validaErrores.monto = "El monto no puede ser mayor al total"
-    }else if(monto < 0){
+    }else if(monto <= 0){
       validaErrores.monto = "El monto no puede ser menor a 0"
     }
 
@@ -78,8 +86,22 @@ const PresupuestoToggle = () => {
     }else if (Object.keys(validaErrores).length === 0){
       setErrors({});
       console.log(nuevoPresupuesto)
-      dispatch(agregarPresupuesto(nuevoPresupuesto));
-      navigate('/home/categorias');
+      dispatch(createBudget(nuevoPresupuesto))
+        .then((res)=>{
+          console.log("respuesta ->", res)
+          navigate('/home/budgetList');
+          console.log(res)
+        })
+        .catch((error)=>{
+          console.log("error ->", error)
+          console.log(error)
+        })
+        .finally(()=>{
+          setTimeout(() => {
+            console.log("se cargo")
+          },3000)
+        })
+      
       // .then((res)=>{
       //   console.log(res)
       //   setSuccessMessage("se cargo su presupuesto con exito")
@@ -115,9 +137,9 @@ const PresupuestoToggle = () => {
     {
       items.map((element) => {
         return (
-          <div key={element.name}>
+          <div key={element.category + uuidv4()}>
             <label
-            className={`checkPresupuesto w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize   transition-all duration-300 ease-in`}
+            className={`${selectedItem === element ? "claseNueva" : ''} w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize  transition-all duration-300 ease-in `}
             >
               <span className={`w-[30px] h-[30px] flex justify-center items-center rounded-full ${element.color} text-colorFuente2Submenu text-[1.2rem] text-white transition-all duration-300 ease-in`}><ion-icon  name={element.icon}></ion-icon></span>
               {element.name}
@@ -127,6 +149,8 @@ const PresupuestoToggle = () => {
               onChange={() => handleCheckboxChange(element)}
               className="w-[20px] h-[20px] rounded-[50%] bg-purple-500 text-red-500 " 
               disabled={isCheckboxSelect}
+              // disabled={selectedItem !== null && selectedItem !== element}
+              checked={selectedItem === element}
               />
             </label>
             <div className="w-full h-[2px] bg-bgSubmenu rounded-sm opacity-40"></div> 
@@ -145,6 +169,8 @@ const PresupuestoToggle = () => {
         placeholder="Monto"
         onChange={e => setMonto(e.target.value)}  
         className="w-[130px] h-[30px] p-2 rounded-md font-parrafo font-[500] bg-fondo text-bgSubmenu outline-none" 
+        min={1}
+        max={presupuesto}
         />
         {errors.monto && <p className="text-red-500">{errors.monto}</p>}
 
@@ -156,23 +182,4 @@ const PresupuestoToggle = () => {
   )
 }
 
-export default PresupuestoToggle
-
-//ropa : <ion-icon name="shirt-outline"></ion-icon> 
-//<ion-icon name="shirt"></ion-icon>
-
-//restaurante: <ion-icon name="restaurant-outline"></ion-icon> 
-//" " <ion-icon name="restaurant"></ion-icon>
-
-//entretenimiento: <ion-icon name="game-controller-outline"></ion-icon>
-//<ion-icon name="game-controller"></ion-icon>
-
-//mascota: <ion-icon name="game-controller"></ion-icon>
-//<ion-icon name="paw"></ion-icon>
-
-//seguro <ion-icon name="shield-checkmark-outline"></ion-icon>
-//<ion-icon name="shield-checkmark"></ion-icon>
-
-/* Modelo de pruebas
-const objeto2 = { nombre: objeto.nombre, icono: objeto.icono, presupuestoTotal: objeto.presupuestoTotal, total: objeto.total, color: objeto.color }
- */
+export default BudgetForm

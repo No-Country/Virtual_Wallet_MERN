@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCard } from "../slices/cardSlice";
 import TitulosPages from "./TitulosPages";
+import { useNavigate } from "react-router";
   //estado para rotar card
 const CreditCardForm = () => {
   const userId = useSelector((state) => state.user.user);
@@ -18,6 +19,7 @@ const CreditCardForm = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
   const [cononModal, setConfirmModal] = useState(false);
+  const navigate = useNavigate();
 
 
   
@@ -174,6 +176,8 @@ const CreditCardForm = () => {
       .finally(() => {
         setTimeout(() => {
         setConfirmModal(false)
+        return navigate('/home')
+        
         },4000)
       })
       // ...
@@ -192,7 +196,7 @@ const CreditCardForm = () => {
   };
 
   return (
-    <section className="statucmain w-full min-h-screen h-auto bg-fondo overflow-hidden flex flex-col justify-start items-center gap-3">
+    <section className="statucmain w-full xl:w-[80%] min-h-screen h-auto bg-fondo overflow-hidden flex flex-col justify-start items-center gap-3">
     <TitulosPages titulo={"ingresa tu tarjeta"}/>
 
     {cononModal ? (<p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>) : null }

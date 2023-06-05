@@ -1,34 +1,38 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import CartPresupuesto from '../components/CartPresupuesto';
-import { limpiarPresupuestos, quitarPresupuesto } from '../slices/presupuestoSlice';
 import { useEffect } from 'react';
+import { deleteBudget, getBudgets } from '../slices/budgetSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 
-const Categorias = () => {
+const BudgetList = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const presupuesto = useSelector(state => state.presupuesto.presupuestos)
-  
+  const presupuesto = useSelector(state => state.budgets.budgets)
+
   console.log("Presupuesto array ->" ,presupuesto)
+  
   const handleToggle = () => {
-    return navigate('/home/ingresarPresupuesto')
+    return navigate('/home/formPresupuesto')
   }
 
-  const handleLimpiar = () => {
-    dispatch(limpiarPresupuestos())
-    console.log("hiceDispatch¡¡¡")
-  }
+  useEffect(()=>{
+    dispatch(getBudgets())
+    .then((res) => {
+      console.log("fFETCH BUDGET",res)
+    })
+  },[dispatch])
 
   const handleDelete = (id) => {
-    dispatch(quitarPresupuesto(id));
+    dispatch(deleteBudget(id));
   };
 
   useEffect(()=>{
     console.log(presupuesto)
   },[dispatch, presupuesto])
-  
+
   return (
     <div className="flex w-full xl:w-[80%] min-h-screen h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
 
@@ -37,18 +41,17 @@ const Categorias = () => {
         <h2 className="w-auto h-auto text-2xl font-titulo font-[700] text-[#0B0B0B] text-center">Informacion Personal</h2>
 
         <div className='botones w-auto h-auto flex flex-col flex-nowrap justify-start items-center p-1 gap-1'> 
-          <button onClick={handleToggle} className="w-auto h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600] capitalize" >agregar presupuesto</button>
-          <button onClick={handleLimpiar} className="w-auto h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600] capitalize" >limpiar</button>
+          <button onClick={handleToggle} className="w-auto h-auto bg-bgSubmenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600] capitalize" >agregar presupuesto</button>
         </div>
       </section>
 
-        <section className="flex flex-row justify-start items-start w-full h-auto  gap-2 flex-wrap box-border p-5">
+        <section className="flex flex-row justify-center items-start w-full h-auto gap-4 flex-wrap box-border p-5">
           {/* aca renderizaremos los presupuestos */}
           {
             presupuesto.length > 0 ? presupuesto.map(presupuesto => {
               return (
               <CartPresupuesto 
-                key={presupuesto.name} 
+                key={presupuesto.category + uuidv4()} 
                 objeto={presupuesto}
                 onDelete={handleDelete}
                 />
@@ -87,4 +90,4 @@ const Categorias = () => {
   )
 }
 
-export default Categorias
+export default BudgetList
