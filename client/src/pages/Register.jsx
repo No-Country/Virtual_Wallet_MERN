@@ -3,20 +3,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../slices/authSlice'
 import logo from '../img/logo.png'
-const initialState = {
-  name: '',
-  surname: '',
-  username: '',
-  email: '',
-  password: ''
-}
 
 const Register = () => {
-  const [form, setForm] = useState(initialState)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const { user, error } = useSelector((state) => state.auth)
 
+  //Valores del usuario
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+
+  const [errors, setErrors] = useState({});
+
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -28,17 +31,107 @@ const Register = () => {
   const handleChange = (e) => {
     const { value, name } = e.target
 
-    setForm({
-      ...form,
-      [name]: value
-    })
+    switch (name) {
+      case 'nombre':
+        setNombre(value);
+        break;
+      case 'apellido':
+        setApellido(value);
+        break;
+      case 'email': 
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      case 'username':
+        setUsername(value);
+        break;  
+      default:
+        break;
+    }
+  }
+
+  const resetStates = () => {
+    setNombre('');
+    setApellido('');
+    setEmail('');
+    setUsername('');
+    setPassword('');
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(register(form))
-    setForm(initialState)
+    const userRegister = {
+      name: nombre,
+      surname: apellido,
+      email: email, 
+      username: username,
+      password: password,
+    }
+
+    setErrors({})
+
+    const validationErrors = {}
+
+    // Realizar las validaciones necesarias
+    if (!nombre) {
+      validationErrors.nombre = 'Por favor, ingrese su nombre';
+    }else if (!/^[a-zA-Z\s]+$/.test(nombre)) {
+      validationErrors.nombre = 'El nombre solo debe contener letras y espacios';
+    }
+
+    if (!apellido.trim()) {
+      validationErrors.apellido = 'Por favor, ingrese su apellido';
+    }else if (!/^[a-zA-Z\s]+$/.test(apellido)) {
+      validationErrors.apellido = 'El apellido solo debe contener letras y espacios';
+    }
+    
+    if (!email.trim()) {
+      validationErrors.email = 'Por favor, ingrese su email';
+    }else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
+      validationErrors.email = 'Por favor, ingrese un email válido';
+    }
+    //validamos Username
+    if (!username) {
+      validationErrors.username = 'el userName es requerido';
+    } 
+
+    //validamos contraseña
+    if (!password) {
+      validationErrors.password = 'El password es requerido';
+    }else if (password.length < 8) {
+      validationErrors.password = 'El password no puede ser inferior a 8 caracteres';
+    }else if(!/(?=.*[!@#$%^&*()\-_=+{};:,<.>])/.test(password)){
+      validationErrors.password = 'La contraseña debe tener al menos un caracter especial';
+    } else if (!/(?=.*[a-z])/.test(password)) {
+      validationErrors.password = 'La contraseña debe tener al menos una letra minúscula';
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      validationErrors.password = 'La contraseña debe tener al menos una letra mayúscula';
+    } else if (!/(?=.*\d)/.test(password)) {
+      validationErrors.password = 'La contraseña debe tener al menos un número';
+    }
+    
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    } else if (Object.keys(validationErrors).length === 0) {
+      setErrors({});
+      dispatch(register(userRegister))
+      .then((response) => {
+        console.log(response)
+        resetStates()
+      })
+      .catch((error) => {
+        console.log('Error al iniciar sesión:', error)
+      })
+      .finally(() => {
+        setTimeout(()=>{
+          navigate('/login')
+        },4000)
+      })
+    }
   }
 
   return (
@@ -67,29 +160,31 @@ const Register = () => {
         <div className="w-80 h-10 border-b border-shadow">
           <input
             onChange={handleChange}
-            value={form.name}
+            value={nombre}
             className="w-full h-full p-3 outline-none"
             placeholder="Nombre"
-            name="name"
+            name="nombre"
             type="text"
             required
           />
+          {errors.nombre && <p className="text-red-500">{errors.nombre}</p>}
         </div>
         <div className="w-80 h-10 border-b border-shadow">
           <input
             onChange={handleChange}
-            value={form.surname}
+            value={apellido}
             className="w-full h-full p-3 outline-none"
             placeholder="Apellido"
-            name="surname"
+            name="apellido"
             type="text"
             required
           />
+          {errors.apellido && <p className="text-red-500">{errors.apellido}</p>}
         </div>
         <div className="w-80 h-10 border-b border-shadow">
           <input
             onChange={handleChange}
-            value={form.email}
+            value={email}
             className="w-full h-full p-3 outline-none"
             placeholder="Correo Electronico"
             name="email"
@@ -100,18 +195,19 @@ const Register = () => {
         <div className="w-80 h-10 border-b border-shadow">
           <input
             onChange={handleChange}
-            value={form.username}
+            value={username}
             className="w-full h-full p-3 outline-none"
             placeholder="Usuario"
             name="username"
             type="text"
             required
           />
+          {errors.username && <p className="text-red-500">{errors.username}</p>}
         </div>
         <div className="w-80 h-10 border-b border-shadow">
           <input
             onChange={handleChange}
-            value={form.password}
+            value={password}
             className="w-full h-full p-3 outline-none"
             placeholder="Contraseña"
             name="password"
@@ -119,6 +215,7 @@ const Register = () => {
             required
             minLength={8}
           />
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
         </div>
 
         <input
