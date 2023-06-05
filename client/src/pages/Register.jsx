@@ -17,9 +17,11 @@ const Register = () => {
   const [username, setUsername] = useState('');
 
   const [errors, setErrors] = useState({});
+  //el ojito para que se vea el pass
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -135,16 +137,16 @@ const Register = () => {
   }
 
   return (
-    <section className="w-full h-full mb-36 flex flex-col justify-start items-center gap-15 mt-16">
+    <section className="w-full h-full bg-fondo pb-36 pt-16 flex flex-col justify-start items-center gap-15">
       <img
         className="rounded-[50%] object-cover w-[95px] h-[90px]"
         src={logo}
         alt="Logo PinguiWallet"
       />
-      <h2 className="text-[#FC7E09] text-2xl font-bold my-4">
+      <h2 className="font-titulo font-[700] text-colorFuente1Submenu text-2xl my-4">
         ¡Registrarse en <span>PinguiWallet</span>!
       </h2>
-      <h3 className="text-center text-[#A0A0A0] text-lg">Create un cuenta</h3>
+      <h3 className="p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu">Crea tu cuenta</h3>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-8 py-14 px-20">
         {user && (
@@ -161,7 +163,7 @@ const Register = () => {
           <input
             onChange={handleChange}
             value={nombre}
-            className="w-full h-full p-3 outline-none"
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
             placeholder="Nombre"
             name="nombre"
             type="text"
@@ -173,7 +175,7 @@ const Register = () => {
           <input
             onChange={handleChange}
             value={apellido}
-            className="w-full h-full p-3 outline-none"
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
             placeholder="Apellido"
             name="apellido"
             type="text"
@@ -185,7 +187,7 @@ const Register = () => {
           <input
             onChange={handleChange}
             value={email}
-            className="w-full h-full p-3 outline-none"
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
             placeholder="Correo Electronico"
             name="email"
             type="email"
@@ -196,7 +198,7 @@ const Register = () => {
           <input
             onChange={handleChange}
             value={username}
-            className="w-full h-full p-3 outline-none"
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
             placeholder="Usuario"
             name="username"
             type="text"
@@ -204,25 +206,29 @@ const Register = () => {
           />
           {errors.username && <p className="text-red-500">{errors.username}</p>}
         </div>
-        <div className="w-80 h-10 border-b border-shadow">
+        <div className="w-80 h-10 border-b border-shadow relative">
           <input
             onChange={handleChange}
             value={password}
-            className="w-full h-full p-3 outline-none"
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
             placeholder="Contraseña"
             name="password"
-            type="password"
-            required
+            type={showPassword ? "text" : "password"}
             minLength={8}
           />
+          <span className="cursor-pointer absolute right-2 top-1/2 transform -translate-y-1/2"
+            onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? "🙈" : "🙊"}
+          </span>
           {errors.password && <p className="text-red-500">{errors.password}</p>}
         </div>
-
-        <input
-          placeholder="Registrarse"
-          type="submit"
-          className="cursor-pointer bg-demo text-center px-2 py-1 rounded"
-        />
+        <div className='w-full h-auto flex justify-center items-center'>
+          <button
+            type="submit"
+            className="font-titulo font-[500] cursor-pointer w-[150px] bg-hoverBotonSubmenu text-fondo hover:bg-bgSubmenu text-center p-2 py-1 rounded transition-colors duration-300">
+            Iniciar Sesión
+          </button>
+        </div>
       </form>
 
       <Link className="hover:text-demo" to="/login">
