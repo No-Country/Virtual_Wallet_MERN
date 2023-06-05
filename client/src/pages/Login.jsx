@@ -1,41 +1,55 @@
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { login, loginSuccess } from '../slices/authSlice'
-import { Link, useNavigate } from 'react-router-dom'
-import logo from '../img/logo.png'
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, loginSuccess } from "../slices/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../img/logo.png";
 
 export const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
-  const { loading, error } = useSelector((state) => state?.auth)
-  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated)
-  const state = useSelector((state) => state)
-  const navigate = useNavigate()
-  console.log(state)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state?.auth);
+  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
+  const state = useSelector((state) => state);
+  const navigate = useNavigate();
+  console.log(state);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/home')
+      navigate("/home");
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    dispatch(login({ email, password }))
-      .then((response) => {
-        // console.log("LOGIN ->",response)
-        const { token, username, _id} = response.payload
-        dispatch(loginSuccess({ token, username, _id }))
-        if (isAuthenticated) {
-          return navigate('/home')
-        }
-      })
-      .catch((error) => {
-        console.log('Error al iniciar sesión:', error)
-      })
-  }
+    validateEmail(email);
+
+    if (!emailError) {
+      dispatch(login({ email, password }))
+        .then((response) => {
+          // console.log("LOGIN ->",response)
+          const { token, username, _id } = response.payload;
+          dispatch(loginSuccess({ token, username, _id }));
+          if (isAuthenticated) {
+            return navigate("/home");
+          }
+        })
+        .catch((error) => {
+          console.log("Error al iniciar sesión:", error);
+        });
+    }
+  };
 
   return (
     <div className="w-full h-full mb-36 flex flex-col justify-start items-center gap-15 mt-24">
@@ -48,7 +62,7 @@ export const Login = () => {
         ¡Bienvenid@ de nuevo!
       </h2>
       <h3 className="text-center text-[#A0A0A0] text-lg mb-8">
-        Inicia sesíon para continuar
+        Inicia sesión para continuar
       </h3>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form className="flex flex-col gap-16" onSubmit={handleSubmit}>
@@ -58,8 +72,10 @@ export const Login = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => validateEmail(e.target.value)}
             className="w-full h-full p-3 outline-none"
           />
+          {emailError && <p className="text-red-500">{emailError}</p>}
         </div>
         <div className="w-80 h-10 border-b border-shadow">
           <input
@@ -76,7 +92,7 @@ export const Login = () => {
           disabled={loading}
           className="cursor-pointer bg-demo text-center px-2 py-1 rounded"
         >
-          {loading ? 'Loading...' : 'Iniciar Sesión'}
+          {loading ? "Loading..." : "Iniciar Sesión"}
         </button>
       </form>
 
@@ -84,8 +100,8 @@ export const Login = () => {
         className="block text-sm mt-10 hover:text-demo text-center"
         to="/register"
       >
-        ¿Aún no tienes una cuenta? Registrate
+        ¿Aún no tienes una cuenta? Regístrate
       </Link>
     </div>
-  )
-}
+  );
+};
