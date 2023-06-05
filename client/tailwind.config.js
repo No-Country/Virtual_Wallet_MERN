@@ -24,6 +24,8 @@ export default {
         hoverBotonSubmenu:'var(--hover-boton-submenu)',
         colorFuente1Submenu:'var(--color-fuente1-submenu)',
         colorFuente2Submenu:'var(--color-fuente2-submenu)',
+        colorFuente3Submenu:'var(--color-fuente3-submenu)',
+        colorFuente4: ('var(--bg-submenu)'),
         bgForm:'var(--bg-form)',
         
         'custom-blue': 'var(--custom-blue)',
