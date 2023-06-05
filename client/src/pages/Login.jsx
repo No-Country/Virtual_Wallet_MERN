@@ -14,6 +14,9 @@ export const Login = () => {
 
   const [errors, setErrors] = useState({});
 
+  //el ojito para que se vea el pass
+  const [showPassword, setShowPassword] = useState(false);
+
   console.log(isAuthenticated)
 
   useEffect(() => {
@@ -110,7 +113,7 @@ export const Login = () => {
       <h2 className="w-100 text-center text-colorFuente1Submenu text-2xl my-8 font-bold">
         ¡Bienvenid@ de nuevo!
       </h2>
-      <h3 className="text-center text-colorFuente$ text-lg mb-8">
+      <h3 className="font-parrafo font-[500] text-hoverBotonSubmenu text-lg mb-8">
         Inicia sesíon para continuar
       </h3>
       {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -124,29 +127,34 @@ export const Login = () => {
             type="email"
             value={email}
             onChange={handleInputChange}
-            className="w-full h-full p-3 outline-none bg-fondo"
-          />
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
+            />
           {errors.email && <p className="text-red-500">{errors.email}</p>}
         </div>
-        <div className="w-80 h-10 border-b border-shadow">
+        <div className="w-80 h-10 border-b border-shadow relative">
           <input
             placeholder="Ingrese su contraseña"
             name='password'
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={handleInputChange}
-            className="w-full h-full p-3 outline-none bg-fondo"
-          />
+            className="w-full h-full p-3 outline-none bg-fondo font-parrafo font-[500] text-hoverBotonSubmenu"
+            />
+            <span className="cursor-pointer absolute right-2 top-1/2 transform -translate-y-1/2"
+            onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? "🙈" : "🙊"}
+            </span>
           {errors.password && <p className="text-red-500">{errors.password}</p>}
         </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="cursor-pointer bg-demo text-center px-2 py-1 rounded"
-        >
-          {loading ? 'Loading...' : 'Iniciar Sesión'}
-        </button>
+        <div className='w-full h-auto flex justify-center items-center'>
+          <button
+            type="submit"
+            disabled={loading}
+            className="font-titulo font-[500] cursor-pointer w-[150px] bg-hoverBotonSubmenu text-fondo hover:bg-bgSubmenu text-center p-2 py-1 rounded transition-colors duration-300"
+          >
+            {loading ? 'Loading...' : 'Iniciar Sesión'}
+          </button>
+        </div>
       </form>
 
       <Link

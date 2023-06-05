@@ -41,7 +41,7 @@ const BudgetList = () => {
         <h2 className="w-auto h-auto text-2xl font-titulo font-[700] text-[#0B0B0B] text-center">Informacion Personal</h2>
 
         <div className='botones w-auto h-auto flex flex-col flex-nowrap justify-start items-center p-1 gap-1'> 
-          <button onClick={handleToggle} className="w-auto h-auto bg-colorFuente1Submenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600] capitalize" >agregar presupuesto</button>
+          <button onClick={handleToggle} className="w-auto h-auto bg-bgSubmenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600] capitalize" >agregar presupuesto</button>
         </div>
       </section>
 

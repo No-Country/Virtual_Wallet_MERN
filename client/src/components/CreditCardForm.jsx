@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCard } from "../slices/cardSlice";
 import TitulosPages from "./TitulosPages";
+import { useNavigate } from "react-router";
   //estado para rotar card
 const CreditCardForm = () => {
   const userId = useSelector((state) => state.user.user);
@@ -18,6 +19,7 @@ const CreditCardForm = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
   const [cononModal, setConfirmModal] = useState(false);
+  const navigate = useNavigate();
 
 
   
@@ -174,6 +176,8 @@ const CreditCardForm = () => {
       .finally(() => {
         setTimeout(() => {
         setConfirmModal(false)
+        return navigate('/home')
+        
         },4000)
       })
       // ...

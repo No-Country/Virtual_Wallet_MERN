@@ -76,7 +76,7 @@ const BudgetForm  = () => {
       validaErrores.monto = "El monto es obligatorio"
     }else if(monto > presupuesto){
       validaErrores.monto = "El monto no puede ser mayor al total"
-    }else if(monto < 0){
+    }else if(monto <= 0){
       validaErrores.monto = "El monto no puede ser menor a 0"
     }
 
@@ -169,6 +169,8 @@ const BudgetForm  = () => {
         placeholder="Monto"
         onChange={e => setMonto(e.target.value)}  
         className="w-[130px] h-[30px] p-2 rounded-md font-parrafo font-[500] bg-fondo text-bgSubmenu outline-none" 
+        min={1}
+        max={presupuesto}
         />
         {errors.monto && <p className="text-red-500">{errors.monto}</p>}
 
@@ -181,22 +183,3 @@ const BudgetForm  = () => {
 }
 
 export default BudgetForm
-
-//ropa : <ion-icon name="shirt-outline"></ion-icon> 
-//<ion-icon name="shirt"></ion-icon>
-
-//restaurante: <ion-icon name="restaurant-outline"></ion-icon> 
-//" " <ion-icon name="restaurant"></ion-icon>
-
-//entretenimiento: <ion-icon name="game-controller-outline"></ion-icon>
-//<ion-icon name="game-controller"></ion-icon>
-
-//mascota: <ion-icon name="game-controller"></ion-icon>
-//<ion-icon name="paw"></ion-icon>
-
-//seguro <ion-icon name="shield-checkmark-outline"></ion-icon>
-//<ion-icon name="shield-checkmark"></ion-icon>
-
-/* Modelo de pruebas
-const objeto2 = { nombre: objeto.nombre, icono: objeto.icono, presupuestoTotal: objeto.presupuestoTotal, total: objeto.total, color: objeto.color }
- */
