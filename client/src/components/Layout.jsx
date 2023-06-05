@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
       
       {isAuthenticated ? <NavSecundary toggleMenu={toggleMenu}/> : null}
       {isAuthenticated ? <VerticalMenu isOpen={isOpen}/> : <Navbar />}
-      <div className='main w-full sm:w-full flex justify-center'>
+      <div className='main w-full sm:w-full flex justify-center items-center'>
       {children}
       </div>
       <Footer />

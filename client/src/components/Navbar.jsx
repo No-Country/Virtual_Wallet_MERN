@@ -28,7 +28,7 @@ const Navbar = () => {
               </i>
               ?
             </Link>
-            <Link to="/contact" className="liNavBar hover:text-secundario">
+            <Link to="/contacto" className="liNavBar hover:text-secundario">
               Contacto
             </Link>
             <Link to="/login" className="liNavBar hover:text-secundario">

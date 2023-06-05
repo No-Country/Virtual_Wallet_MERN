@@ -23,6 +23,7 @@ import { fetchUserByid, selectUser } from './slices/userSlice'
 import { useEffect } from 'react'
 import BudgetForm from './components/BudgetForm'
 import BudgetList from './pages/BudgetList'
+import Contacto from './pages/Contacto'
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path='/contacto' element={<Contacto />} />
 
         {/* ruta para home sel usuario*/}
         <Route exact path="/home" element={<Home />} >

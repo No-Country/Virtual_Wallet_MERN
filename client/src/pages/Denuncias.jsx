@@ -105,10 +105,10 @@ const Denuncias = () => {
       // Crear un objeto con los datos de la denuncia
       setErrors({});
       // enviamos la denuncia
-      console.log(nuevaDenuncia)
+      // console.log(nuevaDenuncia)
       dispatch(createMessage(nuevaDenuncia))
-      .then((res) => {
-        console.log("Respuesta -> ",res)
+      .then(() => {
+        // console.log("Respuesta -> ",res)
         // console.log("Respuesta2 -> ",res.payload.message)
 
         setSuccessMessage("Su denuncia fue enviada con éxito"); // Establecer el mensaje de éxito
@@ -122,11 +122,10 @@ const Denuncias = () => {
           setArchivo(null);
           setErrors('');
       })
-      .catch((error) => {
+      .catch(() => {
         // Manejar cualquier error de actualización aquí
         setConfirmModal(true)
         setSuccessMessage("error al procesar la denuncia");
-        console.log("Error -> ",error)
       
       })
       .finally(() => {
@@ -138,9 +137,9 @@ const Denuncias = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-start sm:items-start  bg-fondo h-auto gap-4 sm:gap-6">
+    <div className="flex w-full h-auto xl:w-[80%] min-h-screen flex-col items-center justify-center bg-fondo pb-5">
       
-      <section className="w-full xl:w-[80%] h-auto flex flex-col gap-5 items-center justify-center ">
+      <section className="w-full h-auto flex flex-col gap-5 items-center justify-center">
       <TitulosPages titulo={"canal de denuncias"} subtitulo={"Denuncia sobre: Corrupción, soborno, conflicto de intereses u otros delitos"}></TitulosPages>
         <div className="h-auto w-full flex flex-col items-center justify-center pt-5 pb-5">
           {cononModal ?  (<div className="w-full h-[80px] flex items-center justify-center">
