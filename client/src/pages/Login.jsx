@@ -14,6 +14,7 @@ export const Login = () => {
 
   const [errors, setErrors] = useState({});
 
+  console.log(isAuthenticated)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -81,7 +82,10 @@ export const Login = () => {
       .then((response) => {
         // console.log("LOGIN ->",response)
         const { token, username, _id} = response.payload
-        dispatch(loginSuccess({ token, username, _id }))
+        dispatch(loginSuccess({ token, username, _id }));
+        if (isAuthenticated) {
+          return navigate('/home')
+        }
       })
       .catch((error) => {
         console.log('Error al iniciar sesión:', error)
@@ -91,9 +95,6 @@ export const Login = () => {
           setEmail('')
           setPassword('')
           console.log("autenticado?? ",isAuthenticated)
-          if (isAuthenticated) {
-            return navigate('/home')
-          }
         },4000)
       })
     }
