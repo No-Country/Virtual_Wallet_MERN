@@ -4,7 +4,7 @@ import logoName from '../img/logo-nombre.png'
 
 const Footer = () => {
   return (
-    <footer className='w-full h-auto pt-5 pb-5 z-10 overflow-hidden bg-white'>
+    <footer className='w-full h-[580px] sm:h-[340px] md:h-[280px] lg:h-[280px] pt-5 pb-5 z-10 overflow-hidden bg-white'>
       <div className="bg-demo w-full h-auto flex flex-col justify-center items-center sm:flex-row sm:items-start sm:justify-center gap-8 p-1">
         <article className='sm:w-1/3 w-full sm:h-auto h-[140px] flex flex-col justify-center items-center gap-5'>
           <div className="flex justify-center items-center w-full h-60px overflow-hidden">

@@ -2,7 +2,7 @@ export const SecuritySectionBanner = () => {
   return (
     <section className="w-full h-auto flex justify-center items-center">
       <section className="w-full h-[350px] sm:h-[400px] p-6 rounded-[5px] overflow-hidden" 
-      style={{backgroundImage: "url(https://res.cloudinary.com/dpiwmbsog/image/upload/v1685853012/wallet/Pingui_Wallet_2_addknz.jpg)",
+      style={{backgroundImage: "url(https://res.cloudinary.com/dpiwmbsog/image/upload/v1685972224/wallet/Rectangle_38_2_kpcxex.png)",
       backgroundSize:"cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",

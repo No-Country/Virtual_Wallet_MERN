@@ -6,9 +6,6 @@ import { useNavigate } from 'react-router';
 import { getUserCards } from '../slices/cardSlice';
 
 const BudgetForm  = () => {
-  const cards = useSelector(state => state.card.cards);
-  const presupuesto = cards.reduce((acc, card) => acc + card.balance, 0);
-
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,6 +20,7 @@ const BudgetForm  = () => {
 
   const [selectedItem, setSelectedItem] = useState(null); 
   const [isCheckboxSelect, setIsCheckboxSelect] = useState(false);
+  const [presupuestoActualizado, setPresupuestoActualizado] = useState(0);
 
   const items = [
     { name: "entretenimiento", icon: "game-controller-outline", color: "bg-purple-500"},
@@ -32,8 +30,26 @@ const BudgetForm  = () => {
     { name:"mascota", icon:"paw-outline", color:"bg-[#8b4513]" },
   ]
 
+  const presupuestoState = (useSelector(state => state?.budgets?.budgets)).reduce((acc, card) => acc + card.amount, 0) || 0;
+  console.log("presup state=>",presupuestoState)
+
+  useEffect(() => {
+    dispatch(getUserCards())
+    .then((res)=>{
+      const presupuestoTotal = res.payload.reduce((acc, card) => acc + card.balance, 0);
+      console.log("presupuestoTotal", presupuestoTotal)
+      const presupuestoGeneral = presupuestoTotal - presupuestoState;
+      setPresupuestoActualizado(presupuestoGeneral);
+      console.log("Presupuesto General: ",presupuestoGeneral)
+    })
+    .catch((error) => {
+      console.log("error => ", error)
+    })
+  }, [])
+
+
   // const objeto2 = { nombre: objeto.nombre, icono: objeto.icono, presupuestoTotal: objeto.presupuestoTotal, total: objeto.total, color: objeto.color }
-  console.log(presupuesto)
+  console.log(presupuestoActualizado)
 
   useEffect(() => {
     dispatch(getUserCards())
@@ -56,7 +72,7 @@ const BudgetForm  = () => {
   const handleAgregar = () => {
 
     const nuevoPresupuesto = {
-      limit: presupuesto,
+      limit: presupuestoActualizado,
       category: selectedItem ? selectedItem.name : null,
       amount: monto,
       user: user,
@@ -67,14 +83,14 @@ const BudgetForm  = () => {
     if (!selectedItem){
       validaErrores.selecteditem = "Debes seleccionar un item"
     }
-    if (!presupuesto){
+    if (!presupuestoActualizado){
       validaErrores.presupuesto = "El total es obligatorio"
-    } else if(presupuesto <= 0){
+    } else if(presupuestoActualizado <= 0){
       validaErrores.presupuesto = "El total no puede ser menor a 0"
     }
     if(!monto){
       validaErrores.monto = "El monto es obligatorio"
-    }else if(monto > presupuesto){
+    }else if(monto > presupuestoActualizado){
       validaErrores.monto = "El monto no puede ser mayor al total"
     }else if(monto <= 0){
       validaErrores.monto = "El monto no puede ser menor a 0"
@@ -130,7 +146,7 @@ const BudgetForm  = () => {
       } */}
     <section className="w-[300px] h-[100px] flex flex-col gap-3 justify-center p-4 rounded-md bg-white" style={{ boxShadow: '9px 9px 22px #ced1d9, -9px -9px 22px #ffffff'}}>
       <h2 className="w-full text-left font-titulo font-[500] text-hoverBotonSubmenu capitalize">presupuesto limite</h2>
-      <p className="w-full text-center font-parrafo font-[500] text-bgSubmenu capitalize">${presupuesto}</p>
+      <p className="w-full text-center font-parrafo font-[500] text-bgSubmenu capitalize">${presupuestoActualizado}</p>
     </section>
   
     <section className="card w-[300px] h-auto p-5 rounded-md bg-[#ffff] flex flex-col gap-2 "style={{ boxShadow: '9px 9px 22px #ced1d9, -9px -9px 22px #ffffff'}}>
@@ -139,7 +155,7 @@ const BudgetForm  = () => {
         return (
           <div key={element.category + uuidv4()}>
             <label
-            className={`${selectedItem === element ? "claseNueva" : ''} w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize  transition-all duration-300 ease-in `}
+            className={`${selectedItem === element ? 'selected' : ''} w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize  transition-all duration-300 ease-in `}
             >
               <span className={`w-[30px] h-[30px] flex justify-center items-center rounded-full ${element.color} text-colorFuente2Submenu text-[1.2rem] text-white transition-all duration-300 ease-in`}><ion-icon  name={element.icon}></ion-icon></span>
               {element.name}
@@ -147,7 +163,7 @@ const BudgetForm  = () => {
               <input 
               type="checkbox" 
               onChange={() => handleCheckboxChange(element)}
-              className="w-[20px] h-[20px] rounded-[50%] bg-purple-500 text-red-500 " 
+              className="seleccionItem w-[20px] h-[20px] hidden rounded-[50%" 
               disabled={isCheckboxSelect}
               // disabled={selectedItem !== null && selectedItem !== element}
               checked={selectedItem === element}
@@ -170,7 +186,7 @@ const BudgetForm  = () => {
         onChange={e => setMonto(e.target.value)}  
         className="w-[130px] h-[30px] p-2 rounded-md font-parrafo font-[500] bg-fondo text-bgSubmenu outline-none" 
         min={1}
-        max={presupuesto}
+        max={presupuestoActualizado}
         />
         {errors.monto && <p className="text-red-500">{errors.monto}</p>}
 

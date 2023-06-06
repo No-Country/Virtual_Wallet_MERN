@@ -13,6 +13,7 @@
 
   /* sub menu */
   --bg-submenu: #424D8C;
+  --bg-submenu-claro: #f7f2fa;
   --color-boton-submenu: #ffff;
   --hover-boton-submenu: #788BF9AD;
   --color-fuente1-submenu: #fc7e09;
@@ -36,6 +37,11 @@
 }
 
 @layer components {
+  .subPerfil .active {
+    background-color: var(--bg-submenu);
+    color: var(--color-fondo);
+  }
+
   .inputBgCard {
     color: white;
     background-color: rgba(59, 130, 246, 0.6);
@@ -100,4 +106,5 @@
   .nav_toggle.open>span:nth-child(3) {
     transform: rotate(-45deg) translate(-5px, 1px);
   }
+
 }

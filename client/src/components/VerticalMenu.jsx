@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../slices/authSlice";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { fetchUserByid, selectUser } from "../slices/userSlice";
 import NavProfileCard from "./NavProfileCard";
 
@@ -48,167 +48,131 @@ export const VerticalMenu = ({ isOpen }) => {
   console.log("USUARIO -> ", usuario);
 
   return (
-    <div className={`absolute mt-[60px] left-0 top-0 z-10  min-w-[70px] flex h-full gap-1 flex-col justify-start items-start bg-bgSubmenu transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0": "-translate-x-[160px]"}`}>
-      <NavProfileCard />
-      <div className="w-full h-auto overflow-hidden">
+    <div className={`absolute mt-[60px] left-0 top-0 z-10 min-w-[60px] md:min-w-[200px] flex h-full gap-1 flex-col justify-start items-start bg-fondo overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0": "-translate-x-[200px]"}`}>
+      <div className="w-full h-full overflow-hidden flex flex-col justify-between">
         <nav
           aria-label="Main Nav"
-          className="mt-0 flex flex-col gap-1 w-[100%] h-[100%] overflow-hidden"
+          className="mt-0 flex flex-col gap-1 w-[100%] h-auto overflow-hidden"
         >
-          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
-          <section className="subPerfil w-full h-auto bg-c-fondo flex justify-center items-center">
-            <Link
-              to="/home/perfil"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+          <NavProfileCard />
+
+          <span className="w-full h-[2px] bg-hoverBotonSubmenu opacity-20"></span>
+          <section className="subPerfil w-full h-auto bg-c-fondo flex flex-col justify-center items-center gap-1">
+            <NavLink to={'/home/'} 
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="person-outline"></ion-icon>
+              <ion-icon name="wallet"></ion-icon>
+              <span className="text-sm font-medium hidden sm:block">
+                {" "}
+                Billetera{" "}
+              </span>
+            </NavLink>
+            <NavLink to={'/home/perfil'}
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
+            >
+              <ion-icon name="person-circle"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
                 {" "}
                 Perfil{" "}
               </span>
-            </Link>
+            </NavLink>
           </section>
 
-          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
-          <section className="cards w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
-            <Link
-              to="/home/tarjetas"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+          {/* section tus cuentas */}
+          <span className="w-full h-[2px] bg-hoverBotonSubmenu opacity-20"></span>
+          <section className="subPerfil w-full h-auto bg-c-fondo flex flex-col justify-center items-center gap-1">
+            <h2 className="w-full text-sm font-titulo font-[500] text-colorFuente3Submenu hidden sm:block sm:pl-4 md:pl-5 pb-1 pt-1">Tus Cuentas</h2>
+            <NavLink to="/home/tarjetas"
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="card-outline"></ion-icon>
-              <span className="text-sm font-medium hidden sm:block">
+              <ion-icon name="card"></ion-icon>
+              <span className="text-sm font-titulo font-[400] hidden sm:block">
                 {" "}
                 Tarjetas{" "}
               </span>
-            </Link>
-            <a
+            </NavLink>
+            <Link to="#"
               onClick={handleAyuda}
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="help-outline"></ion-icon>
+              <ion-icon name="help-circle"></ion-icon>
               <span className="text-sm font-normal hidden sm:block">
                 {" "}
                 Ayuda{" "}
               </span>
-            </a>
+            </Link>
             {botonFaqs && (
               <>
-                <Link
-                  to="/home/denuncias"
-                  className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+                <NavLink to="/home/denuncias"
+                  className="flex justify-center sm:justify-start sm:items-center w-[40px] h-[40px] sm:w-[90%] text-[1.1rem] sm:text-lg gap-2s bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer gap-1"
                 >
-                  🚨
+                  <span className="text-[1rem] md:text-[1rem]">🚨</span>
                   <span className="text-sm font-medium hidden sm:block">
                     {" "}
                     Denuncias{" "}
                   </span>
-                </Link>
-                <Link
-                  to="/home/reclamos"
-                  className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-sm sm:text-sm gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+                </NavLink>
+                <NavLink to="/home/reclamos"
+                  className="flex justify-center sm:justify-start sm:items-center w-[40px] h-[40px] sm:w-[90%] text-[1.1rem] sm:text-lg gap-2s bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer gap-1"
                 >
-                  ⚠️
+                  <span className="text-[1rem] md:text-[1rem]">⚠️</span>
                   <span className="text-sm font-medium hidden sm:block">
                     {" "}
                     Reclamo{" "}
                   </span>
-                </Link>
+                </NavLink>
               </>
             )}
           </section>
 
-          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
-          <section className="activity w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
-            <a
-              href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+          {/* section actividad */}
+          <span className="w-full h-[2px] bg-hoverBotonSubmenu opacity-20"></span>
+          <section className="subPerfil w-full h-auto bg-c-fondo flex flex-col justify-center items-center gap-1">
+            <h2 className="w-full text-sm font-titulo font-[500] text-colorFuente3Submenu hidden sm:block sm:pl-4 md:pl-5 pb-1 pt-1">Actividad</h2>
+            <NavLink to={'/home/transferencias'} 
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="cash-outline"></ion-icon>
-              <span className="text-sm font-medium hidden sm:block">
+              <ion-icon className="w-[20px]" name="cash"></ion-icon>
+              <span className="text-sm font-medium hidden sm:block w-[120px]">
                 {" "}
                 Transferencias{" "}
               </span>
-            </a>
-            <a
-              href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+            </NavLink>
+            <NavLink to={'/home/gastos'}
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="wallet-outline"></ion-icon>
+              <ion-icon name="pricetag"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
                 {" "}
                 Gastos{" "}
               </span>
-            </a>
-            
-          </section>
-
-          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
-          <section className="activity w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
-            <Link to={'/home/categorias'}
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+            </NavLink>
+            <NavLink to={'/home/budgetList'}
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="file-tray-full-outline"></ion-icon>
+              <ion-icon name="file-tray-full"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
                 {" "}
-                Categorias{" "}
+                Presupuesto{" "}
               </span>
-            </Link>
+            </NavLink>
           </section>
-
-          {/* BUDGET */}
-          <section className="activity w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
-            <Link to={'/home/budgetList'}
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
-            >
-              <ion-icon name="file-tray-full-outline"></ion-icon>
-              <span className="text-sm font-medium hidden sm:block">
-                {" "}
-                Budget{" "}
-              </span>
-            </Link>
-          </section>
-          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
-          <section className="faturas w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
-            <a
-              href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
-            >
-              <ion-icon name="document-text-outline"></ion-icon>
-              <span className="text-sm font-medium hidden sm:block">
-                {" "}
-                Resumen{" "}
-              </span>
-            </a>
-            <a
-              href="#"
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
-            >
-              <ion-icon name="reader-outline"></ion-icon>
-              <span className="text-sm font-medium hidden sm:block">
-                {" "}
-                Facturas{" "}
-              </span>
-            </a>
-          </section>
-
-          <span className="w-full h-[2px] bg-colorBotonSubmenu opacity-20"></span>
-          <section className="logout w-full h-auto bg-c-fondo flex flex-col justify-center items-center">
+          <span className="w-full h-[2px] bg-hoverBotonSubmenu opacity-20"></span>
+        </nav>
+        {/* section logout */}
+        <section className="subPerfil w-full h-auto bg-c-fondo flex flex-col justify-center items-center pb-[650px] sm:pb-[410px] md:pb-[350px]">
             <Link
               to="/"
               onClick={handleLogout}
-              className="flex justify-center sm:justify-start sm:items-center w-[50px] sm:w-full text-2xl sm:text-lg gap-2 bg-bgSubmenu hover:bg-hoverBotonSubmenu text-colorBotonSubmenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out px-4 py-2 font-[600] rounded-[5px] overflow-hidden cursor-pointer"
+              className="flex justify-center sm:justify-start sm:items-center w-[40px] sm:w-[90%] text-2xl sm:text-lg gap-2 bg-fondo text-colorFuente3Submenu hover:text-colorFuente1Submenu transition duration-300 ease-in-out p-2 sm:px-3 sm:p-2 md:px-4 md:py-2 font-[600] rounded-[5px] sm:rounded-[20px] overflow-hidden cursor-pointer"
             >
-              <ion-icon name="log-out-outline"></ion-icon>
+              <ion-icon name="log-out"></ion-icon>
               <span className="text-sm font-medium hidden sm:block">
                 {" "}
                 logout{" "}
               </span>
             </Link>
           </section>
-          <section className="w-full h-auto bg-c-fondo flex flex-col justify-center items-center content-center">
-            
-          </section>
-        </nav>
       </div>
     </div>
   );

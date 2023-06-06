@@ -9,44 +9,18 @@ const categorias = [
   ];
 
 
-let ident, montoG, nombreG, iconoG, colorG, limiteG, porcentajeG = '';
-let porcentajeFinal = 0;
-if(objeto.amount){
-    // console.log("objeto ->", objeto)
-    const { _id, amount, category, limit } = objeto;
-    ident = _id;
-    montoG = amount;
-    nombreG = category;
-    limiteG = limit;
-    porcentajeG = (Number(montoG) * 100 / Number(limiteG)).toFixed(0);
-    console.log("porcentajeG ->", porcentajeG)
-    porcentajeFinal = ((280 / 100) * porcentajeG).toFixed(0);
-
-    const categoriaEncontrada = categorias.find(categoria => categoria.name === nombreG);
+    let iconoG, colorG = '';
+    const categoriaEncontrada = categorias.find(categoria => categoria.name === objeto.categoria);
     if(categoriaEncontrada){
       iconoG = categoriaEncontrada.icon;
       colorG = categoriaEncontrada.color;
     }
 
-  }
-  else if (objeto.monto){
-    const {id, nombre, icono, color, monto, total} = objeto;
-    ident= id;
-    montoG = monto;
-    nombreG = nombre;
-    iconoG = icono;
-    colorG = color;
-    limiteG = total;
-    porcentajeG = `w-[${(Number(montoG) * 100 / Number(limiteG)).toFixed(0)}%]`;
-    porcentajeFinal = ((280 / 100) * porcentajeG).toFixed(0);
-
-    console.log("porcentajeG ->", porcentajeG)
-  }
 
   // console.log(porcentajeG)
 
   const handleDelete = () => {
-    onDelete(ident)
+    onDelete(objeto.id)
   }
   
   return (
@@ -58,18 +32,18 @@ if(objeto.amount){
           <ion-icon name={iconoG}></ion-icon>            
           </div> 
           <p className='font-titulo font-[500] text-bgSubmenu w-auto'>
-            {nombreG}
+            {objeto.nombre}
           </p>
         </div>
         <div className='porcentajes w-[40%] h-auto flex flex-row flex-nowrap justify-start items-center p-1 gap-1'>
           <p className='w-full font-parrafo font-[400] text-bgSubmenu text-[.7rem] flex flex-row flex-nowrap justify-end items-end gap-1'>
-            <span className='font-[700] text-bgSubmenu'>s/{montoG}</span>
-            <span className='font-[700] text-hoverBotonSubmenu'>s/{limiteG}</span>
+            <span className='font-[700] text-bgSubmenu'>s/{objeto.monto}</span>
+            <span className='font-[700] text-hoverBotonSubmenu'>s/{objeto.limite}</span>
           </p>
         </div>
       </div>
       <div className='barraProgreso w-[280px] h-[10px] bg-fondo rounded-[10px] relative'>
-        <div className={`progreso h-[10px] ${colorG} rounded-[10px] w-[${porcentajeFinal}px] transition-all duration-300`}></div>
+        <div className={`progreso h-[10px] ${colorG} rounded-[10px] ${objeto.porcentajePx} transition-all duration-300`}></div>
       </div>
       <button
       onClick={handleDelete} 
