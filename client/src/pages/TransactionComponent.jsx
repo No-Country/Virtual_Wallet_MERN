@@ -1,8 +1,8 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createTransaction } from "../slices/guilleTransferSlice"; 
+import { createTransaction } from "../slices/guilleTransferSlice";
 
-import { getUserCards, updateCard } from '../slices/cardSlice';
+import { getUserCards, updateCard } from "../slices/cardSlice";
 
 const TransactionComponent = () => {
   const [transactionData, setTransactionData] = useState({
@@ -34,14 +34,15 @@ const TransactionComponent = () => {
     // Realizar la transacción utilizando el servicio de transacciones
     createTransaction(transactionData)
       .then((response) => {
-        console.log("Respuesta ctrate transaction ->", response)
+        console.log("Respuesta ctrate transaction ->", response);
         // Actualizar el saldo de la tarjeta seleccionada
         const updatedCard = cards.find((card) => card._id === selectedCard);
         if (updatedCard) {
           const updatedBalance = updatedCard.balance - transactionData.amount;
           // Aquí deberías llamar a una acción de tu slice de tarjetas para actualizar el saldo de la tarjeta
-          dispatch(updateCard({ cardId: selectedCard, balance: updatedBalance }));
-          
+          dispatch(
+            updateCard({ cardId: selectedCard, balance: updatedBalance })
+          );
         }
 
         // Reiniciar los campos del formulario
@@ -67,7 +68,7 @@ const TransactionComponent = () => {
           Tarjeta:
           <select value={selectedCard} onChange={handleCardSelection}>
             <option value="">Seleccionar tarjeta</option>
-            {cards.map((card) => (
+            {cards?.map((card) => (
               <option key={card._id} value={card._id}>
                 {card.name} - {card.number}
               </option>
@@ -111,4 +112,4 @@ const TransactionComponent = () => {
   );
 };
 
-export default TransactionComponent
+export default TransactionComponent;
