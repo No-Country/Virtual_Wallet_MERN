@@ -78,11 +78,6 @@ function App() {
         />
         {/* ruta de seccion tranferencias */}
         <Route path="/home/transaccion" element={<Transaccion />} />
-        <Route path="/home/transaccion/Type" element={<TransaccionType />} />
-        {/* <Route
-          path="/home/transaccion/Type/Quantity"
-          element={<transaccionQuantity />}
-        /> */}
 
         <Route
           path="/home/transaccion/Type/Quantity/Realizada"
