@@ -24,6 +24,7 @@ import { useEffect } from 'react'
 import BudgetForm from './components/BudgetForm'
 import BudgetList from './pages/BudgetList'
 import Contacto from './pages/Contacto'
+import { getBudgets } from './slices/budgetSlice'
 
 function App() {
 
@@ -33,8 +34,15 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const identificador = localStorage.getItem("id2");
+    
+    // Realizar el fetch de los presupuestos al iniciar la aplicación
+    dispatch(getBudgets())
+    .then((res) => {
+      console.log("res -> ",res)
+    })
 
     if (token) {
+      // Realizar el fetch de los datos del usuario al iniciar la aplicación
       dispatch(fetchUserByid(identificador))
       .then((res) => {
         console.log("App ->",res)
@@ -45,6 +53,7 @@ function App() {
 
     }
   }, [dispatch]);
+
 
   useEffect(() => {
     if (user) {

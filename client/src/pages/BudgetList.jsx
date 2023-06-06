@@ -7,31 +7,26 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const BudgetList = () => {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const presupuesto = useSelector(state => state.budgets.budgets)
-
-  console.log("Presupuesto array ->" ,presupuesto)
-  
-  const handleToggle = () => {
-    return navigate('/home/formPresupuesto')
-  }
 
   useEffect(()=>{
     dispatch(getBudgets())
     .then((res) => {
-      console.log("fFETCH BUDGET",res)
+      console.log("fFETCH BUDGET",res.payload)
     })
   },[dispatch])
+
+  const presupuesto = useSelector(state => state?.budgets?.budgets)
+
+  const handleToggle = () => {
+    return navigate('/home/formPresupuesto')
+  }
 
   const handleDelete = (id) => {
     dispatch(deleteBudget(id));
   };
 
-  useEffect(()=>{
-    console.log(presupuesto)
-  },[dispatch, presupuesto])
 
   return (
     <div className="flex w-full xl:w-[80%] min-h-screen h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
@@ -49,10 +44,14 @@ const BudgetList = () => {
           {/* aca renderizaremos los presupuestos */}
           {
             presupuesto.length > 0 ? presupuesto.map(presupuesto => {
+              const { _id, amount, category, limit } = presupuesto;
+              const porcentaje = ((amount / limit) * 100).toFixed(0);
+              const porcentajePx = (((280 / 100)) * porcentaje).toFixed(0);
+              const objeto = {id:_id, monto:amount, categoria:category, limite:limit, porcentaje:porcentaje, porcentajePx:`w-[${porcentajePx}px]` }
               return (
               <CartPresupuesto 
                 key={presupuesto.category + uuidv4()} 
-                objeto={presupuesto}
+                objeto={objeto}
                 onDelete={handleDelete}
                 />
               )
@@ -91,3 +90,4 @@ const BudgetList = () => {
 }
 
 export default BudgetList
+
