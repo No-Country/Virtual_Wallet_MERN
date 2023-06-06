@@ -2,6 +2,7 @@ const {
   create_transaction,
   delete_transaction,
   get_user_transactions,
+  get_user_account_number,
 } = require("../services/transaction_service");
 
 exports.create_one_transaction = async (req, res) => {
@@ -9,8 +10,14 @@ exports.create_one_transaction = async (req, res) => {
     const { card, concept, receiver_account, amount } = req.body;
     const user = req.user;
 
-    if (!card || !concept || !receiver_account || !amount ) return res.sendStatus(400);
+    if (!card || !concept || !receiver_account || !amount)
+      return res.sendStatus(400);
 
+    if (concept === "transferencia") {
+      const transfer = await get_user_account_number(receiver_account);
+      if (!transfer)
+        return res.status(404).json({ message: "Cuenta destino inexistente." });
+    }
     const transaction = await create_transaction({
       card,
       concept,
@@ -20,7 +27,7 @@ exports.create_one_transaction = async (req, res) => {
     });
     return res.status(200).json(transaction).end();
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     return res.sendStatus(500);
   }
 };
@@ -44,14 +51,14 @@ exports.delete_one_transaction = async (req, res) => {
   try {
     const { id } = req.params;
     const deleted_transaction = await delete_transaction({ _id: id });
-    if(!deleted_transaction) return res.status(404).json({ message: "TRANSACCION NO ENCONTRADA"})
-   
+    if (!deleted_transaction)
+      return res.status(404).json({ message: "TRANSACCION NO ENCONTRADA" });
 
     return res
       .status(200)
       .json({ message: `TRANSACCION ${deleted_transaction._id} ELIMINADA` });
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     return res.sendStatus(500);
   }
 };
