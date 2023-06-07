@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+//cuando hagas el deploy , descomenta esto y comenta el local
+// const API_URL = 'https://rest-api-wallet-no-country-production.up.railway.app/api/contact';
+
 const API_URL = 'http://localhost:5000/api/contact';
 
 

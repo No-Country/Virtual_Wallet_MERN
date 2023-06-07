@@ -81,16 +81,14 @@ function App() {
           path="/home/ingresarPresupuesto"
           element={<PresupuestoToggle />}
         />
-        {/* ruta de seccion tranferencias */}
-        <Route path="/home/transferencias" element={<Transaccion />} />
-
-        {/* */}
 
         {/* probando */}
         <Route path="/home/budgetList" element={<BudgetList />} />
         <Route path="/home/formPresupuesto" element={<BudgetForm />} />
 
         {/* otras rutas */}
+        <Route path="/home/transferencias" element={<Transaccion />} />
+
         <Route path="/cash" element={<BillPayment />}></Route>
         <Route path="/credit-card" element={<BillPayment />}></Route>
         <Route path="/currency-dollar" element={<BillPayment />}></Route>

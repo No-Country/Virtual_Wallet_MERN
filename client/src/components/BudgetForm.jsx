@@ -19,7 +19,7 @@ const BudgetForm  = () => {
   // const [cononModal, setConfirmModal] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState(null); 
-  const [isCheckboxSelect, setIsCheckboxSelect] = useState(false);
+  // const [isCheckboxSelect, setIsCheckboxSelect] = useState(false);
   const [presupuestoActualizado, setPresupuestoActualizado] = useState(0);
 
   const items = [
@@ -59,13 +59,13 @@ const BudgetForm  = () => {
   }, [dispatch]);
 
   const handleCheckboxChange = (item) => {
-    console.log(item)
+    console.log("Itemmmmm =====>",item)
     if (selectedItem === item) {
       setSelectedItem(null); // Si ya está seleccionado, deseleccionarlo
-      setIsCheckboxSelect(false);
+      // setIsCheckboxSelect(false);
     } else {
       setSelectedItem(item); // Si no está seleccionado, seleccionarlo
-      setIsCheckboxSelect(true);
+      // setIsCheckboxSelect(true);
     }
   }
 
@@ -152,21 +152,24 @@ const BudgetForm  = () => {
     <section className="card w-[300px] h-auto p-5 rounded-md bg-[#ffff] flex flex-col gap-2 "style={{ boxShadow: '9px 9px 22px #ced1d9, -9px -9px 22px #ffffff'}}>
     {
       items.map((element) => {
+        const checkboxId = `checkbox-${element.name}`;
         return (
           <div key={element.category + uuidv4()}>
             <label
-            className={`${selectedItem === element ? 'selected' : ''} w-full flex flex-row justify-start items-center flex-wrap rounded-[50px] p-1 gap-1 font-titulo font-[600] capitalize  transition-all duration-300 ease-in `}
+            htmlFor={checkboxId}
+            className={` ${selectedItem && selectedItem.name === element.name ? 'bg-hoverBotonSubmenu text-colorFuente2Submenu' : ''} w-full flex flex-row justify-start items-center flex-wrap rounded-[5px] p-1 gap-1 font-titulo font-[600] capitalize  transition-all duration-300 ease-in `}
             >
-              <span className={`w-[30px] h-[30px] flex justify-center items-center rounded-full ${element.color} text-colorFuente2Submenu text-[1.2rem] text-white transition-all duration-300 ease-in`}><ion-icon  name={element.icon}></ion-icon></span>
+              <span className={`${selectedItem && selectedItem.name === element.name ? 'bg-hoverBotonSubmenu text-colorFuente2Submenu' : `${element.color}`} w-[30px] h-[30px] flex justify-center items-center rounded-full text-colorFuente2Submenu text-[1.2rem] text-white transition-all duration-300 ease-in`}><ion-icon  name={element.icon}></ion-icon></span>
               {element.name}
 
               <input 
-              type="checkbox" 
+              type="checkbox"
+              id={checkboxId} 
               onChange={() => handleCheckboxChange(element)}
-              className="seleccionItem w-[20px] h-[20px] hidden rounded-[50%" 
-              disabled={isCheckboxSelect}
+              className="seleccionItem w-[20px] h-[20px] hidden rounded-[50%]" 
+              // disabled={isCheckboxSelect}
               // disabled={selectedItem !== null && selectedItem !== element}
-              checked={selectedItem === element}
+              checked={selectedItem && selectedItem.name === element.name}
               />
             </label>
             <div className="w-full h-[2px] bg-bgSubmenu rounded-sm opacity-40"></div> 
