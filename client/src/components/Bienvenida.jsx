@@ -17,9 +17,6 @@ const Bienvenida = () => {
       {user ? (
         <h1>
           Bienvenido {user.username} {user.surname}
-          <br></br>
-          <br></br>
-          Tu Numero de cuenta es {user.account_number}
         </h1>
       ) : (
         <h1>Bienvenido</h1>

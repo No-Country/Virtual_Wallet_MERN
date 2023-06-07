@@ -4,9 +4,6 @@ import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
 
 export const MoneyOnAccount = ({ card }) => {
-  const [transferSuccess, setTransferSuccess] = useState(false); // Nueva variable de estado
-  const [showTransferMessage, setShowTransferMessage] = useState(false);
-
   const dispatch = useDispatch();
   const [showBalance, setShowBalance] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -17,6 +14,10 @@ export const MoneyOnAccount = ({ card }) => {
   const [concept, setConcept] = useState("");
   const [amount, setAmount] = useState("");
   const [receiver_account, setReceiver_account] = useState("");
+  console.log(cardType);
+  console.log(concept);
+  console.log(receiver_account);
+  console.log(amount);
 
   const toggleBalance = () => {
     setShowBalance(!showBalance);
@@ -28,34 +29,21 @@ export const MoneyOnAccount = ({ card }) => {
   console.log(card._id);
 
   const handleTransfer = () => {
-    const transferAmount = parseFloat(amount);
+    dispatch(
+      createTransaction({
+        card: cardType,
+        concept,
+        receiver_account,
+        amount,
+        cardId: card._id,
+        token,
+      })
+    );
+    setConcept("");
+    setAmount("");
 
-    if (transferAmount <= card.balance) {
-      dispatch(
-        createTransaction({
-          card: cardType,
-          concept,
-          receiver_account,
-          amount: transferAmount,
-          cardId: card._id,
-          token,
-        })
-      );
-
-      setConcept("");
-      setAmount("");
-      setReceiver_account("");
-      togglePopup();
-      setTransferSuccess(true);
-      setShowTransferMessage(true);
-    } else {
-      console.log("Saldo insuficiente");
-    }
-  };
-  const handleTransferSuccessClose = () => {
-    setTransferSuccess(false);
-    setShowTransferMessage(false); // Ocultar el mensaje de transferencia
-    window.location.reload();
+    setReceiver_account("");
+    togglePopup();
   };
 
   return (
@@ -127,6 +115,12 @@ export const MoneyOnAccount = ({ card }) => {
           </div>
           <div className="mt-auto flex justify-end">
             <button
+              className="bg-gradient-to-r from-[#F29544] to-[#F27777] text-white mr-5  px-4 py-2  shadow-xl backdrop-blur-md rounded-lg"
+              onClick={togglePopup}
+            >
+              Ingresar Dinero
+            </button>
+            <button
               onClick={togglePopup}
               className="bg-gradient-to-r from-[#07C7F2] to-[#0D99FF] text-white  px-4 py-2  shadow-xl backdrop-blur-md rounded-lg"
             >
@@ -191,22 +185,6 @@ export const MoneyOnAccount = ({ card }) => {
                 Cancelar
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {showTransferMessage && (
-        <div className="fixed top-0 left-0 right-0 flex items-center justify-center">
-          <div className="bg-green-200 rounded-lg p-4">
-            <p className="text-xl text-green-500 font-semibold mb-2">
-              Transferencia exitosa.
-            </p>
-            <button
-              className="bg-gradient-to-r from-[#F29544] to-[#F27777] text-white px-4 py-2 shadow-xl backdrop-blur-md rounded-lg"
-              onClick={handleTransferSuccessClose}
-            >
-              Cerrar
-            </button>
           </div>
         </div>
       )}

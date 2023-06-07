@@ -48,33 +48,28 @@ export const createTransaction = createAsyncThunk(
 
       if (cardToUpdate) {
         console.log("westoy aqui");
-        // Verificar si el saldo es suficiente para realizar la transferencia
-        if (cardToUpdate.balance >= amount) {
-          // Realiza la actualización del monto de la tarjeta y envía el token en los encabezados
-          const updatedCard = {
-            ...cardToUpdate,
-            balance: cardToUpdate.balance - amount,
-          };
-          const updateCardResponse = await axios.put(
-            `http://localhost:5000/api/card/${cardToUpdate._id}`,
-            updatedCard,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          // Si la actualización fue exitosa, retorna la transacción
-          if (updateCardResponse.status === 200) {
-            console.log(updateCardResponse.data);
-
-            return transactionResponse.data;
-          } else {
-            throw new Error("Error updating card balance");
+        // Realiza la actualización del monto de la tarjeta y envía el token en los encabezados
+        const updatedCard = {
+          ...cardToUpdate,
+          balance: cardToUpdate.balance - amount,
+        };
+        const updateCardResponse = await axios.put(
+          `http://localhost:5000/api/card/${cardToUpdate._id}`,
+          updatedCard,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
+        );
+
+        // Si la actualización fue exitosa, retorna la transacción
+        if (updateCardResponse.status === 200) {
+          console.log(updateCardResponse.data);
+
+          return transactionResponse.data;
         } else {
-          throw new Error("Insufficient balance");
+          throw new Error("Error updating card balance");
         }
       } else {
         throw new Error("Card not found");
