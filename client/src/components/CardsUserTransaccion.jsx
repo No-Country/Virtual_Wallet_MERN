@@ -17,7 +17,10 @@ const CardsUserTransaccion = () => {
     return <div>Error al cargar la tarjeta: {cardError}</div>;
   }
   return (
-    <section className="w-screen h-screen flex bg-[#EAEEF7] justify-between flex-row  flex-wrap   pt-10">
+    <section
+      className="w-screen h-screen flex bg-[#EAEEF7] justify-between flex-row  flex-wrap   pt-10"
+      style={{ zIndex: 5 }}
+    >
       {cardData?.map((card) => (
         <CardTransaccion data={card} key={card.id} />
       ))}

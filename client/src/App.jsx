@@ -82,12 +82,7 @@ function App() {
           element={<PresupuestoToggle />}
         />
         {/* ruta de seccion tranferencias */}
-        <Route path="/home/transaccion" element={<Transaccion />} />
-
-        <Route
-          path="/home/transaccion/Type/Quantity/Realizada"
-          element={<Transaccion />}
-        />
+        <Route path="/home/transferencias" element={<Transaccion />} />
 
         {/* */}
 

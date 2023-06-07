@@ -28,27 +28,29 @@ export const MoneyOnAccount = ({ card }) => {
   console.log(card._id);
 
   const handleTransfer = () => {
-    dispatch(
-      createTransaction({
-        card: cardType,
-        concept,
-        receiver_account,
-        amount,
-        cardId: card._id,
-        token,
-      })
-    );
-    setConcept("");
-    setAmount("");
+    const transferAmount = parseFloat(amount);
 
-    setReceiver_account("");
-    togglePopup();
-    setTransferSuccess(true);
-    setShowTransferMessage(true);
+    if (transferAmount <= card.balance) {
+      dispatch(
+        createTransaction({
+          card: cardType,
+          concept,
+          receiver_account,
+          amount: transferAmount,
+          cardId: card._id,
+          token,
+        })
+      );
 
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 2000);
+      setConcept("");
+      setAmount("");
+      setReceiver_account("");
+      togglePopup();
+      setTransferSuccess(true);
+      setShowTransferMessage(true);
+    } else {
+      console.log("Saldo insuficiente");
+    }
   };
   const handleTransferSuccessClose = () => {
     setTransferSuccess(false);
