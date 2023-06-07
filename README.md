@@ -1,9 +1,9 @@
 ## BIENVENIDOS A:
 
 ![ScreenShot](https://res.cloudinary.com/dhd78l3go/image/upload/v1686010912/logo_pingui_yab5lp.png)
-## PENGUIN WALLET -FRONTEND- 
+## PINGUI WALLET -FRONTEND- 
 ---
-## PENGUIN WALLET -BACKEND REST API-
+## PINGUI WALLET -BACKEND REST API-
 ![ScreenShot](https://i.ibb.co/crXKm66/Screenshot-from-2023-06-07-08-41-56.png)
 
 ## Servidor
@@ -35,7 +35,7 @@ Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
 
 ## Installation
 
-PENGUIN SERVER REQUIERE [Node.js](https://nodejs.org/) v18+ PARA INICIAR.
+PINGUI SERVER REQUIERE [Node.js](https://nodejs.org/) v18+ PARA INICIAR.
 
 Instalar las dependencias y las dependencias de desarrollo antes de correr el servidor.
 
@@ -47,13 +47,13 @@ npm run dev
 
 
 ## Contenedores
-El Backend esta apto para corren en un entorno de produccion o desarrollo.
+El Backend esta apto para correr en un entorno de produccion o desarrollo.
 En caso de ultiza entorno de produccion puede correr el Deploy con docker compose.
 
 ```sh
 cd server
-generar la imagen Docker
-generar el contenedor Docker
+generar la imagen Docker: docker build...
+generar el contenedor Docker: docker run...
 ```
 ![ScreenShot](https://i.ibb.co/gVh0Qvp/Screenshot-from-2023-06-07-08-39-38.png)
 
