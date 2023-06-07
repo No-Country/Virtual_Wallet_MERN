@@ -35,19 +35,19 @@ function App() {
     
     // Realizar el fetch de los presupuestos al iniciar la aplicación
     dispatch(getBudgets())
-    .then((res) => {
-      console.log("res -> ",res)
-    })
+    // .then((res) => {
+    //   console.log("res -> ",res)
+    // })
 
     if (token) {
       // Realizar el fetch de los datos del usuario al iniciar la aplicación
       dispatch(fetchUserByid(identificador))
-      .then((res) => {
-        console.log("App ->",res)
-      })  
-      .catch((error) =>{
-        console.log("App ->",error)
-      })
+      // .then((res) => {
+      //   console.log("App ->",res)
+      // })  
+      // .catch((error) =>{
+      //   console.log("App ->",error)
+      // })
 
     }
   }, [dispatch]);

@@ -15,7 +15,7 @@ export const fetchUserByid = createAsyncThunk(
       throw new Error("Error al obtener el usuario");
     }
     const data = await response.json();
-    console.log("DATA ->->", data);
+    // console.log("DATA ->->", data);
     return data;
   }
 );
