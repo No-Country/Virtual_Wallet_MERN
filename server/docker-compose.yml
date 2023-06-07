@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  user-service:
+    container_name: user-service
+    restart: always
+    build: .
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+    networks:
+      - user-network
+    environment:
+      NODE_ENV: production
+
+  mongo:
+    container_name: mongo-db
+    image: mongo
+    ports:
+      - 27018:27018
+    logging:
+      driver: none
+    command: mongod --quiet --logpath /dev/null
+    volumes:
+      - data:/data/db
+    networks:
+      - user-network
+
+networks:
+  user-network:
+    driver: bridge
+
+volumes:
+  data:
