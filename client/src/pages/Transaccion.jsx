@@ -1,8 +1,10 @@
-
+import CardsUserTransaccion from "../components/CardsUserTransaccion";
 const Transaccion = () => {
   return (
-    <div>Transaccion</div>
-  )
-}
+    <section className="  bg-[#EAEEF7]  ">
+      <CardsUserTransaccion />
+    </section>
+  );
+};
 
-export default Transaccion
+export default Transaccion;
