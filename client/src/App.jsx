@@ -15,8 +15,6 @@ import Perfil from './pages/Perfil'
 import Denuncias from './pages/Denuncias'
 import CreditCardList from './components/CreditCardList'
 import Reclamos from './pages/Reclamos'
-import Categorias from './pages/Categorias'
-import PresupuestoToggle from './components/PresupuestoToggle'
 import Transaccion from './pages/Transaccion'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserByid, selectUser } from './slices/userSlice'
@@ -82,10 +80,7 @@ function App() {
         <Route path='/home/denuncias' element={<Denuncias />} />
         <Route path='/home/reclamos' element={<Reclamos />} />
 
-        <Route path='/home/tarjetas' element={<CreditCardList />} />
-        <Route path='/home/categorias' element={<Categorias />}/>
-        <Route path='/home/ingresarPresupuesto' element={<PresupuestoToggle />}/>
-        
+        <Route path='/home/tarjetas' element={<CreditCardList />} />        
          {/* probando */}
         <Route path='/home/budgetList' element={<BudgetList />}/>
         <Route path='/home/formPresupuesto' element={<BudgetForm />}/>
