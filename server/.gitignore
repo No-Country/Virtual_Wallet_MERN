@@ -1,8 +1,5 @@
 node_modules
 api.rest
 .env
-*.yml
-*.test
-.dockerignore
-Dockerfile
-docker-compose.yml
+vars.yml
+

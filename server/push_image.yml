@@ -1,0 +1,25 @@
+---
+- hosts: localhost 
+  become: true
+  vars:
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Creating Docker Image
+      command: docker build -t wallet-server:latest .
+
+    - name: Tagging Image
+      command: docker tag wallet-server cristianmachuca/wallet-server-image
+  
+    - name: Log in to Docker Hub
+      docker_login:
+        username: "{{ DOCKER_USERNAME }}"
+        password: "{{ DOCKER_PASSWORD }}"
+
+    - name: Push Image to Docker Hub
+      command: docker push cristianmachuca/wallet-server-image
+
+    - name: Removing Image from Local
+      command: docker rmi wallet-server cristianmachuca/wallet-server-image
+      ignore_errors: yes
+ 
