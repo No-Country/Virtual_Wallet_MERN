@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserByid, updateUser } from "../slices/userSlice";
+import TituloPagesHome from "../components/TituloPagesHome";
 
 const Perfil = () => {
   const dispatch = useDispatch();
@@ -130,8 +131,8 @@ const Perfil = () => {
       </section>
 
       {/* informacion usuario */}
-      <section className="flex sm:flex-row justify-center items-center w-full h-auto gap-2 flex-wrap box-border pt-3">
-        <h2 className="w-full h-auto text-2xl font-titulo font-[700] text-colorFuente3Submenu text-center">Informacion Personal</h2>
+      <section className="flex sm:flex-row justify-center items-center w-full h-auto gap-5 flex-wrap box-border pt-3">
+        <TituloPagesHome titulo={"informacion personal"}/>
 
         {/* username */}
         <div className="w-full md:w-[450px] lg:w-[550px] xl:max-w-[600px] flex sm:flex-row justify-center items-center h-auto gap-2 flex-wrap box-border">

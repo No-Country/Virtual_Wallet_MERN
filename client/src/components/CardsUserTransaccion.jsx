@@ -2,6 +2,7 @@ import CardTransaccion from "./CardTransaccion";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { axiosCard } from "../slices/cardFabianSlice";
+import TituloPagesHome from "./TituloPagesHome";
 const CardsUserTransaccion = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -18,9 +19,11 @@ const CardsUserTransaccion = () => {
   }
   return (
     <section
-      className="w-screen h-screen flex bg-[#EAEEF7] justify-between flex-row  flex-wrap   pt-10"
+      className="w-full h-auto flex bg-[#EAEEF7] flex-row justify-center items-center flex-wrap gap-5"
       style={{ zIndex: 5 }}
     >
+      <TituloPagesHome titulo={"transacciones"}/> 
+
       {cardData?.map((card) => (
         <CardTransaccion data={card} key={card.id} />
       ))}

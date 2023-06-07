@@ -58,12 +58,12 @@ const CardTransaccion = ({ data }) => {
 
   return (
     <>
-      <div
-        className={`flip-card ]w-[350px] h-[300px] bg-white rounded-lg border-solid overflow-hidden perspective-1000  border pt-6 px-4 m-10  `}
+      <section
+        className={`flip-card w-[390px] h-[300px] bg-white rounded-lg border-solid overflow-hidden perspective-1000  border pt-6 px-4`}
         style={{ zIndex: 0 }}
       >
         <div
-          className={`flip-card bg-transparent  w-[350px] h-[200px] rounded-lg border-solid overflow-hidden perspective-1000  `}
+          className={`flip-card bg-transparent w-full h-[200px] rounded-lg border-solid overflow-hidden perspective-1000  `}
         >
           <section
             className={`flip-card-inner w-[100%] h-[100%] transition-transform duration-500 ease-in-out `}
@@ -154,11 +154,11 @@ const CardTransaccion = ({ data }) => {
             Transferir
           </button>
         </div>
-      </div>
+      </section>
       {showPopup && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          style={{ zIndex: 9999 }} // Cambiar el valor de zIndex a uno alto, como 9999
+          style={{ zIndex: 9999 }} 
         >
           <div className="bg-white rounded-xl p-4 w-80">
             <h2 className="text-2xl font-semibold">Transferir Dinero</h2>
