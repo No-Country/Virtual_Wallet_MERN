@@ -52,25 +52,39 @@ exports.delete_one_user = async (req, res) => {
 
 exports.update_one_user = async (req, res) => {
   try {
-    const { name, surname, username, email } = req.body;
+    const { name, surname, username, email, password } = req.body;
     const { id } = req.params;
     const user = await get_user({ _id: id });
-    if (!user)
-      return res.status(400).json({ message: "USUARIO NO ENCONTRADO" });
 
-    const salt = 10;
-    const password = await bcrypt.hash(req.body.password, salt);
+
+    if (!user) {
+      return res.status(400).json({ message: "USUARIO NO ENCONTRADO" });
+    }
+
+    let updated_password;
+
+    switch (true) {
+      case password === undefined || password === "":
+        updated_password = user.password;
+        break;
+      default:
+        const salt = 10;
+        updated_password = await bcrypt.hash(password, salt);
+        break;
+    }
+
     const updated_user = await update_user(
       {
         _id: id,
       },
-      { name, surname, username, email, password }
+      { name, surname, username, email, password: updated_password }
     );
 
-    return res
-      .status(200)
-      .json({ message: `USUARIO ${updated_user.name} ACTUALIZADO` });
+    const updatedUserName = updated_user.name.toUpperCase();
+
+    return res.status(200).json({ message: `USUARIO ${updatedUserName} ACTUALIZADO` });
   } catch (err) {
     return res.sendStatus(500);
   }
 };
+
