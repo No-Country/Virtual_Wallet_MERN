@@ -33,6 +33,15 @@ Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
 - Github Actions
 - Railway.app
 
+## Testing
+Se realizaron un conjunto de pruebas manuales funcionales a la plataforma de PinguiWallet. Entre las herramientas usadas están:
+  - API Postman.
+  - Jira.
+  - Selenium IDE.
+  - Browser Stack (Mobile testing).
+
+Link de cargas de pruebas: https://drive.google.com/drive/folders/1suF_9jD0geLas8YVIVp9dOUOGKRueBUw?usp=sharing
+
 ## Installation
 
 PINGUI SERVER REQUIERE [Node.js](https://nodejs.org/) v18+ PARA INICIAR.
