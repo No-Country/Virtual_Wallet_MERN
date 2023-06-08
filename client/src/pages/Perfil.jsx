@@ -2,70 +2,105 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserByid, updateUser } from "../slices/userSlice";
 import TituloPagesHome from "../components/TituloPagesHome";
+import { logout } from "../slices/authSlice";
 
 const Perfil = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const updated = useSelector((state) => state?.user?.update)
+
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [editUsername, setEditUsername] = useState(false);
+  const [editEmail, setEditEmail] = useState(false);
+  const [editName, setEditName] = useState(false);
+  const [editSurname, setEditSurname] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
+
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const user = useSelector((state) => state?.user?.user);
 
   useEffect(() => {
     dispatch(fetchUserByid(localStorage.getItem("id2")))
     .then((response)=> {
-    console.log("Perfil -> ",response)
-    setUsername(response.payload.username  || ''),
-    setEmail(response.payload.email  || ''),
-    setName(response.payload.name   || ''),
-    setSurname(response.payload.surname  || '')
+    console.log("Perfil RESPONSE -> ",response)
+    const {username, email, name, surname} = response.payload;
+    setUsername(username || ''),
+    setEmail(email || ''),
+    setName(name || ''),
+    setSurname(surname || '')
+    setPassword('')
+
     })
     .catch((error)=> {
       console.log("Error -> ",error)
     })
   },[dispatch, token, updated])
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-
-  const [editUsername, setEditUsername] = useState(false);
-  const [editEmail, setEditEmail] = useState(false);
-  const [editName, setEditName] = useState(false);
-  const [editSurname, setEditSurname] = useState(false);
-
-  const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
-
   const handleUpdateUser = () => {
-    const data = {
-      username,
-      email,
-      name,
-      surname,
-    };
+    const data = {};
+
+    if (editPassword && password !== '') {
+      data.password = password;
+    } else {
+      data.name = name;
+      data.email = email;
+      data.username = username;
+      data.surname = surname;
+      data.password = '';
+    }
+    
     // reset errores
     setErrors({});
 
     // validaciones
     const validationErrors = {};
 
-    if (!username) {
-      validationErrors.username = "El usuario no puede estar vacio"
-    }
-    if (!email) {
-      validationErrors.email = "El email no puede estar vacio"
-    }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-      validationErrors.email = "El email no es valido"
-    }
-    if (!name) {
-      validationErrors.name = "El nombre no puede estar vacio"
-    } else if (!/^[a-zA-Z\s]+$/.test(name)){
-      validationErrors.name = "El nombre solo puede contener letras"
-    }
-    if (!surname) {
-      validationErrors.surname = "El apellido no puede estar vacio"
-    }else if (!/^[a-zA-Z\s]+$/.test(surname)){
-      validationErrors.surname = "El apellido solo puede contener letras"
+    
+    if (editPassword && password){
+      if (password.length < 8) {
+        validationErrors.password =
+          "El password no puede ser inferior a 8 caracteres";
+      } else if (!/(?=.*[!@#$%^&*()\-_=+{};:,<.>])/.test(password)) {
+        validationErrors.password =
+          "La contraseña debe tener al menos un caracter especial";
+      } else if (!/(?=.*[a-z])/.test(password)) {
+        validationErrors.password =
+          "La contraseña debe tener al menos una letra minúscula";
+      } else if (!/(?=.*[A-Z])/.test(password)) {
+        validationErrors.password =
+          "La contraseña debe tener al menos una letra mayúscula";
+      } else if (!/(?=.*\d)/.test(password)) {
+        validationErrors.password = "La contraseña debe tener al menos un número";
+      }
+    } else {
+
+      if (!username) {
+        validationErrors.username = "El usuario no puede estar vacio"
+      }
+      if (!email) {
+        validationErrors.email = "El email no puede estar vacio"
+      }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+        validationErrors.email = "El email no es valido"
+      }
+      if (!name) {
+        validationErrors.name = "El nombre no puede estar vacio"
+      } else if (!/^[a-zA-Z\s]+$/.test(name)){
+        validationErrors.name = "El nombre solo puede contener letras"
+      }
+      if (!surname) {
+        validationErrors.surname = "El apellido no puede estar vacio"
+      }else if (!/^[a-zA-Z\s]+$/.test(surname)){
+        validationErrors.surname = "El apellido solo puede contener letras"
+      }
     }
 
     // veridicamos si hay errores
@@ -77,18 +112,22 @@ const Perfil = () => {
       setErrors({});
       // console.log("id del ususario ->",user?._id)
       // actualizamos usuario
+      console.log("Data SUBIR-> ", data)
       dispatch(updateUser({ userId: localStorage.getItem("id2"), data })) 
       .then((res) => {
-        // console.log("Respuesta -> ",res)
+        console.log("Respuesta -> ",res)
         // console.log("Respuesta2 -> ",res.payload.message)
       
         setSuccessMessage(res.payload.message); // Establecer el mensaje de éxito
-  
+        if (editPassword && password) {
+          dispatch(logout())
+        }
         // Cambiar los estados editUsername, editEmail, editName y editSurname a false
         setEditUsername(false);
         setEditEmail(false);
         setEditName(false);
         setEditSurname(false);
+        setEditPassword(false);
       })
       .catch((error) => {
         // Manejar cualquier error de actualización aquí
@@ -102,11 +141,13 @@ const Perfil = () => {
     setEmail(user.email);
     setName(user.name);
     setSurname(user.surname);
+    setPassword('');
 
     setEditUsername(false);
     setEditEmail(false);
     setEditName(false);
     setEditSurname(false);
+    setPassword('')
     // dispatch(clearUser());
 
     // Limpiar los errores de validación y el mensaje de éxito al limpiar el usuario
@@ -223,6 +264,36 @@ const Perfil = () => {
             </div>
             <span className="subrrayado w-full h-[3px] bg-hoverBotonSubmenu rounded-md"></span>
             <button className="edit absolute p-1 text-colorFuente1Submenu hover:text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out flex justify-center items-center rounded-md top-0 right-0 w-[25px] h-[25px] sm:w-[25px] sm:h-[25px] text-lg" onClick={() => setEditEmail(!editEmail)}>
+              <ion-icon name="create"></ion-icon>          
+            </button>
+          </section>
+
+            {/* password */}
+          <section className="relative flex w-[90%] sm:w-[200px] lg:w-[250px] xl:w-[300px] flex-col items-start justify-center p-3 rounded-md">
+            <div className="flex flex-col items-start justify-center gap-2 sm:gap-2 w-full p-0 overflow-hidden"> 
+              <p className="cabecera font-titulo font-[600]">Password</p>
+              {
+                editPassword ? (
+                  <>
+                  <input 
+                  type={showPassword ? "text" : "password"}
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  className="contenido font-parrafo w-full bg-colorFuente1Submenu rounded-md p-1 border-none outline-none text-colorFuente2Submenu mb-1 relative"></input>
+
+                  <span className="cursor-pointer bg-fondo rounded-[4px] p-[1px] absolute right-[13px] bottom-[4px] text-[1.2rem] transform -translate-y-1/2"
+                  onClick={() => setShowPassword(!showPassword)} >
+                  {showPassword ? "🙈" : "🙊"}
+                  </span>
+                  </>                
+                ) 
+                : (
+                <p className="contenido font-parrafo w-full p-2">*****</p>
+              )}
+              {errors.password && <p className="text-red-500 font-parrafo">{errors.password}</p>}
+            </div>
+            <span className="subrrayado w-full h-[3px] bg-hoverBotonSubmenu rounded-md"></span>
+            <button className="edit absolute p-1 text-colorFuente1Submenu hover:text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out flex justify-center items-center rounded-md top-0 right-0 w-[25px] h-[25px] sm:w-[25px] sm:h-[25px] text-lg" onClick={() => setEditPassword(!editPassword)}>
               <ion-icon name="create"></ion-icon>          
             </button>
           </section>

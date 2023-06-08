@@ -24,7 +24,7 @@ const BudgetForm  = () => {
 
   const items = [
     { name: "entretenimiento", icon: "game-controller-outline", color: "bg-purple-500"},
-    { name: "restauurante", icon:"restaurant-outline", color: "bg-yellow-500" },
+    { name: "restaurant", icon:"restaurant-outline", color: "bg-yellow-500" },
     { name : "ropa", icon:"shirt-outline", color:"bg-green-400" },
     { name:"seguro" , icon:"shield-checkmark-outline", color:"bg-blue-500"},
     { name:"mascota", icon:"paw-outline", color:"bg-[#8b4513]" },

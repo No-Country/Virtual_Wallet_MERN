@@ -20,6 +20,19 @@ export const fetchUserByid = createAsyncThunk(
   }
 );
 
+export const getAllUsers = createAsyncThunk(
+  "user/getAllUsers",
+  async () => {
+    const response = await fetch(`${API_URL}/get-all`);
+    if (!response.ok) {
+      throw new Error("Error al obtener el usuario");
+    }
+    const data = await response.json();
+    // console.log("DATA ->->", data);
+    return data;
+  }
+);
+
 //accion asincronica para actualizar un usuario
 export const updateUser = createAsyncThunk(
   "user/updateUser",
@@ -117,6 +130,18 @@ const userSlice = createSlice({
         // Realizar acciones adicionales si es necesario
       })
       .addCase(deleteUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getAllUsers.pending, (state) => {  // Cambia el caso aquí
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {  // Cambia el caso aquí
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {  // Cambia el caso aquí
         state.loading = false;
         state.error = action.error.message;
       });

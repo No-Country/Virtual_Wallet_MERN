@@ -6,13 +6,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Definir la URL base para las llamadas a la API
 const API_URL = 'http://localhost:5000/api/transaction';
+const token = localStorage.getItem("token")
 
 // Acción asíncrona para crear una transacción
 export const createTransaction = createAsyncThunk(
   'transaction/createTransaction',
-  async (transactionData, { getState }) => {
+  async (transactionData) => {
     try {
-      const { token } = getState().auth.user;
       const response = await fetch(`${API_URL}/create-transaction`, {
         method: 'POST',
         headers: {
@@ -35,21 +35,22 @@ export const createTransaction = createAsyncThunk(
 // Acción asíncrona para obtener todas las transacciones del usuario
 export const getTransactions = createAsyncThunk(
   'transaction/getTransactions',
-  async (_, { getState }) => {
+  async (token, thunkAPI) => {
     try {
-      const { token } = getState().auth.user;
       const response = await fetch(`${API_URL}/get-transactions`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message);
-      }
-      return data.filtered_transactions;
+        const errorMessage = await response.text();
+        return thunkAPI.rejectWithValue(errorMessage);
+        }
+
+      const data = await response.json();
+      return data;
     } catch (error) {
-      throw new Error(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -57,9 +58,8 @@ export const getTransactions = createAsyncThunk(
 // Acción asíncrona para eliminar una transacción por su ID
 export const deleteTransaction = createAsyncThunk(
   'transaction/deleteTransaction',
-  async (transactionId, { getState }) => {
+  async (transactionId) => {
     try {
-      const { token } = getState().auth.user;
       const response = await fetch(`${API_URL}/delete-transaction/${transactionId}`, {
         method: 'DELETE',
         headers: {
@@ -81,7 +81,7 @@ export const deleteTransaction = createAsyncThunk(
 const guilleTransferSlice = createSlice({
   name: 'transaction',
   initialState: {
-    transactions: [],
+    guilleTransaction: [],
     loading: false,
     error: null,
   },
@@ -144,7 +144,6 @@ const guilleTransferSlice = createSlice({
 
 // Exportar acciones y selector
 export const { actions: transactionActions, reducer: transactionReducer } = guilleTransferSlice;
-export const selectTransactions = (state) => state.transaction.transaction;
+export const selectTransactions = (state) => state.guilleTransaction.transaction;
 export const { clearTransactions } = guilleTransferSlice.actions;
 export default guilleTransferSlice.reducer;
-
