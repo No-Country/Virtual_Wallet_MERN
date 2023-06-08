@@ -2,7 +2,7 @@
 const CardSaldo = ({objeto}) => {
   return (
     <div>
-        <div className="card w-[300px] sm:w-[320px] bg-white shadow-md rounded-[4px] p-4">
+        <div className="card w-[300px] sm:w-[320px] bg-white shadow-md rounded-[4px] p-4 border border-1">
         <div className="title flex items-center">
           <span className="w-[30px] h-[30px] title-icon bg-colorFuente1Submenu rounded-full flex justify-center items-center text-[1.3rem] text-white">
             <ion-icon name="checkmark"></ion-icon>          
