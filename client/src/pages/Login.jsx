@@ -25,14 +25,6 @@ export const Login = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setEmailError("Please enter a valid email address");
-    } else {
-      setEmailError("");
-    }
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -104,7 +96,7 @@ export const Login = () => {
           }
         })
         .catch((error) => {
-          console.log("Error al iniciar sesión:", error);
+          console.log("Error :", error);
         })
         .finally(() => {
           setTimeout(() => {

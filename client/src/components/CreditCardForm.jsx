@@ -196,7 +196,7 @@ const CreditCardForm = () => {
   };
 
   return (
-    <section className="statucmain w-full xl:w-[80%] min-h-screen h-auto bg-fondo overflow-hidden flex flex-col justify-start items-center gap-3">
+    <section className="statucmain w-full xl:w-[80%] min-h-[70vh] h-auto bg-fondo overflow-hidden flex flex-col justify-start items-center gap-3">
     <TitulosPages titulo={"ingresa tu tarjeta"}/>
 
     {cononModal ? (<p className="w-full h-auto p-2 text-center bg-hoverBotonSubmenu text-green-500 font-parrafo font-[500]">{successMessage}</p>) : null }

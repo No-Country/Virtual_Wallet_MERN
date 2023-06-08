@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserByid, updateUser } from "../slices/userSlice";
 import TituloPagesHome from "../components/TituloPagesHome";
-import { logout } from "../slices/authSlice";
+// import { logout } from "../slices/authSlice";
+// import { useNavigate } from "react-router-dom";
 
 const Perfil = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-  const updated = useSelector((state) => state?.user?.update)
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -23,13 +23,15 @@ const Perfil = () => {
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
-
   const [showPassword, setShowPassword] = useState(false);
 
   const user = useSelector((state) => state?.user?.user);
+  const update = useSelector((state) => state?.user?.updated);
+  const UserId = localStorage.getItem("id2");
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchUserByid(localStorage.getItem("id2")))
+    dispatch(fetchUserByid(UserId))
     .then((response)=> {
     console.log("Perfil RESPONSE -> ",response)
     const {username, email, name, surname} = response.payload;
@@ -38,12 +40,11 @@ const Perfil = () => {
     setName(name || ''),
     setSurname(surname || '')
     setPassword('')
-
     })
     .catch((error)=> {
       console.log("Error -> ",error)
     })
-  },[dispatch, token, updated])
+  },[dispatch, token, update])
 
   const handleUpdateUser = () => {
     const data = {};
@@ -117,17 +118,20 @@ const Perfil = () => {
       .then((res) => {
         console.log("Respuesta -> ",res)
         // console.log("Respuesta2 -> ",res.payload.message)
-      
+
         setSuccessMessage(res.payload.message); // Establecer el mensaje de éxito
-        if (editPassword && password) {
-          dispatch(logout())
-        }
+      
         // Cambiar los estados editUsername, editEmail, editName y editSurname a false
         setEditUsername(false);
         setEditEmail(false);
         setEditName(false);
         setEditSurname(false);
         setEditPassword(false);
+
+        // if (editPassword && password !== ''){
+        //   dispatch(logout())
+        //   return navigate('/')       
+        // }
       })
       .catch((error) => {
         // Manejar cualquier error de actualización aquí
@@ -160,7 +164,7 @@ const Perfil = () => {
   // },[user])
 
   return (
-    <div className="flex w-full xl:w-[80%] min-h-screen flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] min-h-[90vh] flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-4 sm:p-6 gap-4 sm:gap-6">
 
       {/* imagen perfil */}
       <section className="w-[80px] sm:w-[200px] h-auto flex flex-col gap-2 items-center justify-center p-3">

@@ -18,7 +18,7 @@ const CreditCardList = () => {
   console.log(cards);
 
   return (
-    <div className="flex w-full xl:w-[80%] min-h-screen flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-0 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] min-h-[70vh] flex-col items-center justify-start sm:flex-row sm:items-start sm:justify-start bg-fondo h-auto p-0 sm:p-6 gap-4 sm:gap-6">
       {/* informacion usuario */}
       <section className="flex sm:flex-row justify-center items-center w-full h-auto gap-5 flex-wrap box-border pt-3">
         <TituloPagesHome titulo={"informacion personal"}/>

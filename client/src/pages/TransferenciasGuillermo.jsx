@@ -10,7 +10,7 @@ const TransferenciasGuillermo = () => {
   const token = localStorage.getItem("token");
 
   const user = useSelector((state) => state?.user?.user);
-  const IdUSer = localStorage.getItem("id2")
+  const updated = useSelector((state) => state?.user?.updated); 
   
   const [ListOfCards, setListOfCards] = useState([]);
   const [listUsers, setListUsers] = useState([]);
@@ -30,7 +30,7 @@ const TransferenciasGuillermo = () => {
     .catch((error)=> {
       console.log("Error -> ",error)
     })
-  },[dispatch, token])
+  },[dispatch, token, updated])
 
   // hacemos el fetch de las tarjetas
   useEffect(() => {
@@ -56,14 +56,16 @@ const TransferenciasGuillermo = () => {
     setAmount(event.target.value);
   };
 
+  
+
   const handleTransfer = () => {
     if (selectedCard && receiverAccount && amount) {
       const transactionData = {
-        card: "vias", //esta no es la car es mas vien un select visa amex, etc
+        card: "amex", //esta no es la car es mas vien un select visa amex, etc
         concept: 'transferencia',
         receiver_account: receiverAccount,
-        amount: parseInt(amount),
-        user: IdUSer,
+        amount: Number(amount),
+        user: user,
       };
 
       dispatch(createTransaction(transactionData))

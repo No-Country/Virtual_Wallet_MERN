@@ -31,7 +31,7 @@ const BudgetList = () => {
 
 
   return (
-    <div className="flex w-full xl:w-[80%] min-h-screen h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] min-h-[90vh] h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
 
       <section className="flex sm:flex-row justify-between  items-center w-full h-auto gap-2 flex-nowrap box-border">
 

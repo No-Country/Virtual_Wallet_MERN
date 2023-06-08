@@ -70,7 +70,9 @@ export const deleteUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    users: [],
     user: null,
+    updatedUser: null,
     loading: false,
     error: null,
     deleted: false,
@@ -79,7 +81,9 @@ const userSlice = createSlice({
   reducers: {
     // Acción para limpiar el estado del usuario
     clearUser(state) {
+      state.users = [];
       state.user = null;
+      state.updateUser = null;
       state.loading = false;
       state.error = null;
       state.deleted = false;
@@ -114,7 +118,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.updated = true;
         // Actualizar los datos del usuario si es necesario
-        state.user = action.payload;
+        state.updatedUser = action.payload;
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
@@ -139,7 +143,7 @@ const userSlice = createSlice({
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {  // Cambia el caso aquí
         state.loading = false;
-        state.user = action.payload;
+        state.users = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action) => {  // Cambia el caso aquí
         state.loading = false;
