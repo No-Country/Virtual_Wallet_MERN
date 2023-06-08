@@ -31,7 +31,7 @@ const Categorias = () => {
   }, [dispatch, presupuesto]);
 
   return (
-    <div className="flex w-full xl:w-[80%] min-h-screen h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] min-h-[70vh] h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
       <section className="flex sm:flex-row justify-between  items-center w-full h-auto gap-2 flex-nowrap box-border">
         <h2 className="w-auto h-auto text-2xl font-titulo font-[700] text-[#0B0B0B] text-center">
           Informacion Personal

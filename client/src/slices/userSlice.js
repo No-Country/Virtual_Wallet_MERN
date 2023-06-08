@@ -20,6 +20,19 @@ export const fetchUserByid = createAsyncThunk(
   }
 );
 
+export const getAllUsers = createAsyncThunk(
+  "user/getAllUsers",
+  async () => {
+    const response = await fetch(`${API_URL}/get-all`);
+    if (!response.ok) {
+      throw new Error("Error al obtener el usuario");
+    }
+    const data = await response.json();
+    // console.log("DATA ->->", data);
+    return data;
+  }
+);
+
 //accion asincronica para actualizar un usuario
 export const updateUser = createAsyncThunk(
   "user/updateUser",
@@ -57,7 +70,9 @@ export const deleteUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    users: [],
     user: null,
+    updatedUser: null,
     loading: false,
     error: null,
     deleted: false,
@@ -66,7 +81,9 @@ const userSlice = createSlice({
   reducers: {
     // Acción para limpiar el estado del usuario
     clearUser(state) {
+      state.users = [];
       state.user = null;
+      state.updateUser = null;
       state.loading = false;
       state.error = null;
       state.deleted = false;
@@ -101,7 +118,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.updated = true;
         // Actualizar los datos del usuario si es necesario
-        state.user = action.payload;
+        state.updatedUser = action.payload;
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
@@ -117,6 +134,18 @@ const userSlice = createSlice({
         // Realizar acciones adicionales si es necesario
       })
       .addCase(deleteUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getAllUsers.pending, (state) => {  // Cambia el caso aquí
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {  // Cambia el caso aquí
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {  // Cambia el caso aquí
         state.loading = false;
         state.error = action.error.message;
       });

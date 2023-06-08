@@ -10,14 +10,16 @@ const BudgetList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const presupuesto = useSelector(state => state?.budgets?.budgets)
+  const token = useSelector(state => state?.auth?.token)
+
   useEffect(()=>{
-    dispatch(getBudgets())
+    dispatch(getBudgets(token))
     .then((res) => {
       console.log("fFETCH BUDGET",res.payload)
     })
-  },[dispatch])
+  },[dispatch,token])
 
-  const presupuesto = useSelector(state => state?.budgets?.budgets)
 
   const handleToggle = () => {
     return navigate('/home/formPresupuesto')
@@ -29,11 +31,11 @@ const BudgetList = () => {
 
 
   return (
-    <div className="flex w-full xl:w-[80%] min-h-screen h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
+    <div className="flex w-full xl:w-[80%] min-h-[90vh] h-auto flex-col items-center justify-start bg-fondo p-4 sm:p-6 gap-4 sm:gap-6">
 
       <section className="flex sm:flex-row justify-between  items-center w-full h-auto gap-2 flex-nowrap box-border">
 
-        <h2 className="w-auto h-auto text-2xl font-titulo font-[700] text-[#0B0B0B] text-center">Informacion Personal</h2>
+        <h2 className="w-auto h-auto text-2xl font-titulo font-[700] text-[#0B0B0B] text-center">Presupuesto General</h2>
 
         <div className='botones w-auto h-auto flex flex-col flex-nowrap justify-start items-center p-1 gap-1'> 
           <button onClick={handleToggle} className="w-auto h-auto bg-bgSubmenu rounded-md text-colorFuente2Submenu hover:bg-hoverBotonSubmenu transition-all duration-300 ease-in-out p-2 text-[.9rem] font-[600] capitalize" >agregar presupuesto</button>

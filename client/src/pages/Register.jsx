@@ -126,7 +126,7 @@ const Register = () => {
         resetStates()
       })
       .catch((error) => {
-        console.log('Error al iniciar sesión:', error)
+        console.log('Error al registrarse:', error)
       })
       .finally(() => {
         setTimeout(()=>{
@@ -226,7 +226,7 @@ const Register = () => {
           <button
             type="submit"
             className="font-titulo font-[500] cursor-pointer w-[150px] bg-hoverBotonSubmenu text-fondo hover:bg-bgSubmenu text-center p-2 py-1 rounded transition-colors duration-300">
-            Iniciar Sesión
+              Registrarse
           </button>
         </div>
       </form>

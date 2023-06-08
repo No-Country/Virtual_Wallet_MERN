@@ -2,18 +2,19 @@
 const CartPresupuesto = ({ objeto, onDelete }) => {
 const categorias = [
     { name: "entretenimiento", icon: "game-controller-outline", color: "bg-purple-500"},
-    { name: "restauurante", icon:"restaurant-outline", color: "bg-yellow-500" },
+    { name: "restaurant", icon:"restaurant-outline", color: "bg-yellow-500" },
     { name : "ropa", icon:"shirt-outline", color:"bg-green-400" },
     { name:"seguro" , icon:"shield-checkmark-outline", color:"bg-blue-500"},
     { name:"mascota", icon:"paw-outline", color:"bg-[#8b4513]" },
   ];
 
 
-    let iconoG, colorG = '';
+    let iconoG, colorG, nombreG = '';
     const categoriaEncontrada = categorias.find(categoria => categoria.name === objeto.categoria);
     if(categoriaEncontrada){
       iconoG = categoriaEncontrada.icon;
       colorG = categoriaEncontrada.color;
+      nombreG = categoriaEncontrada.name;
     }
 
 
@@ -32,7 +33,7 @@ const categorias = [
           <ion-icon name={iconoG}></ion-icon>            
           </div> 
           <p className='font-titulo font-[500] text-bgSubmenu w-auto'>
-            {objeto.nombre}
+            {nombreG}
           </p>
         </div>
         <div className='porcentajes w-[40%] h-auto flex flex-row flex-nowrap justify-start items-center p-1 gap-1'>
