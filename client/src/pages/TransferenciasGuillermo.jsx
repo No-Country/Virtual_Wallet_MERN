@@ -10,7 +10,6 @@ const TransferenciasGuillermo = () => {
   const token = localStorage.getItem("token");
 
   const user = useSelector((state) => state?.user?.user);
-  const updated = useSelector((state) => state?.user?.updated); 
   
   const [ListOfCards, setListOfCards] = useState([]);
   const [listUsers, setListUsers] = useState([]);
@@ -30,7 +29,7 @@ const TransferenciasGuillermo = () => {
     .catch((error)=> {
       console.log("Error -> ",error)
     })
-  },[dispatch, token, updated])
+  },[dispatch, token])
 
   // hacemos el fetch de las tarjetas
   useEffect(() => {
