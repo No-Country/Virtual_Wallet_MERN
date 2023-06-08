@@ -5,6 +5,8 @@ const {
   update_user,
 } = require("../services/user_service");
 
+const bcrypt = require("bcrypt");
+
 exports.get_all_users = async (req, res) => {
   try {
     const users = await get_users();
@@ -56,11 +58,13 @@ exports.update_one_user = async (req, res) => {
     if (!user)
       return res.status(400).json({ message: "USUARIO NO ENCONTRADO" });
 
+    const salt = 10;
+    const password = await bcrypt.hash(req.body.password, salt);
     const updated_user = await update_user(
       {
         _id: id,
       },
-      { name, surname, username, email }
+      { name, surname, username, email, password }
     );
 
     return res
