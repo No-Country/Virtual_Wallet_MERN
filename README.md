@@ -76,7 +76,7 @@
 
 ## 😘 Demo
  <!--aca coloca el deploy  -->
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3dd62868-fa71-49f6-84b8-c4bd430ddcf2/deploy-status)](https://app.netlify.com/sites/dainty-baklava-6120c7/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3dd62868-fa71-49f6-84b8-c4bd430ddcf2/deploy-status)](https://app.netlify.com/sites/pinguiwallet/deploys)
 
 </br>
 
