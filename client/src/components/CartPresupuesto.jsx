@@ -44,7 +44,7 @@ const categorias = [
         </div>
       </div>
       <div className='barraProgreso w-[280px] h-[10px] bg-fondo rounded-[10px] relative'>
-        <div className={`progreso h-[10px] ${colorG} rounded-[10px] ${objeto.porcentajePx} transition-all duration-300`}></div>
+        <div className={`progreso h-[10px] ${colorG} rounded-[10px] transition-all duration-300`} style={{ width: objeto.porcentajeStyle.width }}></div>
       </div>
       <button
       onClick={handleDelete} 

@@ -48,8 +48,13 @@ const BudgetList = () => {
             presupuesto.length > 0 ? presupuesto.map(presupuesto => {
               const { _id, amount, category, limit } = presupuesto;
               const porcentaje = ((amount / limit) * 100).toFixed(0);
-              const porcentajePx = (((280 / 100)) * porcentaje).toFixed(0);
-              const objeto = {id:_id, monto:amount, categoria:category, limite:limit, porcentaje:porcentaje, porcentajePx:`w-[${porcentajePx}px]` }
+              // const porcentajePx = (((280 / 100)) * porcentaje).toFixed(0);
+              
+              const porcentajeStyle = {
+                width: `${porcentaje}%`,
+              };
+              const objeto = {id:_id, monto:amount, categoria:category, limite:limit, 
+              porcentaje:porcentaje, porcentajeStyle: porcentajeStyle }
               return (
               <CartPresupuesto 
                 key={presupuesto.category + uuidv4()} 
