@@ -121,7 +121,31 @@
 | **Yesid** |
 | <a href="https://github.com/linaresy"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/linaresy/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
----
+</br>
+
+***
+
+</br>
+
+## PINGUI WALLET - UI/UX -
+
+</br>
+
+<a href="https://www.figma.com/file/yXl6Fu70MWBRlmsc6LskMU/PROYECTO-BILLETERA-VIRTUAL?type=design&node-id=85-161&t=y50DCyrvWMXy5fV2-0"><img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/></a> <a href="LINK A TU CLOUDINARY"><img src="https://img.shields.io/badge/Cloudinary-%231563FF.svg?&style=for-the-badge&logo=google-cloud&logoColor=white"/></a> 
+
+### 🎨 Arquitectura
+![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686285587/wallet/PROYECTO_BILLETERA_VIRTUAL_1_wfyrk5.svg "dieño arquitectura")
+
+### 🎨 User Story
+![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686285587/wallet/PROYECTO_BILLETERA_VIRTUAL_sz5yo9.svg "user story")
+
+### <a href="https://www.figma.com/file/4b5wGH4naRF0EoVPpavEt5/Encontrar-pets?node-id=342%3A8385"><img height="18px" src="https://img.icons8.com/color/344/figma--v1.png"/> Mockup</a>
+
+
+</br>
+
+***
+
 ## PINGUI WALLET -BACKEND REST API-
 ![ScreenShot](https://i.ibb.co/crXKm66/Screenshot-from-2023-06-07-08-41-56.png)
 
