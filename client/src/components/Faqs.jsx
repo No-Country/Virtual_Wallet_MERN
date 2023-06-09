@@ -50,11 +50,8 @@ export default function Faqs() {
   }
 
   return (
-    <section className="px-40 pb-20 bg-fondo -mt-10">
-      <h2 className="my-10 text-center font-bold text-secundario text-2xl">
-        ¿Qué más debo saber?
-      </h2>
-      <Accordion
+    <section id="faq-section" className="w-full sm:w-[90%] md:w-[90%] lg:w-[90%] xl:w-[80%] mx-auto pb-20 bg-fondo">
+      <Accordion 
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
       >

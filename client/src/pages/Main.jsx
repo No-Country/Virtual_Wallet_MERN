@@ -16,7 +16,9 @@ export const Main = () => {
           <GenericTitle title="Te simplificamos el trabajo" />
           <ItemCardList />
           <SecuritySectionBanner />
+          <GenericTitle title="Controla tus ahorros y ahorra más con PingüiWallet" />
           <SavingBanner />
+          <GenericTitle title="¿Que mas debo saber?" />
           <Faqs />
         </div>
       </main>
