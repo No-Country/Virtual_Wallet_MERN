@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
+import { Link as ScrollLink } from 'react-scroll';
 import logo from '../img/logo.png'
 import logoName from '../img/logo-nombre.png'
 import { useState } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  
+
   
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -21,13 +24,18 @@ const Navbar = () => {
           </Link>
           <ul className={`flex md:justify-end md:items-center md:w-[500px] md:h-full md:pr-2 gap-4 font-titulo font-[500] ${
             isOpen ? 'absolute top-[120px] left-0 w-full h-[200px] flex flex-col justify-center items-center p-3 md:flex md:flex-row md:p-0 md:left-auto md:right-0' : 'hidden'}  md:flex md:top-0 bg-fondo transition-all duration-300 ease-in-out z-20`}>
-            <Link to="#" className="liNavBar">
+            <ScrollLink 
+              to="faq-section"
+              spy={true}
+              smooth={true}
+              duration={1000}
+              className="liNavBar">
               ¿Qué es{' '}
               <i className="font-semibold text-principal hover:text-secundario">
                 PingüiWallet
               </i>
               ?
-            </Link>
+            </ScrollLink>
             <Link to="/contacto" className="liNavBar hover:text-secundario">
               Contacto
             </Link>
