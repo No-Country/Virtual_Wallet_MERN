@@ -103,10 +103,10 @@
 </br>
 
 ## 🛠️💾 Integrante del Backend
-| <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg" width=60>|
+| <img src="https://github.com/cristian1534" width=60>|
 |:-:|
 | **Cristian** |
-| <a href="https://github.com/cristian1534"><img src="https://i.ibb.co/8YzGRY1/Cristian-Machuca.jpghttps://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/cristian-machuca-dev/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://github.com/cristian1534"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/cristian-machuca-dev/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 
 ## 🎨🌈 Integrante de UX/UI
