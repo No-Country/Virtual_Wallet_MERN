@@ -111,7 +111,7 @@
 
 
 ## 🎨🌈 Integrante de UX/UI
-| <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg" width=60>|
+| <img src="https://res.cloudinary.com/dhd78l3go/image/upload/v1686339239/jer_mt6wfd.png" width=60>|
 |:-:|
 | **Jerson** |
 | <a href="tu guthub"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Tu linkedin"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
