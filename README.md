@@ -114,7 +114,7 @@
 | <img src="https://res.cloudinary.com/dhd78l3go/image/upload/v1686339239/jer_mt6wfd.png" width=60>|
 |:-:|
 | **Jerson** |
-| <a href="tu guthub"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Tu linkedin"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="tu guthub"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/jerson-aranda-8b0114251/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 ## 🧪🔎, Integrante Tester
 | <img src="https://www.dropbox.com/scl/fi/ve3z80p0ma7700045e2vt/Yesid_Linares.png?dl=0&rlkey=5kjngb2kjbsgu5sd5u4jdwil0" width=60>|
