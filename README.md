@@ -106,7 +106,7 @@
 | <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg" width=60>|
 |:-:|
 | **Cristian** |
-| <a href="tu guthub"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Tu linkedin"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://github.com/cristian1534"><img src="https://i.ibb.co/8YzGRY1/Cristian-Machuca.jpghttps://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/cristian-machuca-dev/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 
 ## 🎨🌈 Integrante de UX/UI
@@ -149,7 +149,7 @@
 ## PINGUI WALLET -BACKEND REST API-
 ![ScreenShot](https://i.ibb.co/crXKm66/Screenshot-from-2023-06-07-08-41-56.png)
 
-## Servidor
+## 🚀 Servidor
 
 Esta REST API consta de varios modelos y sus controladores para llevar a cabo la funcionalidad de 
 la Wallet abasteciendo en el servicio al Frontend, persistiendo los datos en un cluster de MongoDB.
@@ -160,7 +160,7 @@ Manteniendo la seguridad mediante JWT para los accesos de usuarios a sus operaci
 - Importante: Esta REST API es soporte al Frontend del siguiente repositorio: 
   https://github.com/No-Country/Virtual_Wallet_MERN/tree/develop/client
 
-## Tecnologias
+## 📦 Tecnologias
 
 Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
 - NodeJS
@@ -185,7 +185,7 @@ Se realizaron un conjunto de pruebas manuales funcionales a la plataforma de Pin
 
 Link de cargas de pruebas: https://drive.google.com/drive/folders/1suF_9jD0geLas8YVIVp9dOUOGKRueBUw?usp=sharing
 
-## Installation
+## 🛠️ Installation
 
 PINGUI SERVER REQUIERE [Node.js](https://nodejs.org/) v18+ PARA INICIAR.
 
@@ -198,7 +198,7 @@ npm run dev
 ```
 
 
-## Contenedores
+## 📦 Contenedores
 El Backend esta apto para correr en un entorno de produccion o desarrollo.
 En caso de ultiza entorno de produccion puede correr el Deploy con docker compose.
 
@@ -228,7 +228,7 @@ un cluster en Kubernetes.
 Para el manejo de K8S lo puede realizar con KUBECTL
 ![ScreenShot](https://i.ibb.co/YZtnF6L/Screenshot-from-2023-06-06-09-53-54.png)
 
-## AUTOMATIZACION CI/CD
+## 🛠 ️AUTOMATIZACION CI/CD
 
 El CD esta basado en Github Actions y el CI esta anexado a Docker Hub para que Kubernetes 
 obtenga la imagen actualizada de Deploy. Para esto puede utilizar ANSIBLE.
@@ -236,7 +236,7 @@ obtenga la imagen actualizada de Deploy. Para esto puede utilizar ANSIBLE.
 ![ScreenShot](https://i.ibb.co/c18cdr0/Screenshot-from-2023-06-06-10-04-19.png)
 
 
-## DEPLOY URL
+## 🚀 DEPLOY URL
 https://rest-api-wallet-no-country-production.up.railway.app/
 - Importante: agregar " /api " ademas de los declarados en " /routes " para acceder a los datos de la base de datos.
   Ejemplo: https://rest-api-wallet-no-country-production.up.railway.app/api/user/get-all
