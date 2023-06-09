@@ -111,10 +111,10 @@
 
 
 ## 🎨🌈 Integrante de UX/UI
-| <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg" width=60>|
+| <img src="https://res.cloudinary.com/dhd78l3go/image/upload/v1686339239/jer_mt6wfd.png" width=60>|
 |:-:|
 | **Jerson** |
-| <a href="tu guthub"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Tu linkedin"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://github.com/JersonAR"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/jerson-aranda-8b0114251/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 ## 🧪🔎, Integrante Tester
 | <img src="https://www.dropbox.com/scl/fi/ve3z80p0ma7700045e2vt/Yesid_Linares.png?dl=0&rlkey=5kjngb2kjbsgu5sd5u4jdwil0" width=60>|
@@ -132,7 +132,7 @@
 
 </br>
 
-<a href="https://www.figma.com/file/yXl6Fu70MWBRlmsc6LskMU/PROYECTO-BILLETERA-VIRTUAL?type=design&node-id=85-161&t=y50DCyrvWMXy5fV2-0"><img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/></a> <a href="LINK A TU CLOUDINARY"><img src="https://img.shields.io/badge/Cloudinary-%231563FF.svg?&style=for-the-badge&logo=google-cloud&logoColor=white"/></a> 
+<a href="https://www.figma.com/file/yXl6Fu70MWBRlmsc6LskMU/PROYECTO-BILLETERA-VIRTUAL?type=design&node-id=85-161&t=y50DCyrvWMXy5fV2-0"><img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/></a> <a href="LINK A TU CLOUDINARY"><img src="https://img.shields.io/badge/Cloudinary-%231563FF.svg?&style=for-the-badge&logo=google-cloud&logoColor=white"/></a>  <a href="https://www.behance.net/JersonAR"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> 
 
 ### 🎨 Arquitectura
 ![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686285587/wallet/PROYECTO_BILLETERA_VIRTUAL_1_wfyrk5.svg "dieño arquitectura")
